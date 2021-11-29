@@ -1,0 +1,373 @@
+# Gold/Silver Card Bonuses
+
+Please refer to [this Google Sheet](https://docs.google.com/spreadsheets/d/11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc) for what to look for for each individual player, or the table below for what to look for for each role in general.
+
+***Table 1:** The average fantasy points earned per role for each indicator.*
+
+|Indicator     | Core| Support|  Mid|
+|:-------------|----:|-------:|----:|
+|Camps Stacked | 0.67|    1.34| 0.79|
+|Creep Score   | 0.87|    0.20| 0.89|
+|Deaths        | 1.70|    1.11| 1.75|
+|First Blood   | 0.35|    0.42| 0.41|
+|GPM           | 1.07|    0.59| 1.10|
+|Kills         | 1.80|    0.86| 2.40|
+|Obs Wards     | 0.23|    3.72| 0.64|
+|Roshan Kills  | 0.35|    0.04| 0.29|
+|Runes Grabbed | 0.86|    0.88| 2.48|
+|Stuns         | 1.25|    1.76| 1.60|
+|Teamfight     | 1.85|    1.88| 2.06|
+|Tower Kills   | 1.76|    0.18| 1.25|
+
+# NA
+
+***Table 2:** The schedule for the NA region.*
+
+|Team 1        |Team 2          |Scheduled Time       |
+|:-------------|:---------------|:--------------------|
+|Quincy Crew   |Simply TOOBASED |2021-11-30 20:00 UTC |
+|Undying       |D2 Hustlers     |2021-12-01 20:00 UTC |
+|4 Zoomers     |Black N Yellow  |2021-12-01 23:00 UTC |
+|Evil Geniuses |Arkosh Gaming   |2021-12-04 20:00 UTC |
+|Quincy Crew   |4 Zoomers       |2021-12-04 23:00 UTC |
+
+***Table 3:** The potential choices for the Core role in the NA region.*
+
+|Player             |Team            | Series|  Avg.|
+|:------------------|:---------------|------:|-----:|
+|天鸽   |Evil Geniuses   |      1| 16.28|
+|Nightfall 凛 |Evil Geniuses   |      1| 16.11|
+|Timado             |Undying         |      1| 14.95|
+|Costabile          |4 Zoomers       |      2| 14.37|
+|Rises              |Black N Yellow  |      1| 14.34|
+|Yawar              |Quincy Crew     |      2| 14.21|
+|oli                |Simply TOOBASED |      1| 13.14|
+|Yves               |D2 Hustlers     |      1| 12.28|
+|Pale Horse         |Arkosh Gaming   |      1| 12.22|
+|Davai Lama         |D2 Hustlers     |      1| 11.71|
+|KheZu              |Quincy Crew     |      2| 11.54|
+|Lil_Nick           |Simply TOOBASED |      1| 10.86|
+|SabeRLighT-        |Undying         |      1| 10.53|
+|Moo                |4 Zoomers       |      2| 10.41|
+|Gremlo             |Arkosh Gaming   |      1| 10.00|
+|zero               |Black N Yellow  |      1|  8.53|
+
+***Table 4:** The potential choices for the Mid role in the NA region.*
+
+|Player          |Team            | Series|  Avg.|
+|:---------------|:---------------|------:|-----:|
+|Bryle           |Undying         |      1| 17.52|
+|Abed            |Evil Geniuses   |      1| 16.39|
+|esK             |D2 Hustlers     |      1| 15.72|
+|Ryoya           |Simply TOOBASED |      1| 14.45|
+|Gunnar          |4 Zoomers       |      2| 14.44|
+|Quinn           |Quincy Crew     |      2| 14.29|
+|high_shaggy     |Black N Yellow  |      1|  8.74|
+|Forsaken Oracle |Arkosh Gaming   |      1|    NA|
+
+***Table 5:** The potential choices for the Support role in the NA region.*
+
+|Player      |Team            | Series|  Avg.|
+|:-----------|:---------------|------:|-----:|
+|DuBu        |Undying         |      1| 15.76|
+|MiLAN       |Quincy Crew     |      2| 15.44|
+|Husky       |4 Zoomers       |      2| 13.80|
+|Jubei       |Black N Yellow  |      1| 13.64|
+|MoonMeander |Undying         |      1| 13.03|
+|FLee        |Simply TOOBASED |      1| 12.72|
+|JerAx       |Evil Geniuses   |      1| 12.61|
+|Alex        |D2 Hustlers     |      1| 12.24|
+|Sam         |D2 Hustlers     |      1| 11.40|
+|ZFreek      |4 Zoomers       |      2| 11.37|
+|Cr1t-       |Evil Geniuses   |      1| 11.36|
+|ponlo       |Quincy Crew     |      2| 11.25|
+|empyreaN    |Simply TOOBASED |      1| 11.16|
+|Crow        |Arkosh Gaming   |      1| 10.62|
+|dunha1      |Black N Yellow  |      1| 10.01|
+|Monkey      |Arkosh Gaming   |      1|    NA|
+
+# SA
+
+***Table 6:** The schedule for the SA region.*
+
+|Team 1              |Team 2           |Scheduled Time       |
+|:-------------------|:----------------|:--------------------|
+|Infamous U.esports. |Thunder Predator |2021-12-02 23:00 UTC |
+|Noping VPN          |Hokori           |2021-12-03 20:00 UTC |
+|beastcoast          |King of Kings    |2021-12-03 23:00 UTC |
+|Lava BestPc         |King of Kings    |2021-12-05 20:00 UTC |
+|Thunder Predator    |Hokori           |2021-12-05 23:00 UTC |
+
+***Table 7:** The potential choices for the Core role in the SA region.*
+
+|Player                              |Team                | Series|  Avg.|
+|:-----------------------------------|:-------------------|------:|-----:|
+|Pakazs                              |Thunder Predator    |      2| 17.42|
+|Lumière                             |Infamous U.esports. |      1| 16.60|
+|RdO                                 |Noping VPN          |      1| 16.27|
+|Kotaro^ZS                           |Lava BestPc         |      1| 15.93|
+|Benny                               |King of Kings       |      2| 15.35|
+|Yuma                                |Hokori              |      2| 14.00|
+|K1                                  |beastcoast          |      1| 13.81|
+|Wisper                              |beastcoast          |      1| 11.77|
+|Frank-   /  大花 FEeDeR |Lava BestPc         |      1| 10.94|
+|Monster                             |Noping VPN          |      1| 10.24|
+|Sacred                              |Infamous U.esports. |      1| 10.24|
+|Vitaly                              |Hokori              |      2| 10.18|
+|Oscar                               |Thunder Predator    |      2| 10.08|
+|SValqui                             |King of Kings       |      2|  8.08|
+
+***Table 8:** The potential choices for the Mid role in the SA region.*
+
+|Player           |Team                | Series|  Avg.|
+|:----------------|:-------------------|------:|-----:|
+|DarkMago♥ |Thunder Predator    |      2| 15.55|
+|Leostyle-        |Lava BestPc         |      1| 15.53|
+|mini             |King of Kings       |      2| 15.32|
+|Guts             |Hokori              |      2| 15.28|
+|4nalog <01       |Noping VPN          |      1| 15.07|
+|C. smile  <      |beastcoast          |      1| 14.91|
+|Summum`          |Infamous U.esports. |      1| 14.79|
+
+***Table 9:** The potential choices for the Support role in the SA region.*
+
+|Player                     |Team                | Series|  Avg.|
+|:--------------------------|:-------------------|------:|-----:|
+|Matthew                    |Thunder Predator    |      2| 14.82|
+|木星hanezes666 |King of Kings       |      2| 14.71|
+|XstiNgerX                  |beastcoast          |      1| 14.63|
+|Affliction                 |Infamous U.esports. |      1| 14.63|
+|Gard1ck                    |Hokori              |      2| 14.25|
+|Michael                    |Infamous U.esports. |      1| 13.55|
+|KJ                         |Noping VPN          |      1| 13.25|
+|PandaMoo                   |Thunder Predator    |      2| 12.48|
+|KIM                        |Lava BestPc         |      1| 12.24|
+|serem                      |King of Kings       |      2| 12.07|
+|Thiolicor                  |Noping VPN          |      1| 11.64|
+|elmisho                    |Hokori              |      2| 10.99|
+|Catyu                      |Lava BestPc         |      1| 10.55|
+|Gojira                     |beastcoast          |      1| 10.37|
+
+# WEU
+
+***Table 10:** The schedule for the WEU region.*
+
+|Team 1       |Team 2         |Scheduled Time       |
+|:------------|:--------------|:--------------------|
+|Alliance     |Tundra Esports |2021-11-30 14:00 UTC |
+|Team Secret  |OG             |2021-11-30 17:00 UTC |
+|Team Liquid  |Coolguys       |2021-12-01 14:00 UTC |
+|Nigma Galaxy |Team Tickles   |2021-12-04 14:00 UTC |
+|Alliance     |Team Secret    |2021-12-04 17:00 UTC |
+
+***Table 11:** The potential choices for the Core role in the WEU region.*
+
+|Player       |Team           | Series|  Avg.|
+|:------------|:--------------|------:|-----:|
+|Nisha        |Team Secret    |      2| 16.84|
+|MATUMBAMAN   |Team Liquid    |      1| 15.70|
+|dyrachyo     |Team Tickles   |      1| 15.16|
+|skiter       |Tundra Esports |      1| 14.73|
+|Ace          |Team Tickles   |      1| 13.94|
+|Yuragi       |OG             |      1| 13.87|
+|ThuG         |Coolguys       |      1| 13.74|
+|Nikobaby     |Alliance       |      2| 12.73|
+|AMMAR_THE_F  |OG             |      1| 12.20|
+|iLTW         |Nigma Galaxy   |      1| 12.02|
+|33           |Tundra Esports |      1| 11.76|
+|zai          |Team Liquid    |      1| 10.84|
+|LESLÃO       |Alliance       |      2| 10.53|
+|iceiceice    |Team Secret    |      2| 10.19|
+|Funn1k       |Coolguys       |      1| 10.07|
+|MinD_ContRoL |Nigma Galaxy   |      1|  9.57|
+
+***Table 12:** The potential choices for the Mid role in the WEU region.*
+
+|Player   |Team           | Series|  Avg.|
+|:--------|:--------------|------:|-----:|
+|bzm      |OG             |      1| 17.92|
+|SumaiL-  |Team Secret    |      2| 17.45|
+|Nine     |Tundra Esports |      1| 17.20|
+|BOOM     |Team Tickles   |      1| 15.93|
+|Supream^ |Alliance       |      2| 15.67|
+|No!ob™   |Coolguys       |      1| 15.47|
+|Miracle- |Nigma Galaxy   |      1| 15.01|
+|m1CKe    |Team Liquid    |      1| 13.50|
+
+***Table 13:** The potential choices for the Support role in the WEU region.*
+
+|Player   |Team           | Series|  Avg.|
+|:--------|:--------------|------:|-----:|
+|YapzOr   |Team Secret    |      2| 17.56|
+|iNsania  |Team Liquid    |      1| 15.00|
+|tOfu     |Team Tickles   |      1| 14.55|
+|Fata     |Tundra Esports |      1| 14.53|
+|Seleri   |Team Tickles   |      1| 14.50|
+|Misha    |OG             |      1| 14.07|
+|Aramis   |Alliance       |      2| 13.63|
+|KuroKy   |Nigma Galaxy   |      1| 12.75|
+|OmaR     |Coolguys       |      1| 12.32|
+|Sneyking |Tundra Esports |      1| 12.15|
+|Handsken |Alliance       |      2| 12.13|
+|Puppey   |Team Secret    |      2| 11.91|
+|dnz      |Coolguys       |      1| 11.89|
+|Taiga    |OG             |      1| 11.71|
+|Gh       |Nigma Galaxy   |      1| 11.40|
+|Boxi     |Team Liquid    |      1| 10.95|
+
+# EEU
+
+***Table 14:** The schedule for the EEU region.*
+
+|Team 1        |Team 2           |Scheduled Time       |
+|:-------------|:----------------|:--------------------|
+|Team Empire   |AS Monaco Gambit |2021-12-02 14:00 UTC |
+|Natus Vincere |PuckChamp        |2021-12-02 17:00 UTC |
+|Team Spirit   |Team Unique      |2021-12-03 11:00 UTC |
+|PuckChamp     |AS Monaco Gambit |2021-12-05 14:00 UTC |
+|Virtus.pro    |HellRaisers      |2021-12-05 17:00 UTC |
+
+***Table 15:** The potential choices for the Core role in the EEU region.*
+
+|Player                  |Team             | Series|  Avg.|
+|:-----------------------|:----------------|------:|-----:|
+|YATOROGOD               |Team Spirit      |      1| 16.90|
+|7jesu                   |Team Unique      |      1| 16.10|
+|医者watson` |HellRaisers      |      1| 15.17|
+|lightless               |Team Empire      |      1| 14.00|
+|V-Tune                  |Natus Vincere    |      1| 13.57|
+|krylat (¬¦_¦)           |PuckChamp        |      2| 13.10|
+|GeneRaL                 |Natus Vincere    |      1| 12.00|
+|Malik                   |PuckChamp        |      2| 11.55|
+|DM                      |Virtus.pro       |      1| 11.24|
+|meLes                   |AS Monaco Gambit |      2| 10.62|
+|Ghostik                 |Team Empire      |      1| 10.51|
+|CoLLapse                |Team Spirit      |      1| 10.44|
+|Limitless               |HellRaisers      |      1| 10.16|
+|PETUSHARA               |Team Unique      |      1|  9.06|
+|Pure                    |Virtus.pro       |      1|    NA|
+|alberkaaa               |AS Monaco Gambit |      2|    NA|
+
+***Table 16:** The potential choices for the Mid role in the EEU region.*
+
+|Player       |Team             | Series|  Avg.|
+|:------------|:----------------|------:|-----:|
+|re1bl        |HellRaisers      |      1| 17.34|
+|TORONTOTOKYO |Team Spirit      |      1| 16.84|
+|lorenof      |AS Monaco Gambit |      2| 16.62|
+|fn`          |Team Unique      |      1| 16.58|
+|gpk~         |Virtus.pro       |      1| 15.67|
+|No[o]ne-     |Natus Vincere    |      1| 15.56|
+|young G      |PuckChamp        |      2| 14.90|
+|Sh           |Team Empire      |      1| 14.06|
+
+***Table 17:** The potential choices for the Support role in the EEU region.*
+
+|Player       |Team             | Series|  Avg.|
+|:------------|:----------------|------:|-----:|
+|Miposhka     |Team Spirit      |      1| 15.01|
+|Slayer       |Team Unique      |      1| 14.80|
+|kaori        |Team Empire      |      1| 14.61|
+|HappyDyurara |AS Monaco Gambit |      2| 13.68|
+|Dukalis      |PuckChamp        |      2| 13.45|
+|Bignum       |Team Unique      |      1| 13.39|
+|Solo         |Natus Vincere    |      1| 13.06|
+|illias       |Virtus.pro       |      1| 12.92|
+|Mira         |Team Spirit      |      1| 12.85|
+|Astral       |PuckChamp        |      2| 12.49|
+|yamich       |Virtus.pro       |      1| 12.31|
+|ALOHADANCE   |Natus Vincere    |      1| 11.87|
+|Immersion    |AS Monaco Gambit |      2| 11.79|
+|Gilgir       |HellRaisers      |      1| 11.68|
+|Malady       |HellRaisers      |      1| 11.31|
+|[T]SA        |Team Empire      |      1| 11.05|
+
+# CN
+
+***Table 18:** The schedule for the CN region.*
+
+|Team 1 |Team 2 |Scheduled Time |
+|:------|:------|:--------------|
+
+***Table 19:** The potential choices for the Core role in the CN region.*
+
+|Player |Team | Series| Avg.|
+|:------|:----|------:|----:|
+
+***Table 20:** The potential choices for the Mid role in the CN region.*
+
+|Player |Team | Series| Avg.|
+|:------|:----|------:|----:|
+
+***Table 21:** The potential choices for the Support role in the CN region.*
+
+|Player |Team | Series| Avg.|
+|:------|:----|------:|----:|
+
+# SEA
+
+***Table 22:** The schedule for the SEA region.*
+
+|Team 1       |Team 2                |Scheduled Time       |
+|:------------|:---------------------|:--------------------|
+|TNC Predator |T1                    |2021-12-01 08:00 UTC |
+|Execration   |Motivate.Trust Gaming |2021-12-01 11:00 UTC |
+|OB.Neon      |BOOM Esports          |2021-12-02 11:00 UTC |
+|Fnatic       |Team SMG              |2021-12-04 08:00 UTC |
+|TNC Predator |Motivate.Trust Gaming |2021-12-04 11:00 UTC |
+
+***Table 23:** The potential choices for the Core role in the SEA region.*
+
+|Player          |Team                  | Series|  Avg.|
+|:---------------|:---------------------|------:|-----:|
+|MidOne          |Team SMG              |      1| 17.25|
+|Raven           |Fnatic                |      1| 17.01|
+|skem            |BOOM Esports          |      1| 16.43|
+|JACKBOYS        |Motivate.Trust Gaming |      2| 15.67|
+|Nando           |Execration            |      1| 14.96|
+|Palos           |OB.Neon               |      1| 14.50|
+|23savage        |T1                    |      1| 13.60|
+|J               |Fnatic                |      1| 12.71|
+|Fbz             |BOOM Esports          |      1| 11.94|
+|Tino            |BOOM Esports          |      1| 11.69|
+|Kuku            |T1                    |      1| 10.76|
+|Masa`           |Motivate.Trust Gaming |      2| 10.75|
+|Enryu           |OB.Neon               |      1| 10.51|
+|Raging-_-Potato |Team SMG              |      1| 10.47|
+|X1aOyU          |TNC Predator          |      2|  9.23|
+|YoungGod        |TNC Predator          |      2|    NA|
+|Kimizu          |Execration            |      1|    NA|
+
+***Table 24:** The potential choices for the Mid role in the SEA region.*
+
+|Player     |Team                  | Series|  Avg.|
+|:----------|:---------------------|------:|-----:|
+|Karl       |T1                    |      1| 18.90|
+|Yopaj-     |BOOM Esports          |      1| 17.74|
+|MooN       |Team SMG              |      1| 17.62|
+|GACHABOI   |Motivate.Trust Gaming |      2| 16.15|
+|Armel      |Fnatic                |      1| 15.91|
+|Bob        |Execration            |      1| 15.83|
+|Yowe       |TNC Predator          |      2| 15.16|
+|MamangDaya |OB.Neon               |      1| 14.56|
+
+***Table 25:** The potential choices for the Support role in the SEA region.*
+
+|Player    |Team                  | Series|  Avg.|
+|:---------|:---------------------|------:|-----:|
+|Whitemon  |T1                    |      1| 16.78|
+|DJ        |Fnatic                |      1| 16.15|
+|Boombui   |Motivate.Trust Gaming |      2| 15.69|
+|Jaunuel   |Fnatic                |      1| 15.39|
+|Abeng-    |OB.Neon               |      1| 14.54|
+|NARMAN    |OB.Neon               |      1| 13.53|
+|Vincenzo^ |Execration            |      1| 13.52|
+|PlayHard- |TNC Predator          |      2| 13.40|
+|Febby     |TNC Predator          |      2| 13.40|
+|TIMS      |BOOM Esports          |      1| 13.36|
+|Roger     |Team SMG              |      1| 12.33|
+|Carlo     |Execration            |      1| 12.01|
+|- ah fu - |Team SMG              |      1| 11.57|
+|Xepher    |T1                    |      1| 10.80|
+|Q         |Motivate.Trust Gaming |      2|  9.98|
+
