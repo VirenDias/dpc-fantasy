@@ -1,5 +1,6 @@
 source("get-player-data.R")
-source("get-match-data.R")
+source("get-team-data.R")
+source("calculate-averages.R")
 
 library(tidyverse)
 library(googlesheets4)
@@ -8,28 +9,23 @@ update_google_sheet <- function(
   google_sheet,
   work_sheet,
   league_id,
-  role_errata = NULL,
-  num_matches
+  update = FALSE
 ) {
-  players <- get_player_data(league_id = league_id, role_errata = role_errata)
-  teams <- get_team_data(team_ids = unique(players$team_id))
-  matches <- get_match_data(
-    player_ids = players$player_id, 
-    num_matches = num_matches
-  )
+  # Get required data
+  players <- get_player_data(league_id = league_id, update = update)
+  teams <- get_team_data(league_id = league_id, update = update)
+  averages <- calculate_averages(league_id = league_id, update = update)
   
-  summary <- matches %>%
-    group_by(player_id) %>%
-    summarise(
+  # Format values
+  averages <- averages %>%
+    mutate(
       across(
-        .cols = -match_id, 
-        .fns = ~format(round(mean(., na.rm = TRUE), digits = 2), nsmall = 2)
+        .cols = kills:total, 
+        .fns = ~format(round(., digits = 2), nsmall = 2)
       )
-    )
-  summary <- players %>%
+    ) %>%
+    right_join(players, by = "player_id") %>%
     left_join(teams, by = "team_id") %>%
-    left_join(summary, by = "player_id") %>%
-    mutate(player_role = as.character(player_role)) %>%
     arrange(team_name, player_role) %>%
     select(
       "Player Name" = player_name,
@@ -50,5 +46,6 @@ update_google_sheet <- function(
       "Total" = total
     )
   
-  write_sheet(summary, ss = google_sheet, sheet = work_sheet)
+  # Update Google Sheet
+  write_sheet(averages, ss = google_sheet, sheet = work_sheet)
 }

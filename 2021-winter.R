@@ -51,7 +51,7 @@ role_errata <- data.frame(
   add_row(player_id = 363739653, player_role = "Core") %>%
   # CN
   add_row(player_id = 147767183, player_role = "Core") %>%
-  add_row(player_id = 107081378 , player_role = "Support") %>%
+  add_row(player_id = 107081378, player_role = "Support") %>%
   add_row(player_id = 101908305, player_role = "Core") %>%
   add_row(player_id = 136178375, player_role = "Support") %>%
   add_row(player_id = 150588364, player_role = "Mid") %>%
@@ -62,26 +62,36 @@ role_errata <- data.frame(
   # SEA
   add_row(player_id = 401653350, player_role = "Core") %>%
   add_row(player_id = 135495981, player_role = "Core") %>%
-  add_row(player_id = 837609249, player_role = "Core") %>%
+  add_row(player_id = 837609249, player_role = "Core") # %>%
   add_row(player_id = 112531417, player_role = "Support")
 
+# Update Google Sheet
 lapply(names(league_ids), function(league_name) {
   update_google_sheet(
     google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
     work_sheet = league_name,
     league_id = league_ids[[league_name]],
-    role_errata = role_errata,
-    num_matches = 25
+    update = TRUE
   )
 })
 
-# Period 1
+# Create Reddit post
+## Period 1
 print_post(
   league_ids = league_ids,
-  role_errata = role_errata,
+  update = FALSE,
   start_time = start_dates$period_1,
   end_time = start_dates$period_2,
-  num_matches = 25,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
-  file_path = "data/2021_winter_p1.txt"
+  file_path = "data/posts/2021_winter_p1.txt"
+)
+
+## Period 2
+print_post(
+  league_ids = league_ids,
+  update = FALSE,
+  start_time = start_dates$period_2,
+  end_time = start_dates$period_3,
+  google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
+  file_path = "data/posts/2021_winter_p2.txt"
 )
