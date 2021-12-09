@@ -1,5 +1,6 @@
 source("print-post.R")
 source("update-google-sheet.R")
+source("update-website-data.R")
 
 library(tidyverse)
 
@@ -12,13 +13,31 @@ league_ids <- list(
   "SEA" = 13747
 )
 
-start_dates <- list(
-  "period_1" = as.POSIXct("2021-11-30 08:00", tz = "UTC") %>% as.integer(),
-  "period_2" = as.POSIXct("2021-12-07 08:00", tz = "UTC") %>% as.integer(),
-  "period_3" = as.POSIXct("2021-12-14 08:00", tz = "UTC") %>% as.integer(),
-  "period_4" = as.POSIXct("2021-12-21 08:00", tz = "UTC") %>% as.integer(),
-  "period_5" = as.POSIXct("2022-01-11 08:00", tz = "UTC") %>% as.integer(),
-  "period_6" = as.POSIXct("2022-01-18 08:00", tz = "UTC") %>% as.integer()
+period_dates <- list(
+  "period_1" = list(
+    "start_time" = as.POSIXct("2021-11-30 08:00", tz = "UTC") %>% as.integer(),
+    "end_time" = as.POSIXct("2021-12-07 08:00", tz = "UTC") %>% as.integer()
+  ),
+  "period_2" = list(
+    "start_time" = as.POSIXct("2021-12-07 08:00", tz = "UTC") %>% as.integer(),
+    "end_time" = as.POSIXct("2021-12-14 08:00", tz = "UTC") %>% as.integer()
+  ),
+  "period_3" = list(
+    "start_time" = as.POSIXct("2021-12-14 08:00", tz = "UTC") %>% as.integer(),
+    "end_time" = as.POSIXct("2021-12-21 08:00", tz = "UTC") %>% as.integer()
+  ),
+  "period_4" = list(
+    "start_time" = as.POSIXct("2021-12-21 08:00", tz = "UTC") %>% as.integer(),
+    "end_time" = as.POSIXct("2022-01-11 08:00", tz = "UTC") %>% as.integer()
+  ),
+  "period_5" = list(
+    "start_time" = as.POSIXct("2022-01-11 08:00", tz = "UTC") %>% as.integer(),
+    "end_time" = as.POSIXct("2022-01-18 08:00", tz = "UTC") %>% as.integer()
+  ),
+  "period_6" = list(
+    "start_time" = as.POSIXct("2022-01-18 08:00", tz = "UTC") %>% as.integer(),
+    "end_time" = as.POSIXct("2022-01-25 08:00", tz = "UTC") %>% as.integer()
+  )
 )
 
 role_errata <- data.frame(
@@ -80,8 +99,8 @@ lapply(names(league_ids), function(league_name) {
 print_post(
   league_ids = league_ids,
   update = FALSE,
-  start_time = start_dates$period_1,
-  end_time = start_dates$period_2,
+  start_time = period_dates$period_1$start_time,
+  end_time = period_dates$period_1$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
   file_path = "data/posts/2021_winter_p1.txt"
 )
@@ -90,8 +109,8 @@ print_post(
 print_post(
   league_ids = league_ids,
   update = FALSE,
-  start_time = start_dates$period_2,
-  end_time = start_dates$period_3,
+  start_time = period_dates$period_2$start_time,
+  end_time = period_dates$period_2$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
   file_path = "data/posts/2021_winter_p2.txt"
 )

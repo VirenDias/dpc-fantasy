@@ -25,9 +25,13 @@ print_post <- function(
     
     players <- get_player_data(league_id = league_id, update = update)
     teams <- get_team_data(league_id = league_id, update = update)
-    averages <- calculate_averages(league_id = league_id, update = update)
     schedule <- get_schedule(league_id = league_id, update = update) %>%
       filter(time >= start_time, time < end_time)
+    averages <- calculate_averages(
+      league_id = league_id, 
+      start_time = start_time,
+      update = update
+    )
     
     relevant_teams <- unique(c(schedule$team_id_1, schedule$team_id_2))
     series <- schedule %>%
@@ -43,7 +47,8 @@ print_post <- function(
     write_lines("", file = file_path, append = TRUE)
     
     # Create schedule table
-    schedule <- schedule %>%
+    schedule <- schedule  %>%
+      arrange(time) %>%
       left_join(teams, by = c("team_id_1" = "team_id")) %>%
       rename(team_name_1 = team_name) %>%
       left_join(teams, by = c("team_id_2" = "team_id")) %>%
@@ -55,8 +60,7 @@ print_post <- function(
           usetz = TRUE
         )
       ) %>%
-      select(team_name_1, team_name_2, time) %>%
-      arrange(time)
+      select(team_name_1, team_name_2, time)
     
     ## Create table caption
     paste0(

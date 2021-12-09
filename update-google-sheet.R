@@ -20,7 +20,7 @@ update_google_sheet <- function(
   averages <- averages %>%
     mutate(
       across(
-        .cols = kills:total, 
+        .cols = -player_id, 
         .fns = ~format(round(., digits = 2), nsmall = 2)
       )
     ) %>%

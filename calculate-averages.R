@@ -2,12 +2,17 @@ source("get-match-data.R")
 
 library(tidyverse)
 
-calculate_averages <- function(league_id, update = FALSE, num_matches = 25) {
+calculate_averages <- function(
+  league_id,
+  start_time = as.integer(Sys.time()),
+  update = FALSE
+) {
   # Get required data
-  matches <- get_match_data(league_id = league_id, update = update) %>%
-    group_by(player_id) %>%
-    slice_max(order_by = match_id, n = num_matches) %>%
-    ungroup()
+  matches <- get_prediction_data(
+    league_id = league_id, 
+    start_time = start_time,
+    update = update
+  )
   
   # Calculate average results
   averages <- matches %>%
