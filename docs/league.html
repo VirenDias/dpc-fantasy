@@ -79,17 +79,22 @@
           data: league_data.result_aggregate,
           columns: tableColumns,
           columnDefs: [{
-            render: function(data) {
-              if (!isNaN(data)) {
-                return data.toFixed(2);
-              } else if (data == "NA") {
-                return "—";
-              } else {
-                return data;
-              }
+              render: data => data,
+              targets: [0, 1, 2]
             },
-            targets: "_all"
-          }],
+            {
+              render: function(data) {
+                if (!isNaN(data)) {
+                  return data.toFixed(2);
+                } else if (data == "NA") {
+                  return "—";
+                } else {
+                  return data;
+                }
+              },
+              targets: "_all"
+            }
+          ],
           order: [
             [1, 'asc'],
             [2, 'asc']
