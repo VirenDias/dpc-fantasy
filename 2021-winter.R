@@ -94,6 +94,15 @@ lapply(names(league_ids), function(league_name) {
   )
 })
 
+# Update website
+lapply(names(league_ids), function(league_name) {
+  update_website_data(
+    league_id = league_ids[[league_name]],
+    period_dates = period_dates,
+    update = FALSE
+  )
+})
+
 # Create Reddit post
 ## Period 1
 print_post(
@@ -113,4 +122,14 @@ print_post(
   end_time = period_dates$period_2$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
   file_path = "data/posts/2021_winter_p2.txt"
+)
+
+## Period 3
+print_post(
+  league_ids = league_ids,
+  update = FALSE,
+  start_time = period_dates$period_3$start_time,
+  end_time = period_dates$period_3$end_time,
+  google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
+  file_path = "data/posts/2021_winter_p3.txt"
 )

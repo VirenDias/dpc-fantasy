@@ -13,8 +13,8 @@ get_schedule <- function(league_id, update = FALSE) {
   if (update) {
     # Get league data
     response <- GET(
-      url = "https://www.dota2.com/webapi/IDOTA2League/GetLeaguesData/v001",
-      query = list(league_ids = league_id)
+      url = "https://www.dota2.com/webapi/IDOTA2League/GetLeagueData/v001",
+      query = list(league_id = league_id)
     )
     if (http_status(response)$category != "Success") {
       stop("Unsuccessful request")
@@ -26,7 +26,7 @@ get_schedule <- function(league_id, update = FALSE) {
       team_id_2 = as.numeric(), 
       time = as.numeric()
     )
-    for (match in content(response)$leagues[[1]]$node_groups[[1]]$node_groups[[1]]$nodes) {
+    for (match in content(response)$node_groups[[1]]$node_groups[[1]]$nodes) {
       schedule <- schedule %>%
         add_row(
           team_id_1 = as.numeric(match$team_id_1), 

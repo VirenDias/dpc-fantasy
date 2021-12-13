@@ -2,7 +2,7 @@ source("get-player-data.R")
 
 library(tidyverse)
 library(httr)
-
+# Refactor to only get match data
 get_prediction_data <- function(
   league_id,
   start_time = as.integer(Sys.time()),
@@ -172,18 +172,10 @@ get_prediction_data <- function(
 
 get_result_data <- function(
   league_id,
-  start_time,
   end_time,
   update = FALSE
 ) {
-  message(
-    paste0(
-      "Retrieving results data for league ID ", 
-      league_id,
-      " and period ",
-      as.POSIXct(start_time, tz = "UTC", origin = "1970-01-01") %>% as.Date()
-    )
-  )
+  message(paste0("Retrieving results data for league ID ", league_id))
   
   dir_path <- paste0("data/", league_id)
   file_path <- paste0(dir_path, "/matches.csv")
@@ -193,8 +185,8 @@ get_result_data <- function(
   
   # Get league data
   response_league <- GET(
-    url = "https://www.dota2.com/webapi/IDOTA2League/GetLeaguesData/v001",
-    query = list(league_ids = league_id)
+    url = "https://www.dota2.com/webapi/IDOTA2League/GetLeagueData/v001",
+    query = list(league_id = league_id)
   )
   if (http_status(response_league)$category != "Success") {
     stop("Unsuccessful request")
@@ -202,11 +194,9 @@ get_result_data <- function(
   
   # Store match IDs
   match_ids <- c()
-  for (series in content(response_league)$leagues[[1]]$series_infos) {
-    if (series$start_time >= start_time && series$start_time < end_time) {
-      for (match_id in series$match_ids) {
-        match_ids <- c(match_ids, match_id)
-      }
+  for (series in content(response_league)$series_infos) {
+    for (match_id in series$match_ids) {
+      match_ids <- c(match_ids, match_id)
     }
   }
   

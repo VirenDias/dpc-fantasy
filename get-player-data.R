@@ -14,8 +14,8 @@ get_player_data <- function(league_id, update = FALSE) {
   if (update) {
     # Get league data
     response_league <- GET(
-      url = "https://www.dota2.com/webapi/IDOTA2League/GetLeaguesData/v001",
-      query = list(league_ids = league_id)
+      url = "https://www.dota2.com/webapi/IDOTA2League/GetLeagueData/v001",
+      query = list(league_id = league_id)
     )
     if (http_status(response_league)$category != "Success") {
       stop("Unsuccessful request")
@@ -27,7 +27,7 @@ get_player_data <- function(league_id, update = FALSE) {
       player_name = as.character(), 
       team_id = as.numeric()
     )
-    for (player in content(response_league)$leagues[[1]]$registered_players) {
+    for (player in content(response_league)$registered_players) {
       players <- players %>%
         add_row(
           player_id = as.numeric(player$account_id), 
