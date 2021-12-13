@@ -94,7 +94,9 @@ get_prediction_data <- function(
     for (match_id in match_ids) {
       message(
         paste0(
-          "Retrieving matches (",
+          "Retrieving match data for match ID ",
+          match_id, 
+          " (",
           i, 
           "/", 
           length(match_ids),
@@ -172,7 +174,6 @@ get_prediction_data <- function(
 
 get_result_data <- function(
   league_id,
-  end_time,
   update = FALSE
 ) {
   message(paste0("Retrieving results data for league ID ", league_id))
@@ -238,7 +239,9 @@ get_result_data <- function(
     for (match_id in remaining_ids) {
       message(
         paste0(
-          "Retrieving matches (",
+          "Retrieving match data for match ID ",
+          match_id, 
+          " (",
           i, 
           "/", 
           length(remaining_ids),

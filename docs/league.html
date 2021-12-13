@@ -12,20 +12,59 @@
 
 <body>
   <div class="container">
-    <h1 id="league-title" class="display-3 text-center mt-4 mb-4"></h1>
+    <h1 id="league-title" class="display-3 text-center my-4"></h1>
 
-    <ul class="nav justify-content-center mt-4 mb-4" role="tablist">
-      <li class="btn-group" role="presentation">
-        <button class="btn btn-outline-dark active" data-bs-toggle="tab" data-bs-target="#tab-aggregate" type="button" role="tab">Aggregate Performance</button>
-        <button class="btn btn-outline-dark" data-bs-toggle="tab" data-bs-target="#tab-single" type="button" role="tab">Single Performances</button>
+    <ul class="nav justify-content-center" role="tablist">
+      <li class="btn-group m-2" role="presentation">
+        <button class="btn btn-outline-dark active" data-bs-toggle="tab" data-bs-target="#tab-schedule" type="button" role="tab">Schedule</button>
+        <button class="btn btn-outline-dark" data-bs-toggle="tab" data-bs-target="#tab-note" type="button" role="tab">Notes</button>
+      </li>
+      <li class="btn-group m-2" role="presentation">
+        <button class="btn btn-outline-dark" data-bs-toggle="tab" data-bs-target="#tab-single" type="button" role="tab">Single</button>
+        <button class="btn btn-outline-dark" data-bs-toggle="tab" data-bs-target="#tab-average" type="button" role="tab">Average</button>
+        <button class="btn btn-outline-dark" data-bs-toggle="tab" data-bs-target="#tab-aggregate" type="button" role="tab">Aggregate</button>
       </li>
     </ul>
-    <div class="tab-content">
-      <div class="tab-pane fade show active" id="tab-aggregate" role="tabpanel" aria-labelledby="tab-aggregate-tab">
-        <table id="table-aggregate" class="table nowrap table-hover" style="width: 100%;"></table>
+
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path
+          d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+      </symbol>
+    </svg>
+
+    <div class="tab-content my-4">
+      <div class="tab-pane fade show active" id="tab-schedule" role="tabpanel">
+        <div id="roster-lock-grid" class="row row-cols-2 row-cols-lg-3 row-cols-xxl-6 g-4 mb-4"></div>
+        <table id="table-schedule" class="table nowrap table-hover" style="width: 100%"></table>
       </div>
-      <div class="tab-pane fade" id="tab-single" role="tabpanel" aria-labelledby="tab-single-tab">
+      <div class="tab-pane fade" id="tab-note" role="tabpanel">
+        <h5>Known Issues</h5>
+        <ul>
+          <li>Valve does not count the final 5–10 seconds of the game for fantasy points. Please see this <a href="https://www.reddit.com/r/DotA2/comments/rcda9n/valve_your_fantasy_point_math_is_incorrect_with/" target="_blank">Reddit post</a> for
+            more information. This can result in slight differences between the numbers presented here and those in-game.</li>
+          <li>Some replays are unavailable, and therefore I am unable to calculate the fantasy points earned in those games. This can result in major differences in the <em>aggregate</em> table, as well as missing records in the <em>single</em>
+            table. Unfortunately, there is nothing I can do about this. Fortunately, this is quite rare.</li>
+        </ul>
+        <h5>Average Table</h5>
+        <ul>
+          <li>The numbers here are calculated considering all matches played in the league.</li>
+        </ul>
+        <h5>Aggregate Table</h5>
+        <ul>
+          <li>The numbers here are calculated considering only the highest-scoring series for each period.</li>
+          <li>A series can be a best-of-one, best-of-two, best-of-three, or best-of-five. For a best-of-one and best-of-two, all games played are counted. For a best-of-three, only the two highest-scoring games are counted. For a best-of-five, only
+            the three highest-scoring games are counted.</li>
+        </ul>
+      </div>
+      <div class="tab-pane fade" id="tab-single" role="tabpanel">
         <table id="table-single" class="table nowrap table-hover" style="width: 100%;"></table>
+      </div>
+      <div class="tab-pane fade" id="tab-average" role="tabpanel">
+        <table id="table-average" class="table nowrap table-hover" style="width: 100%;"></table>
+      </div>
+      <div class="tab-pane fade" id="tab-aggregate" role="tabpanel">
+        <table id="table-aggregate" class="table nowrap table-hover" style="width: 100%;"></table>
       </div>
     </div>
 
@@ -47,57 +86,91 @@
         // Add league title
         document.querySelector("#league-title").innerHTML = league_data.name;
 
-        // Render the aggregate table
-        var periods = Object.keys(league_data.result_aggregate[0]).filter(d => d.startsWith("period_"));
-        tableColumns = [{
-            title: "Player Name",
-            data: "player_name"
-          },
-          {
-            title: "Team Name",
-            data: "team_name"
-          },
-          {
-            title: "Player Role",
-            data: "player_role"
-          }
-        ];
-        for (var i = 1; i < periods.length + 1; i++) {
-          tableColumns.push({
-            title: "Period " + i,
-            data: "period_" + i,
-            type: "num",
-            className: "text-end"
-          })
-        }
+        // Render the roster lock countdowns
+        league_data.roster_lock.forEach(function(period, i) {
+          var col = document.createElement("div");
+          col.className = "col";
 
-        var tableAggregate = {
+          var cardContainer = document.createElement("div");
+          cardContainer.className = "card text-center h-100";
+
+          var cardBody = document.createElement("div");
+          cardBody.className = "card-body";
+
+          var cardTitle = document.createElement("h5");
+          cardTitle.className = "card-text";
+          setInterval(function() {
+            difference = period.start_time * 1000 - new Date();
+            if (difference <= 0) {
+              cardTitle.innerHTML = "Locked";
+            } else {
+              var hours = Math.floor(difference / 3600000);
+              var minutes = Math.floor((difference % 3600000) / 60000);
+              var seconds = Math.floor((difference % 60000) / 1000);
+              cardTitle.innerHTML = hours + "h " + minutes + "m " + seconds + "s";
+            }
+          }, 1000);
+
+          var cardSubTitle = document.createElement("h6");
+          cardSubTitle.className = "card-text text-muted";
+          cardSubTitle.innerHTML = "Period " + (i + 1) + " · " + new Date(period.start_time * 1000)
+            .toLocaleDateString(
+              'en-gb', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                timeZone: 'utc'
+              });
+
+          cardContainer.append(cardBody);
+          cardBody.append(cardTitle);
+          cardBody.append(cardSubTitle);
+          col.append(cardContainer);
+
+          document.querySelector("#roster-lock-grid").append(col);
+        });
+
+        // Render the schedule table
+        var tableSchedule = {
           paging: false,
           fixedHeader: true,
-          fixedColumns: true,
           scrollX: true,
-          data: league_data.result_aggregate,
-          columns: tableColumns,
-          columnDefs: [{
-              render: data => data,
-              targets: [0, 1, 2]
+          data: league_data.schedule,
+          columns: [{
+              title: "Team 1",
+              data: "team_name_1"
             },
             {
-              render: function(data) {
-                if (!isNaN(data)) {
-                  return data.toFixed(2);
-                } else if (data == "NA") {
-                  return "—";
-                } else {
-                  return data;
-                }
-              },
-              targets: "_all"
+              title: "Team 2",
+              data: "team_name_2"
+            },
+            {
+              title: "Scheduled Time (UTC)",
+              data: "time",
+              type: "date",
+              className: "text-end"
             }
           ],
+          columnDefs: [{
+            render: function(data) {
+              if (data == 0) {
+                return "Not yet scheduled"
+              } else {
+                return new Date(data * 1000).toLocaleTimeString(
+                  'en-gb', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    timeZone: 'utc'
+                  });
+              }
+            },
+            targets: 2
+          }],
           order: [
-            [1, 'asc'],
-            [2, 'asc']
+            [2, 'desc']
           ],
         };
 
@@ -240,14 +313,169 @@
           ]
         };
 
+        // Render the average table
+        var tableAverage = {
+          paging: false,
+          fixedHeader: true,
+          fixedColumns: true,
+          scrollX: true,
+          data: league_data.result_average,
+          columns: [{
+              title: "Player Name",
+              data: "player_name"
+            },
+            {
+              title: "Team Name",
+              data: "team_name"
+            },
+            {
+              title: "Player Role",
+              data: "player_role"
+            },
+            {
+              title: "Kills",
+              data: "kills",
+              className: "text-end"
+            },
+            {
+              title: "Deaths",
+              data: "deaths",
+              className: "text-end"
+            },
+            {
+              title: "Creep Score",
+              data: "creep_score",
+              className: "text-end"
+            },
+            {
+              title: "GPM",
+              data: "gold_per_min",
+              className: "text-end"
+            },
+            {
+              title: "Tower Kills",
+              data: "tower_kills",
+              className: "text-end"
+            },
+            {
+              title: "Roshan Kills",
+              data: "roshan_kills",
+              className: "text-end"
+            },
+            {
+              title: "Teamfight",
+              data: "team_fight",
+              className: "text-end"
+            },
+            {
+              title: "Obs Wards",
+              data: "obs_wards_planted",
+              className: "text-end"
+            },
+            {
+              title: "Camps Stacked",
+              data: "camps_stacked",
+              className: "text-end"
+            },
+            {
+              title: "Runes Grabbed",
+              data: "runes_grabbed",
+              className: "text-end"
+            },
+            {
+              title: "First Blood",
+              data: "first_blood",
+              className: "text-end"
+            },
+            {
+              title: "Stuns",
+              data: "stuns",
+              className: "text-end"
+            },
+            {
+              title: "Total",
+              data: "total",
+              className: "text-end"
+            }
+          ],
+          columnDefs: [{
+            render: data => data == "NA" ? "0.00" : data.toFixed(2),
+            targets: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+          }],
+          order: [
+            [1, 'asc'],
+            [2, 'asc']
+          ]
+        };
+
+        // Render the aggregate table
+        var periods = Object.keys(league_data.result_aggregate[0]).filter(d => d.startsWith("period_"));
+        columns = [{
+            title: "Player Name",
+            data: "player_name"
+          },
+          {
+            title: "Team Name",
+            data: "team_name"
+          },
+          {
+            title: "Player Role",
+            data: "player_role"
+          }
+        ];
+        for (var i = 1; i < periods.length + 1; i++) {
+          columns.push({
+            title: "Period " + i,
+            data: "period_" + i,
+            type: "num",
+            className: "text-end"
+          })
+        }
+
+        var tableAggregate = {
+          paging: false,
+          fixedHeader: true,
+          fixedColumns: true,
+          scrollX: true,
+          data: league_data.result_aggregate,
+          columns: columns,
+          columnDefs: [{
+              render: data => data,
+              targets: [0, 1, 2]
+            },
+            {
+              render: data => data == "NA" ? "0.00" : data.toFixed(2),
+              targets: "_all"
+            }
+          ],
+          order: [
+            [1, 'asc'],
+            [2, 'asc']
+          ],
+        };
+
         // Ensure datatable is properly rendered
-        $("#table-aggregate").DataTable(tableAggregate);
-        var count = 0;
+        $("#table-schedule").DataTable(tableSchedule);
+        var countSingle = 0;
         $("button[data-bs-target='#tab-single']").on("shown.bs.tab", function() {
-          if (count == 0) {
+          if (countSingle == 0) {
             $("#table-single").DataTable(tableSingle);
           }
-          count++;
+          countSingle++;
+        });
+        var countAverage = 0;
+        $("button[data-bs-target='#tab-average']").on("shown.bs.tab", function() {
+          if (countAverage == 0) {
+            $("#table-average").DataTable(tableAverage);
+          }
+          countAverage++;
+        });
+        var countAggregate = 0;
+        $("button[data-bs-target='#tab-aggregate']").on("shown.bs.tab", function() {
+          if (countAggregate == 0) {
+            $("#table-aggregate").DataTable(tableAggregate);
+          }
+          countAggregate++;
         });
 
         // Fix header column widths

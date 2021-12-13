@@ -27,7 +27,14 @@ update_website_data <- function(
     stop("Unsuccessful request")
   }
   
-  # Calculate and format schedule
+  # Calculate roster lock times
+  roster_lock <- lapply(period_dates, function(period) { 
+    return(period$start_time) 
+  }) %>% 
+    unlist() %>% 
+    enframe(name = "period", value = "start_time")
+  
+  # Calculate schedule
   series <- schedule %>%
     pivot_longer(cols = team_id_1:team_id_2, values_to = "team_id") %>%
     group_by(team_id) %>%
@@ -40,20 +47,33 @@ update_website_data <- function(
     rename(team_name_2 = team_name) %>%
     select(team_name_1, team_name_2, time)
   
-  # Calculate and format single results
+  # Calculate single results
   result_single <- matches_result %>%
     inner_join(players, by = "player_id") %>%
     left_join(teams, by = "team_id") %>%
     select(
       player_name, 
-      player_role, 
       team_name, 
+      player_role, 
       match_id, 
       start_time, 
       kills:total
     )
   
-  # Calculate and format aggregate results
+  # Calculate average results
+  result_average <- matches_result %>%
+    group_by(player_id) %>%
+    summarise(across(.cols = kills:total, .fns = ~mean(., na.rm = TRUE))) %>%
+    right_join(players, by = "player_id") %>%
+    left_join(teams, by = "team_id") %>%
+    select(
+      player_name, 
+      team_name,
+      player_role, 
+      kills:total
+    )
+  
+  # Calculate aggregate results
   result_aggregate <- bind_rows(
     matches_result %>% filter(series_type == 0),
     matches_result %>%
@@ -82,7 +102,7 @@ update_website_data <- function(
     ungroup() %>%
     right_join(players, by = "player_id") %>%
     left_join(teams, by = "team_id") %>%
-    select(player_name, player_role, team_name, period, total) %>%
+    select(player_name, team_name, player_role, period, total) %>%
     pivot_wider(names_from = period, values_from = total)
   
   website_data <- list(
@@ -91,8 +111,10 @@ update_website_data <- function(
     "start_date" = content(response_league)$info$start_timestamp,
     "end_date" = content(response_league)$info$end_timestamp,
     "last_activity" = unbox(content(response_league)$info$most_recent_activity),
+    "roster_lock" = roster_lock,
     "schedule" = schedule,
     "result_single" = result_single,
+    "result_average" = result_average,
     "result_aggregate" = result_aggregate
   )
 
