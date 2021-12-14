@@ -103,7 +103,13 @@ update_website_data <- function(
     right_join(players, by = "player_id") %>%
     left_join(teams, by = "team_id") %>%
     select(player_name, team_name, player_role, period, total) %>%
-    pivot_wider(names_from = period, values_from = total)
+    pivot_wider(names_from = period, values_from = total) %>%
+    mutate(
+      total = rowSums(
+        select(., -player_name, -team_name, -player_role), 
+        na.rm = TRUE
+      )
+    )
   
   website_data <- list(
     "name" = unbox(content(response_league)$info$name),
@@ -117,7 +123,7 @@ update_website_data <- function(
     "result_average" = result_average,
     "result_aggregate" = result_aggregate
   )
-
+  
   write_json(
     x = website_data,
     path = paste0("docs/data/", league_id, ".json"),

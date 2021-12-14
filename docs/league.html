@@ -430,7 +430,13 @@
             type: "num",
             className: "text-end"
           })
-        }
+        };
+        columns.push({
+          title: "Total",
+          data: "total",
+          type: "num",
+          className: "text-end"
+        });
 
         var tableAggregate = {
           paging: false,
@@ -449,8 +455,7 @@
             }
           ],
           order: [
-            [1, 'asc'],
-            [2, 'asc']
+            [i + 2, 'desc']
           ],
         };
 
