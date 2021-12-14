@@ -17,10 +17,10 @@ jobs:
       - name: Setup R environment
         run: |
           install.packages("renv")
-          install.packages("tidyverse")
-          install.packages("httr")
-          install.packages("rlang")
-          install.packages("jsonlite")
+          renv::install("tidyverse")
+          renv::install("httr")
+          renv::install("rlang")
+          renv::install("jsonlite")
         shell: Rscript {0}
 
       - name: Cache R environment
