@@ -22,7 +22,7 @@ jobs:
       - uses: actions/cache@v2 # Cache packages so won't be compiled everytime job is run
         with:
           path: ~/.local/share/renv
-          key: ${{ runner.os }}-renv-${{ hashFiles("**/renv.lock") }}
+          key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
           restore-keys: |
             ${{ runner.os }}-renv-
 
