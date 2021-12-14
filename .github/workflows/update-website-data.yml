@@ -1,0 +1,43 @@
+name: Update Website Data
+
+on:
+  schedule:
+    - cron: "*/30 * * * *" # Every thirty minutes
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2 # Checkout branch into the runner
+      - uses: r-lib/actions/setup-r@master # Set up R runtime
+        with:
+          r-version: 'release'
+
+      - name: Setup renv # Set up R env to install packages
+        run: |
+          install.packages('remotes')
+          remotes::install_github("rstudio/renv")
+        shell: Rscript {0}
+
+      - uses: actions/cache@v2 # Cache packages so won't be compiled everytime job is run
+        with:
+          path: ~/.local/share/renv
+          key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-renv-
+
+      - name: Install dependencies # Install the dependencies eg. Dplyr, tidyverse etc
+        run: renv::restore()
+        shell: Rscript {0}
+
+      - name: Generate data # Run the script
+        run: source("github-action-update-website-data.R")
+        shell: Rscript {0}
+
+      - name: Commit files # Commit changes
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add .
+          git diff-index --quiet HEAD || (git commit -m "Automatic update" && git push)
