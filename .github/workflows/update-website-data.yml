@@ -20,6 +20,12 @@ jobs:
       - name: Install libcurl
         run: sudo apt-get install -y libcurl4-openssl-dev
 
+      - name: Install R package dependencies
+        run: |
+          install.packages("renv")
+          renv::restore()
+        shell: Rscript {0}
+
       - name: Cache R environment
         uses: actions/cache@v2
         with:
@@ -27,12 +33,6 @@ jobs:
           key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
           restore-keys: |
             ${{ runner.os }}-renv-
-
-      - name: Install R package dependencies
-        run: |
-          install.packages("renv")
-          renv::restore()
-        shell: Rscript {0}
 
       - name: Update data
         run: source("github-action-update-website-data.R")
