@@ -17,6 +17,10 @@ jobs:
       - name: Setup renv # Set up R env to install packages
         run: |
           install.packages("renv")
+          install.packages("tidyverse")
+          install.packages("httr")
+          install.packages("rlang")
+          install.packages("jsonlite")
         shell: Rscript {0}
 
       - uses: actions/cache@v2 # Cache packages so won't be compiled everytime job is run
