@@ -9,22 +9,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: r-lib/actions/setup-r@master
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install R
+        uses: r-lib/actions/setup-r@master
         with:
           r-version: 'release'
 
-      - name: Setup OS environment
+      - name: Install libcurl
         run: sudo apt-get install -y libcurl4-openssl-dev
-
-      - name: Setup R environment
-        run: |
-          install.packages("renv")
-          renv::install("tidyverse")
-          renv::install("httr")
-          renv::install("rlang")
-          renv::install("jsonlite")
-        shell: Rscript {0}
 
       - name: Cache R environment
         uses: actions/cache@v2
@@ -34,8 +28,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-renv-
 
-      - name: Restore R environment
-        run: renv::restore()
+      - name: Install R package dependencies
+        run: |
+          install.packages("renv")
+          renv::restore()
         shell: Rscript {0}
 
       - name: Update data
@@ -47,4 +43,4 @@ jobs:
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           git add .
-          git diff-index --quiet HEAD || (git commit -m "Automatic update" && git push)
+          git diff-index --quiet HEAD || (git commit -m "Automatic data update" && git push)
