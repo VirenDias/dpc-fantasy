@@ -153,3 +153,13 @@ print_post(
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
   file_path = "data/posts/2021_winter_p5.txt"
 )
+
+## Period 6
+print_post(
+  league_ids = league_ids,
+  update = FALSE,
+  start_time = period_dates$period_6$start_time,
+  end_time = period_dates$period_6$end_time,
+  google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
+  file_path = "data/posts/2021_winter_p6.txt"
+)

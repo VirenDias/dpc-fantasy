@@ -45,7 +45,7 @@ get_prediction_data <- function(
         )
       )
       if (http_status(response)$category != "Success") {
-        message(paste0("Unsuccessful request for player ID: ", player_id))
+        message(paste0("Unsuccessful request for player ID ", player_id))
       }
       
       # Store last 25 match IDs
@@ -106,7 +106,7 @@ get_prediction_data <- function(
       
       response <- GET(paste0("https://api.opendota.com/api/matches/", match_id))
       if (http_status(response)$category != "Success") {
-        message(paste0("Unsuccessful request for match ID: ", match_id))
+        message(paste0("Unsuccessful request for match ID ", match_id))
       }
       
       for (player in content(response)$players) {
@@ -251,7 +251,7 @@ get_result_data <- function(
       
       response <- GET(paste0("https://api.opendota.com/api/matches/", match_id))
       if (http_status(response)$category != "Success") {
-        message(paste0("Unsuccessful request for match ID: ", match_id))
+        message(paste0("Unsuccessful request for match ID ", match_id))
       }
       
       for (player in content(response)$players) {

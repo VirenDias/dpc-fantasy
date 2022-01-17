@@ -162,7 +162,7 @@ print_post <- function(
   ## Create section text
   write_lines(
     paste0(
-      "Please refer to [this Google Sheet](https://docs.google.com/spreadsheets/d/",
+      "Please refer to this [Google Sheet](https://docs.google.com/spreadsheets/d/",
       google_sheet,
       ") for what to look for for each individual player, or the table below for what to look for for each role in general."
     ),
