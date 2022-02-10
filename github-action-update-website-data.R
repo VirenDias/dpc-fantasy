@@ -1,38 +1,18 @@
 source("update-website-data.R")
 
 league_ids <- c(
-  13741,
-  13712,
-  13738,
-  13709,
-  13716,
-  13747
+  13961,
+  13954,
+  13960,
+  13926,
+  13937,
+  13939
 )
 
 period_dates <- list(
   "period_1" = list(
-    "start_time" = as.POSIXct("2021-11-30 08:00", tz = "UTC") %>% as.integer(),
-    "end_time" = as.POSIXct("2021-12-07 08:00", tz = "UTC") %>% as.integer()
-  ),
-  "period_2" = list(
-    "start_time" = as.POSIXct("2021-12-07 08:00", tz = "UTC") %>% as.integer(),
-    "end_time" = as.POSIXct("2021-12-14 08:00", tz = "UTC") %>% as.integer()
-  ),
-  "period_3" = list(
-    "start_time" = as.POSIXct("2021-12-14 08:00", tz = "UTC") %>% as.integer(),
-    "end_time" = as.POSIXct("2021-12-21 08:00", tz = "UTC") %>% as.integer()
-  ),
-  "period_4" = list(
-    "start_time" = as.POSIXct("2021-12-21 08:00", tz = "UTC") %>% as.integer(),
-    "end_time" = as.POSIXct("2022-01-11 08:00", tz = "UTC") %>% as.integer()
-  ),
-  "period_5" = list(
-    "start_time" = as.POSIXct("2022-01-11 08:00", tz = "UTC") %>% as.integer(),
-    "end_time" = as.POSIXct("2022-01-18 08:00", tz = "UTC") %>% as.integer()
-  ),
-  "period_6" = list(
-    "start_time" = as.POSIXct("2022-01-18 08:00", tz = "UTC") %>% as.integer(),
-    "end_time" = as.POSIXct("2022-01-25 08:00", tz = "UTC") %>% as.integer()
+    "start_time" = as.POSIXct("2022-02-11 00:00", tz = "UTC") %>% as.integer(),
+    "end_time" = as.POSIXct("2022-02-22 00:00", tz = "UTC") %>% as.integer()
   )
 )
 
