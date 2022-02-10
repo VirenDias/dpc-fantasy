@@ -36,6 +36,7 @@ update_website_data <- function(
   
   # Calculate schedule
   series <- schedule %>%
+    select(-match_name) %>%
     pivot_longer(cols = team_id_1:team_id_2, values_to = "team_id") %>%
     group_by(team_id) %>%
     summarise(series = n())
@@ -45,7 +46,7 @@ update_website_data <- function(
     rename(team_name_1 = team_name) %>%
     left_join(teams, by = c("team_id_2" = "team_id")) %>%
     rename(team_name_2 = team_name) %>%
-    select(team_name_1, team_name_2, time)
+    select(match_name, team_name_1, team_name_2, time)
   
   # Calculate single results
   result_single <- matches_result %>%

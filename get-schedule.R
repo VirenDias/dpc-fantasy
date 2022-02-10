@@ -22,6 +22,7 @@ get_schedule <- function(league_id, update = FALSE) {
     
     # Store schedule
     schedule <- data.frame(
+      match_name = as.character(),
       team_id_1 = as.numeric(), 
       team_id_2 = as.numeric(), 
       time = as.numeric()
@@ -29,6 +30,7 @@ get_schedule <- function(league_id, update = FALSE) {
     for (match in content(response)$node_groups[[1]]$node_groups[[1]]$nodes) {
       schedule <- schedule %>%
         add_row(
+          match_name = as.character(match$name),
           team_id_1 = as.numeric(match$team_id_1), 
           team_id_2 = as.numeric(match$team_id_2), 
           time = as.numeric(match$scheduled_time)

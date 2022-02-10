@@ -134,12 +134,17 @@
         var tableSchedule = {
           paging: false,
           fixedHeader: true,
+          fixedColumns: true,
           scrollX: true,
           data: league_data.schedule,
           columns: [{
-              title: "Team 1",
-              data: "team_name_1"
+              title: "Match",
+              data: "match_name"
             },
+            {
+                title: "Team 1",
+                data: "team_name_1"
+              },
             {
               title: "Team 2",
               data: "team_name_2"
@@ -167,10 +172,10 @@
                   });
               }
             },
-            targets: 2
+            targets: 3
           }],
           order: [
-            [2, 'desc']
+            [3, 'desc']
           ],
         };
 
