@@ -62,7 +62,7 @@ get_prediction_data <- function(
       cached_data <- read_csv(
         file = file_path,
         progress = FALSE,
-        show_col_types = FALSE
+        col_types = cols(.default = "n")
       )
     } else {
       cached_data <- data.frame(
@@ -207,7 +207,7 @@ get_result_data <- function(
       cached_data <- read_csv(
         file = file_path,
         progress = FALSE,
-        show_col_types = FALSE
+        col_types = cols(.default = "n")
       )
     } else {
       cached_data <- data.frame(
