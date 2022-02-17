@@ -2,11 +2,8 @@ source("update-website-data.R")
 
 league_ids <- c(
   13961,
-  13954,
-  13960,
   13926,
-  13937,
-  13939
+  13937
 )
 
 period_dates <- list(
