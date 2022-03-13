@@ -134,8 +134,7 @@ get_prediction_data <- function(
               total = kills + deaths + creep_score + gold_per_min + 
                 tower_kills + roshan_kills + team_fight + obs_wards_planted + 
                 camps_stacked + runes_grabbed + first_blood + stuns
-            ) %>%
-            mutate(across(.cols = kills:total, .fns = ~round(., digits = 5)))
+            )
         }
       }
       
@@ -145,11 +144,21 @@ get_prediction_data <- function(
     
     all_data <- union(cached_data, new_data)
     
-    # Cache new data
+    # Cache new data and ensure a precision of only 5 decimal places
     if (!dir.exists(dir_path)) {
       dir.create(dir_path)
     }
-    write_csv(x = all_data, file = file_path)
+    write_csv(
+      x = all_data %>%
+        mutate(
+          across(
+            .cols = kills:total, 
+            .fns = ~as.character(round(., digits = 5))
+          )
+        ), 
+      file = file_path, 
+      quote = "none"
+    )
     matches <- all_data
     
   } else {
@@ -278,8 +287,7 @@ get_result_data <- function(
             total = kills + deaths + creep_score + gold_per_min + 
               tower_kills + roshan_kills + team_fight + obs_wards_planted + 
               camps_stacked + runes_grabbed + first_blood + stuns
-          ) %>%
-          mutate(across(.cols = kills:total, .fns = ~round(., digits = 5)))
+          )
       }
       
       i <- i + 1
@@ -288,11 +296,21 @@ get_result_data <- function(
     
     all_data <- union(cached_data, new_data)
     
-    # Cache new data
+    # Cache new data and ensure a precision of only 5 decimal places
     if (!dir.exists(dir_path)) {
       dir.create(dir_path)
     }
-    write_csv(x = all_data, file = file_path)
+    write_csv(
+      x = all_data %>%
+        mutate(
+          across(
+            .cols = kills:total, 
+            .fns = ~as.character(round(., digits = 5))
+          )
+        ), 
+      file = file_path, 
+      quote = "none"
+    )
     matches <- all_data
     
   } else {
