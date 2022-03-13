@@ -2,7 +2,7 @@ source("get-player-data.R")
 
 library(tidyverse)
 library(httr)
-# Refactor to only get match data
+
 get_prediction_data <- function(
   league_id,
   start_time = as.integer(Sys.time()),
@@ -134,7 +134,8 @@ get_prediction_data <- function(
               total = kills + deaths + creep_score + gold_per_min + 
                 tower_kills + roshan_kills + team_fight + obs_wards_planted + 
                 camps_stacked + runes_grabbed + first_blood + stuns
-            )
+            ) %>%
+            mutate(across(.cols = kills:total, .fns = round(., digits = 5)))
         }
       }
       
@@ -277,7 +278,8 @@ get_result_data <- function(
             total = kills + deaths + creep_score + gold_per_min + 
               tower_kills + roshan_kills + team_fight + obs_wards_planted + 
               camps_stacked + runes_grabbed + first_blood + stuns
-          )
+          ) %>%
+          mutate(across(.cols = kills:total, .fns = round(., digits = 5)))
       }
       
       i <- i + 1
