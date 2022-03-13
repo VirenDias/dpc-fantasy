@@ -135,7 +135,7 @@ get_prediction_data <- function(
                 tower_kills + roshan_kills + team_fight + obs_wards_planted + 
                 camps_stacked + runes_grabbed + first_blood + stuns
             ) %>%
-            mutate(across(.cols = kills:total, .fns = round(., digits = 5)))
+            mutate(across(.cols = kills:total, .fns = ~round(., digits = 5)))
         }
       }
       
@@ -279,7 +279,7 @@ get_result_data <- function(
               tower_kills + roshan_kills + team_fight + obs_wards_planted + 
               camps_stacked + runes_grabbed + first_blood + stuns
           ) %>%
-          mutate(across(.cols = kills:total, .fns = round(., digits = 5)))
+          mutate(across(.cols = kills:total, .fns = ~round(., digits = 5)))
       }
       
       i <- i + 1
