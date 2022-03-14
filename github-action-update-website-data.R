@@ -11,28 +11,28 @@ league_ids <- c(
 
 period_dates <- list(
   "period_1" = list(
-    "start_time" = as.POSIXct("2022-03-15 08:00", tz = "UTC") %>% as.integer(),
-    "end_time" = as.POSIXct("2022-03-21 08:00", tz = "UTC") %>% as.integer()
+    "start_time" = as.POSIXct("2022-03-15 07:00", tz = "UTC") %>% as.integer(),
+    "end_time" = as.POSIXct("2022-03-21 07:00", tz = "UTC") %>% as.integer()
   ),
   "period_2" = list(
-    "start_time" = as.POSIXct("2022-03-21 08:00", tz = "UTC") %>% as.integer(),
-    "end_time" = as.POSIXct("2022-03-28 08:00", tz = "UTC") %>% as.integer()
+    "start_time" = as.POSIXct("2022-03-21 07:00", tz = "UTC") %>% as.integer(),
+    "end_time" = as.POSIXct("2022-03-28 07:00", tz = "UTC") %>% as.integer()
   ),
   "period_3" = list(
-    "start_time" = as.POSIXct("2022-03-28 08:00", tz = "UTC") %>% as.integer(),
-    "end_time" = as.POSIXct("2022-04-04 08:00", tz = "UTC") %>% as.integer()
+    "start_time" = as.POSIXct("2022-03-28 07:00", tz = "UTC") %>% as.integer(),
+    "end_time" = as.POSIXct("2022-04-04 07:00", tz = "UTC") %>% as.integer()
   ),
   "period_4" = list(
-    "start_time" = as.POSIXct("2022-04-04 08:00", tz = "UTC") %>% as.integer(),
-    "end_time" = as.POSIXct("2022-04-11 08:00", tz = "UTC") %>% as.integer()
+    "start_time" = as.POSIXct("2022-04-04 07:00", tz = "UTC") %>% as.integer(),
+    "end_time" = as.POSIXct("2022-04-11 07:00", tz = "UTC") %>% as.integer()
   ),
   "period_5" = list(
-    "start_time" = as.POSIXct("2022-04-11 08:00", tz = "UTC") %>% as.integer(),
-    "end_time" = as.POSIXct("2022-04-18 08:00", tz = "UTC") %>% as.integer()
+    "start_time" = as.POSIXct("2022-04-11 07:00", tz = "UTC") %>% as.integer(),
+    "end_time" = as.POSIXct("2022-04-18 07:00", tz = "UTC") %>% as.integer()
   ),
   "period_6" = list(
-    "start_time" = as.POSIXct("2022-04-18 08:00", tz = "UTC") %>% as.integer(),
-    "end_time" = as.POSIXct("2022-04-25 08:00", tz = "UTC") %>% as.integer()
+    "start_time" = as.POSIXct("2022-04-18 07:00", tz = "UTC") %>% as.integer(),
+    "end_time" = as.POSIXct("2022-04-25 07:00", tz = "UTC") %>% as.integer()
   )
 )
 
