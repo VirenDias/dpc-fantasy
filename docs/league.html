@@ -142,9 +142,9 @@
               data: "match_name"
             },
             {
-                title: "Team 1",
-                data: "team_name_1"
-              },
+              title: "Team 1",
+              data: "team_name_1"
+            },
             {
               title: "Team 2",
               data: "team_name_2"
@@ -157,23 +157,28 @@
             }
           ],
           columnDefs: [{
-            render: function(data) {
-              if (data == 0) {
-                return "Not yet scheduled"
-              } else {
-                return new Date(data * 1000).toLocaleTimeString(
-                  'en-gb', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    timeZone: 'utc'
-                  });
-              }
+              render: data => data == "NA" ? "" : data,
+              targets: 0
             },
-            targets: 3
-          }],
+            {
+              render: function(data) {
+                if (data == 0) {
+                  return "Not yet scheduled"
+                } else {
+                  return new Date(data * 1000).toLocaleTimeString(
+                    'en-gb', {
+                      year: 'numeric',
+                      month: 'short',
+                      day: 'numeric',
+                      hour: '2-digit',
+                      minute: '2-digit',
+                      timeZone: 'utc'
+                    });
+                }
+              },
+              targets: 3
+            }
+          ],
           order: [
             [3, 'desc']
           ],
