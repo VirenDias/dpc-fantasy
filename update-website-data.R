@@ -104,7 +104,7 @@ update_website_data <- function(
     right_join(players, by = "player_id") %>%
     left_join(teams, by = "team_id") %>%
     select(player_name, team_name, player_role, period, total) %>%
-    pivot_wider(names_from = period, values_from = total) %>%
+    pivot_wider(names_from = period, names_sort = TRUE, values_from = total) %>%
     mutate(
       total = rowSums(
         select(., -player_name, -team_name, -player_role), 
