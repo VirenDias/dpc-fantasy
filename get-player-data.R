@@ -74,6 +74,7 @@ get_player_data <- function(league_id, update = FALSE) {
     if (!dir.exists(dir_path)) {
       dir.create(dir_path)
     }
+    players <- players %>% arrange(player_id)
     write_csv(x = players, file = file_path)
   } else {
     players <- read_csv(file_path, progress = FALSE, show_col_types = FALSE)
