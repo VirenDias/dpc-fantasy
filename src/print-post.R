@@ -19,9 +19,9 @@ print_post <- function(
   table_no <- 2
   all_region_averages <- data.frame()
   
-  for (region_name in names(league_ids)) {
+  for (league_name in names(league_ids)) {
     # Get required data
-    league_id <- league_ids[[region_name]]
+    league_id <- league_ids[[league_name]]
     
     players <- get_player_data(league_id = league_id, update = update)
     teams <- get_team_data(league_id = league_id, update = update)
@@ -43,7 +43,7 @@ print_post <- function(
       bind_rows(all_region_averages, .)
     
     # Create section heading
-    paste0("# ", region_name) %>% write_lines(file = file_path, append = TRUE)
+    paste0("# ", league_name) %>% write_lines(file = file_path, append = TRUE)
     write_lines("", file = file_path, append = TRUE)
     
     # Create schedule table
@@ -66,9 +66,7 @@ print_post <- function(
     paste0(
       "***Table ",
       table_no,
-      ":** The schedule for the ",
-      region_name,
-      " region.*"
+      ":** The schedule.*"
     ) %>%
       write_lines(file = file_path, append = TRUE)
     
@@ -103,9 +101,7 @@ print_post <- function(
         table_no,
         ":** The potential choices for the ",
         role,
-        " role in the ",
-        region_name,
-        " region.*"
+        " role.*"
       ) %>%
         write_lines(file = file_path, append = TRUE)
       

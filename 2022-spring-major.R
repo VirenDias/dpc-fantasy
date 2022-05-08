@@ -1,8 +1,10 @@
-source("update-website-data.R")
+source("src/print-post.R")
+source("src/update-google-sheet.R")
+source("src/update-website-data.R")
 
-league_ids <- c(
-  14173
-)
+library(tidyverse)
+
+league_ids <- list("Spring Major 2022" = 14173)
 
 period_dates <- list(
   "period_1" = list(
@@ -55,10 +57,33 @@ period_dates <- list(
   )
 )
 
-for (league_id in league_ids) {
+# Update Google Sheet
+lapply(names(league_ids), function(league_name) {
+  update_google_sheet(
+    google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
+    work_sheet = league_name,
+    league_id = league_ids[[league_name]],
+    update = TRUE
+  )
+})
+
+# Update website
+lapply(league_ids, function(league_id) {
   update_website_data(
     league_id = league_id,
     period_dates = period_dates,
-    update = TRUE
+    update = FALSE
   )
-}
+})
+
+# Create Reddit posts
+lapply(1:length(period_dates), function(i) {
+  print_post(
+    league_ids = league_ids,
+    update = FALSE,
+    start_time = period_dates[[i]]$start_time,
+    end_time = period_dates[[i]]$end_time,
+    google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
+    file_path = paste0("data/posts/2022_spring_major_p", i, ".txt")
+  )
+})
