@@ -35,7 +35,7 @@
 
     <div class="tab-content my-4">
       <div class="tab-pane fade show active" id="tab-schedule" role="tabpanel">
-        <div id="roster-lock-grid" class="row row-cols-2 row-cols-lg-3 row-cols-xxl-6 g-4 mb-4"></div>
+        <div id="roster-lock-grid" class="row justify-content-center row-cols-2 row-cols-md-3 row-cols-xl-4 row-cols-xxl-6 g-4 mb-4"></div>
         <table id="table-schedule" class="table nowrap table-hover" style="width: 100%"></table>
       </div>
       <div class="tab-pane fade" id="tab-note" role="tabpanel">
@@ -112,7 +112,7 @@
           }, 1000);
 
           var cardSubTitle = document.createElement("h6");
-          cardSubTitle.className = "card-text text-muted";
+          cardSubTitle.className = "card-text small text-muted";
           cardSubTitle.innerHTML = "Period " + (i + 1) + " · " + new Date(period.start_time * 1000)
             .toLocaleDateString(
               'en-gb', {
