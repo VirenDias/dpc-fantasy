@@ -1,4 +1,4 @@
-source("get-player-data.R")
+source("src/get-player-data.R")
 
 library(tidyverse)
 library(httr)

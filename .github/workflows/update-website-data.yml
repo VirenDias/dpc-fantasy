@@ -50,7 +50,7 @@ jobs:
         shell: Rscript {0}
 
       - name: Update data
-        run: source("github-action-update-website-data.R")
+        run: source("src/github-action-update-website-data.R")
         shell: Rscript {0}
 
       - name: Commit data

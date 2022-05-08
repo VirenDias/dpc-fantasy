@@ -1,6 +1,6 @@
-source("get-player-data.R")
-source("get-team-data.R")
-source("calculate-averages.R")
+source("src/get-player-data.R")
+source("src/get-team-data.R")
+source("src/calculate-averages.R")
 
 library(tidyverse)
 library(googlesheets4)

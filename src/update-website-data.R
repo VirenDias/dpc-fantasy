@@ -1,7 +1,7 @@
-source("get-player-data.R")
-source("get-team-data.R")
-source("get-schedule.R")
-source("get-match-data.R")
+source("src/get-player-data.R")
+source("src/get-team-data.R")
+source("src/get-schedule.R")
+source("src/get-match-data.R")
 
 library(tidyverse)
 library(jsonlite)

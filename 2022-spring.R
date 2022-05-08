@@ -1,6 +1,6 @@
-source("print-post.R")
-source("update-google-sheet.R")
-source("update-website-data.R")
+source("src/print-post.R")
+source("src/update-google-sheet.R")
+source("src/update-website-data.R")
 
 library(tidyverse)
 
@@ -8,7 +8,7 @@ league_ids <- list(
   "NA" = 14051,
   "SA" = 14071,
   "WEU" = 14052,
-  # "EEU" = 13709,
+  # "EEU" = NA,
   "CN" = 14041,
   "SEA" = 14067
 )

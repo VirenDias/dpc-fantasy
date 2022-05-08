@@ -1,6 +1,6 @@
-source("print-post.R")
-source("update-google-sheet.R")
-source("update-website-data.R")
+source("src/print-post.R")
+source("src/update-google-sheet.R")
+source("src/update-website-data.R")
 
 library(tidyverse)
 

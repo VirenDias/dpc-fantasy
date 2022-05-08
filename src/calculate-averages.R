@@ -1,4 +1,4 @@
-source("get-match-data.R")
+source("src/get-match-data.R")
 
 library(tidyverse)
 
