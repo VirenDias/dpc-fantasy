@@ -115,8 +115,8 @@ update_website_data <- function(
   website_data <- list(
     "name" = unbox(content(response_league)$info$name),
     "description" = unbox(content(response_league)$info$description),
-    "start_date" = content(response_league)$info$start_timestamp,
-    "end_date" = content(response_league)$info$end_timestamp,
+    "start_date" = unbox(content(response_league)$info$start_timestamp),
+    "end_date" = unbox(content(response_league)$info$end_timestamp),
     "last_activity" = unbox(content(response_league)$info$most_recent_activity),
     "roster_lock" = roster_lock,
     "schedule" = schedule,
