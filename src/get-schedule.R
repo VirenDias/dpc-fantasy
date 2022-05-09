@@ -27,14 +27,18 @@ get_schedule <- function(league_id, update = FALSE) {
       team_id_2 = as.numeric(), 
       time = as.numeric()
     )
-    for (match in content(response)$node_groups[[1]]$node_groups[[1]]$nodes) {
-      schedule <- schedule %>%
-        add_row(
-          match_name = as.character(match$name),
-          team_id_1 = as.numeric(match$team_id_1), 
-          team_id_2 = as.numeric(match$team_id_2), 
-          time = as.numeric(match$scheduled_time)
-        )
+    for (stage in content(response)$node_groups) {
+      for (group in stage$node_groups) {
+        for (match in group$nodes) {
+          schedule <- schedule %>%
+            add_row(
+              match_name = as.character(match$name),
+              team_id_1 = as.numeric(match$team_id_1), 
+              team_id_2 = as.numeric(match$team_id_2), 
+              time = as.numeric(match$scheduled_time)
+            )
+        }
+      }
     }
     schedule <- tibble(schedule)
     
@@ -42,6 +46,7 @@ get_schedule <- function(league_id, update = FALSE) {
     if (!dir.exists(dir_path)) {
       dir.create(dir_path)
     }
+    schedule <- schedule %>% arrange(time)
     write_csv(x = schedule, file = paste0(dir_path, "/schedule.csv"))
   } else {
     schedule <- read_csv(file_path, progress = FALSE, show_col_types = FALSE)
