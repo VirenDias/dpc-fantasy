@@ -22,7 +22,11 @@ get_schedule <- function(league_id, update = FALSE) {
     
     # Store schedule
     schedule <- data.frame(
-      match_name = as.character(),
+      node_id = as.numeric(),
+      node_name = as.character(),
+      best_of = as.numeric(),
+      inc_id_1 = as.numeric(),
+      inc_id_2 = as.numeric(),
       team_id_1 = as.numeric(), 
       team_id_2 = as.numeric(), 
       time = as.numeric()
@@ -32,7 +36,13 @@ get_schedule <- function(league_id, update = FALSE) {
         for (match in group$nodes) {
           schedule <- schedule %>%
             add_row(
-              match_name = as.character(match$name),
+              node_id = as.numeric(match$node_id),
+              node_name = as.character(match$name),
+              best_of = as.numeric(
+                switch(match$node_type, "1" = 1, "2" = 3, "3" = 5, "4" = 2)
+              ),
+              inc_id_1 = as.numeric(match$incoming_node_id_1),
+              inc_id_2 = as.numeric(match$incoming_node_id_2),
               team_id_1 = as.numeric(match$team_id_1), 
               team_id_2 = as.numeric(match$team_id_2), 
               time = as.numeric(match$scheduled_time)
@@ -46,7 +56,6 @@ get_schedule <- function(league_id, update = FALSE) {
     if (!dir.exists(dir_path)) {
       dir.create(dir_path)
     }
-    schedule <- schedule %>% arrange(time)
     write_csv(x = schedule, file = paste0(dir_path, "/schedule.csv"))
   } else {
     schedule <- read_csv(file_path, progress = FALSE, show_col_types = FALSE)

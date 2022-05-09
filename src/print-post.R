@@ -37,7 +37,7 @@ print_post <- function(
     series <- schedule %>%
       pivot_longer(cols = team_id_1:team_id_2, values_to = "team_id") %>%
       group_by(team_id) %>%
-      summarise(series = n())
+      summarise(series = paste0("Bo", best_of, collapse = " + "))
     all_region_averages <- averages %>%
       right_join(players, by = "player_id") %>%
       bind_rows(all_region_averages, .)
@@ -54,13 +54,14 @@ print_post <- function(
       left_join(teams, by = c("team_id_2" = "team_id")) %>%
       rename(team_name_2 = team_name) %>%
       mutate(
+        best_of = paste0("Bo", best_of),
         time = format(
           as.POSIXct(time, tz = "UTC", origin = "1970-01-01"),
           "%Y-%m-%d %H:%M",
           usetz = TRUE
         )
       ) %>%
-      select(team_name_1, team_name_2, time)
+      select(team_name_1, team_name_2, best_of, time)
     
     ## Create table caption
     paste0(
@@ -77,7 +78,7 @@ print_post <- function(
     kable(
       x = schedule,
       format = "pipe",
-      col.names = c("Team 1", "Team 2", "Scheduled Time"),
+      col.names = c("Team 1", "Team 2", "Series Type", "Scheduled Time"),
       align = "lll"
     ) %>%
       write_lines(file = file_path, append = TRUE)
@@ -110,7 +111,9 @@ print_post <- function(
       
       ## Create table
       kable(
-        x = averages %>% filter(player_role == role) %>% select(-player_role),
+        x = averages %>% 
+          filter(player_role == role) %>% 
+          select(player_name, team_name, series, total),
         format = "pipe",
         digits = 2,
         col.names = c("Player", "Team", "Series", "Avg.")
