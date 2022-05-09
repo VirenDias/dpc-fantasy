@@ -27,18 +27,29 @@ print_post <- function(
     teams <- get_team_data(league_id = league_id, update = update)
     schedule <- get_schedule(league_id = league_id, update = update) %>%
       filter(time >= start_time, time < end_time)
+    
+    series <- schedule %>%
+      pivot_longer(cols = team_id_1:team_id_2, values_to = "team_id") %>%
+      group_by(team_id) %>%
+      summarise(
+        num_bo1 = sum(best_of == 1), 
+        num_bo2 = sum(best_of == 2), 
+        num_bo3 = sum(best_of == 3), 
+        num_bo5 = sum(best_of == 5),
+        series = paste0("Bo", best_of, collapse = " + ")
+      )
+    relevant_players <- players %>%
+      inner_join(series, by = "team_id") %>%
+      select(player_id, starts_with("num_bo"))
     averages <- calculate_averages(
       league_id = league_id, 
+      player_series = relevant_players,
       start_time = start_time,
       update = update
     )
     
-    relevant_teams <- unique(c(schedule$team_id_1, schedule$team_id_2))
-    series <- schedule %>%
-      pivot_longer(cols = team_id_1:team_id_2, values_to = "team_id") %>%
-      group_by(team_id) %>%
-      summarise(series = paste0("Bo", best_of, collapse = " + "))
     all_region_averages <- averages %>%
+      select(-starts_with("bo")) %>%
       right_join(players, by = "player_id") %>%
       bind_rows(all_region_averages, .)
     
@@ -47,7 +58,7 @@ print_post <- function(
     write_lines("", file = file_path, append = TRUE)
     
     # Create schedule table
-    schedule <- schedule  %>%
+    schedule_table <- schedule  %>%
       arrange(time) %>%
       left_join(teams, by = c("team_id_1" = "team_id")) %>%
       rename(team_name_1 = team_name) %>%
@@ -76,7 +87,7 @@ print_post <- function(
     
     ## Create table
     kable(
-      x = schedule,
+      x = schedule_table,
       format = "pipe",
       col.names = c("Team 1", "Team 2", "Series Type", "Scheduled Time"),
       align = "lll"
@@ -86,13 +97,24 @@ print_post <- function(
     write_lines("", file = file_path, append = TRUE)
     
     # Create choices tables
-    averages <- averages %>%
-      right_join(players, by = "player_id") %>%
+    choices_table <- averages %>%
+      left_join(players, by = "player_id") %>%
       left_join(teams, by = "team_id") %>%
-      left_join(series, by = "team_id") %>%
-      filter(team_id %in% relevant_teams) %>%
-      arrange(desc(total)) %>%
-      select(player_name, player_role, team_name, series, total)
+      left_join(series %>% select(team_id, series), by = "team_id") %>%
+      arrange(desc(expectation)) %>%
+      select(
+        player_name, 
+        player_role, 
+        team_name, 
+        series,
+        total,
+        starts_with("average_"),
+        expectation
+      )
+    if ("total" %in% names(choices_table) & 
+        "average_bo1" %in% names(choices_table)) {
+      choices_table <- choices_table %>% select(-total)
+    }
     
     roles <- list("Core", "Mid", "Support")
     for (role in roles) {
@@ -111,12 +133,22 @@ print_post <- function(
       
       ## Create table
       kable(
-        x = averages %>% 
+        x = choices_table %>% 
           filter(player_role == role) %>% 
-          select(player_name, team_name, series, total),
+          select(-player_role),
         format = "pipe",
         digits = 2,
-        col.names = c("Player", "Team", "Series", "Avg.")
+        col.names = c(
+          "Player", 
+          "Team", 
+          "Series",
+          "Avg.",
+          paste0(
+            "Avg. Bo", 
+            Filter(function(x) x != 1, sort(unique(schedule$best_of)))
+          ),
+          "Exp."
+        )
       ) %>%
         chr_unserialise_unicode() %>%
         write_lines(file = file_path, append = TRUE)
@@ -127,7 +159,7 @@ print_post <- function(
   
   # Create card bonus table
   file <- read_lines(file_path, lazy = FALSE)
-  all_region_averages <- all_region_averages %>%
+  card_bonus_table <- all_region_averages %>%
     group_by(player_role) %>%
     summarise(across(.cols = kills:stuns, .fns = ~mean(., na.rm = TRUE))) %>%
     gather(key = "Indicator", value = "value", kills:stuns) %>%
@@ -181,7 +213,7 @@ print_post <- function(
   
   ## Create table
   kable(
-    x = all_region_averages,
+    x = card_bonus_table,
     format = "pipe",
     digits = 2
   ) %>%
