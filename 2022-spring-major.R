@@ -77,13 +77,123 @@ lapply(league_ids, function(league_id) {
 })
 
 # Create Reddit posts
-lapply(1:length(period_dates), function(i) {
-  print_post(
-    league_ids = league_ids,
-    update = FALSE,
-    start_time = period_dates[[i]]$start_time,
-    end_time = period_dates[[i]]$end_time,
-    google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
-    file_path = paste0("data/posts/2022_spring_major_p", i, ".txt")
-  )
-})
+## Period 1
+print_post(
+  league_ids = league_ids,
+  update = FALSE,
+  start_time = period_dates$period_1$start_time,
+  end_time = period_dates$period_1$end_time,
+  google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
+  file_path = "data/posts/2022_spring_major_p1.txt"
+)
+
+## Period 2
+print_post(
+  league_ids = league_ids,
+  update = FALSE,
+  start_time = period_dates$period_2$start_time,
+  end_time = period_dates$period_2$end_time,
+  google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
+  file_path = "data/posts/2022_spring_major_p2.txt"
+)
+
+## Period 3
+print_post(
+  league_ids = league_ids,
+  update = FALSE,
+  start_time = period_dates$period_3$start_time,
+  end_time = period_dates$period_3$end_time,
+  google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
+  file_path = "data/posts/2022_spring_major_p3.txt"
+)
+
+## Period 4
+print_post(
+  league_ids = league_ids,
+  update = FALSE,
+  start_time = period_dates$period_4$start_time,
+  end_time = period_dates$period_4$end_time,
+  google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
+  file_path = "data/posts/2022_spring_major_p4.txt"
+)
+
+## Period 5
+print_post(
+  league_ids = league_ids,
+  update = FALSE,
+  start_time = period_dates$period_5$start_time,
+  end_time = period_dates$period_5$end_time,
+  google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
+  file_path = "data/posts/2022_spring_major_p5.txt"
+)
+
+## Period 6
+print_post(
+  league_ids = league_ids,
+  update = FALSE,
+  start_time = period_dates$period_6$start_time,
+  end_time = period_dates$period_6$end_time,
+  google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
+  file_path = "data/posts/2022_spring_major_p6.txt"
+)
+
+## Period 7
+print_post(
+  league_ids = league_ids,
+  update = FALSE,
+  start_time = period_dates$period_7$start_time,
+  end_time = period_dates$period_7$end_time,
+  google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
+  file_path = "data/posts/2022_spring_major_p7.txt"
+)
+
+## Period 8
+print_post(
+  league_ids = league_ids,
+  update = FALSE,
+  start_time = period_dates$period_8$start_time,
+  end_time = period_dates$period_8$end_time,
+  google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
+  file_path = "data/posts/2022_spring_major_p8.txt"
+)
+
+## Period 9
+print_post(
+  league_ids = league_ids,
+  update = FALSE,
+  start_time = period_dates$period_9$start_time,
+  end_time = period_dates$period_9$end_time,
+  google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
+  file_path = "data/posts/2022_spring_major_p9.txt"
+)
+
+## Period 10
+print_post(
+  league_ids = league_ids,
+  update = FALSE,
+  start_time = period_dates$period_10$start_time,
+  end_time = period_dates$period_10$end_time,
+  google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
+  file_path = "data/posts/2022_spring_major_p10.txt"
+)
+
+## Period 11
+print_post(
+  league_ids = league_ids,
+  update = FALSE,
+  start_time = period_dates$period_11$start_time,
+  end_time = period_dates$period_11$end_time,
+  google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
+  file_path = "data/posts/2022_spring_major_p11.txt"
+)
+
+
+## Period 12
+print_post(
+  league_ids = league_ids,
+  update = FALSE,
+  start_time = period_dates$period_12$start_time,
+  end_time = period_dates$period_12$end_time,
+  google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
+  file_path = "data/posts/2022_spring_major_p12.txt"
+)
