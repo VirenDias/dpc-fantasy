@@ -1,4 +1,4 @@
-source("update-website-data.R")
+source("src/update-website-data.R")
 
 league_ids <- c(
   14173
