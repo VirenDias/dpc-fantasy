@@ -136,10 +136,9 @@
           fixedHeader: true,
           fixedColumns: true,
           scrollX: true,
-          data: leagueData.schedule,
+          data: leagueData.schedule.filter(match => match.time != 0),
           createdRow: function(row, data) {
-            if (new Date().getTime() > data.time * 1000) $(row).addClass('text-muted');
-            if (data.time == 0) $(row).addClass('d-none');
+            if (new Date().getTime() > data.time * 1000) $(row).addClass('text-decoration-line-through');
           },
           columns: [{
               title: "Match",
