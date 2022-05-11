@@ -82,12 +82,12 @@
 
     fetch("./data/" + leagueId + ".json")
       .then(response => response.json())
-      .then(function(league_data) {
+      .then(function(leagueData) {
         // Add league title
-        document.querySelector("#league-title").innerHTML = league_data.name;
+        document.querySelector("#league-title").innerHTML = leagueData.name;
 
         // Render the roster lock countdowns
-        league_data.roster_lock.forEach(function(period, i) {
+        leagueData.roster_lock.forEach(function(period, i) {
           var col = document.createElement("div");
           col.className = "col";
 
@@ -136,7 +136,11 @@
           fixedHeader: true,
           fixedColumns: true,
           scrollX: true,
-          data: league_data.schedule,
+          data: leagueData.schedule,
+          createdRow: function(row, data) {
+            if (new Date().getTime() > data.time * 1000) $(row).addClass('text-muted');
+            if (data.time == 0) $(row).addClass('d-none');
+          },
           columns: [{
               title: "Match",
               data: "node_name"
@@ -161,26 +165,24 @@
               targets: 0
             },
             {
-              render: function(data) {
-                if (data == 0) {
-                  return "Not yet scheduled"
-                } else {
-                  return new Date(data * 1000).toLocaleTimeString(
-                    'en-gb', {
-                      year: 'numeric',
-                      month: 'short',
-                      day: 'numeric',
-                      hour: '2-digit',
-                      minute: '2-digit',
-                      timeZone: 'utc'
-                    });
-                }
-              },
+              render: data => data == "NA" ? "TBD" : data,
+              targets: [1, 2]
+            },
+            {
+              render: data => new Date(data * 1000).toLocaleTimeString(
+                'en-gb', {
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric',
+                  hour: '2-digit',
+                  minute: '2-digit',
+                  timeZone: 'utc'
+                }),
               targets: 3
             }
           ],
           order: [
-            [3, 'desc']
+            [3, 'asc']
           ],
         };
 
@@ -190,7 +192,7 @@
           fixedHeader: true,
           fixedColumns: true,
           scrollX: true,
-          data: league_data.result_single,
+          data: leagueData.result_single,
           columns: [{
               title: "Player Name",
               data: "player_name"
@@ -329,7 +331,7 @@
           fixedHeader: true,
           fixedColumns: true,
           scrollX: true,
-          data: league_data.result_average,
+          data: leagueData.result_average,
           columns: [{
               title: "Player Name",
               data: "player_name"
@@ -419,7 +421,7 @@
         };
 
         // Render the aggregate table
-        var periods = Object.keys(league_data.result_aggregate[0]).filter(d => d.startsWith("period_"));
+        var periods = Object.keys(leagueData.result_aggregate[0]).filter(d => d.startsWith("period_"));
         columns = [{
             title: "Player Name",
             data: "player_name"
@@ -453,7 +455,7 @@
           fixedHeader: true,
           fixedColumns: true,
           scrollX: true,
-          data: league_data.result_aggregate,
+          data: leagueData.result_aggregate,
           columns: columns,
           columnDefs: [{
               render: data => data,
