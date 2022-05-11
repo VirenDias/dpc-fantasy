@@ -20,121 +20,120 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
   <script>
-    // Create empty card grids
-    var lineTemplate = document.createElement("div");
-    lineTemplate.className = "col";
-    lineTemplate.append(document.createElement("hr"));
-
-    var titleTemplate = document.createElement("div");
-    titleTemplate.className = "row align-items-center my-4";
-    titleTemplate.append(lineTemplate.cloneNode(true));
-    titleTemplate.append(document.createElement("h1"));
-    titleTemplate.append(lineTemplate.cloneNode(true));
-    titleTemplate.querySelector("h1").className = "col-auto display-6 text-muted text-center";
-
-    var gridTemplate = document.createElement("div");
-    gridTemplate.className = "row justify-content-center row-cols-1 row-cols-lg-2 row-cols-xxl-3 g-4";
-
-    var upcomingTitle = titleTemplate.cloneNode(true);
-    upcomingTitle.querySelector("h1").innerHTML = "Upcoming";
-    var upcomingGrid = gridTemplate.cloneNode(true);
-
-    var ongoingTitle = titleTemplate.cloneNode(true);
-    ongoingTitle.querySelector("h1").innerHTML = "Ongoing";
-    var ongoingGrid = gridTemplate.cloneNode(true);
-
-    var concludedTitle = titleTemplate.cloneNode(true);
-    concludedTitle.querySelector("h1").innerHTML = "Concluded";
-    var concludedGrid = gridTemplate.cloneNode(true);
-
     // Populate the card grids
     fetch("./data/league_list.json")
       .then(response => response.json())
-      .then(function(league_list) {
-        league_list
+      .then(function(leagueList) {
+        // Sort the league list by last activity
+        var leagueDataPromises = [];
+        leagueList
           .sort((a, b) => b.last_activity - a.last_activity)
-          .forEach(league => {
-            fetch("./data/" + league.league_id + ".json")
-              .then(response => response.json())
-              .then(function(league_data) {
-                // Render each individual card
-                var col = document.createElement("div");
-                col.className = "col";
+          .forEach(function(league) {
+            leagueDataPromises.push(fetch("./data/" + league.league_id + ".json").then(response => response.json()));
+          });
 
-                var cardContainer = document.createElement("div");
-                cardContainer.className = "card h-100";
+        Promise
+          .all(leagueDataPromises)
+          .then(function(allData) {
+            // Create empty card grids
+            var lineTemplate = document.createElement("div");
+            lineTemplate.className = "col";
+            lineTemplate.append(document.createElement("hr"));
 
-                var cardImage = document.createElement("img");
-                cardImage.src = "./img/" + league.league_id + ".png";
-                cardImage.className = "card-img-top";
+            var titleTemplate = document.createElement("div");
+            titleTemplate.className = "row align-items-center my-4";
+            titleTemplate.append(lineTemplate.cloneNode(true));
+            titleTemplate.append(document.createElement("h1"));
+            titleTemplate.append(lineTemplate.cloneNode(true));
+            titleTemplate.querySelector("h1").className = "col-auto display-6 text-muted text-center";
 
-                var cardBody = document.createElement("div");
-                cardBody.className = "card-body";
+            var gridTemplate = document.createElement("div");
+            gridTemplate.className = "row justify-content-center row-cols-1 row-cols-lg-2 row-cols-xxl-3 g-4";
 
-                var cardTitle = document.createElement("h5");
-                cardTitle.className = "card-title text-center";
-                cardTitle.innerHTML = league_data.name;
+            var upcomingTitle = titleTemplate.cloneNode(true);
+            upcomingTitle.querySelector("h1").innerHTML = "Upcoming";
+            var upcomingGrid = gridTemplate.cloneNode(true);
 
-                var cardSubTitle = document.createElement("h6");
-                cardSubTitle.className = "card-subtitle mb-2 text-muted text-center";
-                const startDate = new Date(league_data.start_date * 1000)
-                  .toLocaleDateString(
-                    'en-gb', {
-                      year: 'numeric',
-                      month: 'short',
-                      day: 'numeric',
-                      timeZone: 'utc'
-                    });
-                const endDate = new Date(league_data.end_date * 1000)
-                  .toLocaleDateString(
-                    'en-gb', {
-                      year: 'numeric',
-                      month: 'short',
-                      day: 'numeric',
-                      timeZone: 'utc'
-                    });
-                cardSubTitle.innerHTML = startDate + " – " + endDate;
+            var ongoingTitle = titleTemplate.cloneNode(true);
+            ongoingTitle.querySelector("h1").innerHTML = "Ongoing";
+            var ongoingGrid = gridTemplate.cloneNode(true);
 
-                var link = document.createElement("a")
-                link.href = "./league.html?id=" + league.league_id;
-                link.className = "stretched-link"
+            var concludedTitle = titleTemplate.cloneNode(true);
+            concludedTitle.querySelector("h1").innerHTML = "Concluded";
+            var concludedGrid = gridTemplate.cloneNode(true);
+            
+            allData.forEach(function(leagueData, index) {
+              // Render each individual card
+              var col = document.createElement("div");
+              col.className = "col";
 
-                cardBody.append(cardTitle);
-                cardBody.append(cardSubTitle);
-                cardBody.append(link);
-                cardContainer.append(cardImage);
-                cardContainer.append(cardBody);
-                col.append(cardContainer);
+              var cardContainer = document.createElement("div");
+              cardContainer.className = "card h-100";
 
-                if (Date.now() < league_data.start_date * 1000) {
-                  upcomingGrid.append(col);
-                } else if (Date.now() >= league_data.start_date * 1000 && Date.now() <= league_data.end_date * 1000) {
-                  ongoingGrid.append(col);
-                } else if (Date.now() > league_data.end_date) {
-                  concludedGrid.append(col);
-                }
+              var cardImage = document.createElement("img");
+              cardImage.src = "./img/" + leagueList[index].league_id + ".png";
+              cardImage.className = "card-img-top";
 
-                // Render the non-empty card grids
-                var upcomingCount = upcomingGrid.childElementCount;
-                var ongoingCound = ongoingGrid.childElementCount;
-                var concludedCount = concludedGrid.childElementCount;
-                var totalCount = upcomingCount + ongoingCound + concludedCount;
+              var cardBody = document.createElement("div");
+              cardBody.className = "card-body";
 
-                if (totalCount == league_list.length) {
-                  if (upcomingCount > 0) {
-                    document.querySelector("#league-cards").append(upcomingTitle);
-                    document.querySelector("#league-cards").append(upcomingGrid);
-                  }
-                  if (ongoingCound > 0) {
-                    document.querySelector("#league-cards").append(ongoingTitle);
-                    document.querySelector("#league-cards").append(ongoingGrid);
-                  }
-                  if (concludedCount > 0) {
-                    document.querySelector("#league-cards").append(concludedTitle);
-                    document.querySelector("#league-cards").append(concludedGrid);
-                  }
-                }
-              });
+              var cardTitle = document.createElement("h5");
+              cardTitle.className = "card-title text-center";
+              cardTitle.innerHTML = leagueData.name;
+
+              var cardSubTitle = document.createElement("h6");
+              cardSubTitle.className = "card-subtitle mb-2 text-muted text-center";
+              const startDate = new Date(leagueData.start_date * 1000)
+                .toLocaleDateString(
+                  'en-gb', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    timeZone: 'utc'
+                  });
+              const endDate = new Date(leagueData.end_date * 1000)
+                .toLocaleDateString(
+                  'en-gb', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    timeZone: 'utc'
+                  });
+              cardSubTitle.innerHTML = startDate + " – " + endDate;
+
+              var link = document.createElement("a")
+              link.href = "./league.html?id=" + leagueList[index].league_id;
+              link.className = "stretched-link"
+
+              cardBody.append(cardTitle);
+              cardBody.append(cardSubTitle);
+              cardBody.append(link);
+              cardContainer.append(cardImage);
+              cardContainer.append(cardBody);
+              col.append(cardContainer);
+
+              if (Date.now() < leagueData.start_date * 1000) {
+                upcomingGrid.append(col);
+              } else if (Date.now() >= leagueData.start_date * 1000 && Date.now() <= leagueData.end_date * 1000) {
+                ongoingGrid.append(col);
+              } else if (Date.now() > leagueData.end_date) {
+                concludedGrid.append(col);
+              }
+            });
+
+            // Render the non-empty card grids
+            if (upcomingGrid.childElementCount > 0) {
+              document.querySelector("#league-cards").append(upcomingTitle);
+              document.querySelector("#league-cards").append(upcomingGrid);
+            }
+            if (ongoingGrid.childElementCount > 0) {
+              document.querySelector("#league-cards").append(ongoingTitle);
+              document.querySelector("#league-cards").append(ongoingGrid);
+            }
+            if (concludedGrid.childElementCount > 0) {
+              document.querySelector("#league-cards").append(concludedTitle);
+              document.querySelector("#league-cards").append(concludedGrid);
+            }
           });
       });
   </script>
