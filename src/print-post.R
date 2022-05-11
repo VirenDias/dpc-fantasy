@@ -49,7 +49,6 @@ print_post <- function(
     )
     
     all_region_averages <- averages %>%
-      select(-starts_with("bo")) %>%
       right_join(players, by = "player_id") %>%
       bind_rows(all_region_averages, .)
     
@@ -101,20 +100,17 @@ print_post <- function(
       left_join(players, by = "player_id") %>%
       left_join(teams, by = "team_id") %>%
       left_join(series %>% select(team_id, series), by = "team_id") %>%
-      arrange(desc(expectation)) %>%
+      arrange(desc(exp)) %>%
       select(
         player_name, 
         player_role, 
         team_name, 
         series,
-        total,
-        starts_with("average_"),
-        expectation
+        avg_bo1,
+        sd_bo1,
+        starts_with("avg_"),
+        exp
       )
-    if ("total" %in% names(choices_table) & 
-        "average_bo1" %in% names(choices_table)) {
-      choices_table <- choices_table %>% select(-total)
-    }
     
     roles <- list("Core", "Mid", "Support")
     for (role in roles) {
@@ -124,7 +120,7 @@ print_post <- function(
         table_no,
         ":** The potential choices for the ",
         role,
-        " role.*"
+        " role. (Avg.: average; Std.: standard deviation; Exp.: expectation).*"
       ) %>%
         write_lines(file = file_path, append = TRUE)
       
@@ -143,6 +139,7 @@ print_post <- function(
           "Team", 
           "Series",
           "Avg.",
+          "Std.",
           paste0(
             "Avg. Bo", 
             Filter(function(x) x != 1, sort(unique(schedule$best_of)))

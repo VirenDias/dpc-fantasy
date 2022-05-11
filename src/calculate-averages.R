@@ -53,13 +53,15 @@ average_series <- function(
   num_bo5 = 0
 ) {
   # Calculate permutations and averages
+  ## Always calculate Bo1 average and Bo1 standard deviation
+  perm_bo1 <- permute_series(outcomes, points, best_of = 1)
+  avg_bo1 <- mean(perm_bo1)
+  sd_bo1 <- sd(perm_bo1)
+  
+  ## Only calculate the rest if necessary
   perm_series <- list()
   if (num_bo1 > 0) {
-    perm_bo1 <- permute_series(outcomes, points, best_of = 1)
-    avg_bo1 <- mean(perm_bo1)
     for (i in 1:num_bo1) perm_series <- c(perm_series, list(perm_bo1))
-  } else {
-    avg_bo1 <- NA
   }
   if (num_bo2 > 0) {
     perm_bo2 <- permute_series(outcomes, points, best_of = 2)
@@ -90,11 +92,12 @@ average_series <- function(
   
   return(
     tibble(
-      "average_bo1" = avg_bo1, 
-      "average_bo2" = avg_bo2, 
-      "average_bo3" = avg_bo3, 
-      "average_bo5" = avg_bo5, 
-      "expectation" = expectation
+      "avg_bo1" = avg_bo1,
+      "sd_bo1" = sd_bo1,
+      "avg_bo2" = avg_bo2, 
+      "avg_bo3" = avg_bo3, 
+      "avg_bo5" = avg_bo5, 
+      "exp" = expectation
     )
   )
 }
@@ -133,7 +136,8 @@ calculate_averages <- function(
         )
       ) %>%
       select_if(
-        names(.) %in% c("player_id", "expectation") | colSums(!is.na(.)) > 0
+        names(.) %in% c("player_id", "avg_bo1", "sd_bo1", "exp") | 
+          colSums(!is.na(.)) > 0
       )
     averages <- averages %>% right_join(series_averages, by = "player_id")
   }
