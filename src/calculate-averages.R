@@ -59,35 +59,39 @@ average_series <- function(
   sd_bo1 <- sd(perm_bo1)
   
   ## Only calculate the rest if necessary
-  perm_series <- list()
+  series <- list()
   if (num_bo1 > 0) {
-    for (i in 1:num_bo1) perm_series <- c(perm_series, list(perm_bo1))
+    for (i in 1:num_bo1) series <- c(series, list(perm_bo1))
   }
   if (num_bo2 > 0) {
     perm_bo2 <- permute_series(outcomes, points, best_of = 2)
     avg_bo2 <- mean(perm_bo2)
-    for (i in 1:num_bo2) perm_series <- c(perm_series, list(perm_bo2))
+    for (i in 1:num_bo2) series <- c(series, list(perm_bo2))
   } else {
     avg_bo2 <- NA
   }
   if (num_bo3 > 0) {
     perm_bo3 <- permute_series(outcomes, points, best_of = 3)
     avg_bo3 <- mean(perm_bo3)
-    for (i in 1:num_bo3) perm_series <- c(perm_series, list(perm_bo3))
+    for (i in 1:num_bo3) series <- c(series, list(perm_bo3))
   } else {
     avg_bo3 <- NA
   }
   if (num_bo5 > 0) {
     perm_bo5 <- permute_series(outcomes, points, best_of = 5)
     avg_bo5 <- mean(perm_bo5)
-    for (i in 1:num_bo5) perm_series <- c(perm_series, list(perm_bo5))
+    for (i in 1:num_bo5) series <- c(series, list(perm_bo5))
   } else {
     avg_bo5 <- NA
   }
   
   # Calculate expectation
-  expectation <- expand.grid(perm_series) %>%
-    apply(MARGIN = 1, FUN = max) %>%
+  expectation <- do.call(
+    what = expand_grid, 
+    args = setNames(object = series, nm = 1:length(series))
+  ) %>%
+    transmute(max = pmax(!!!.)) %>%
+    pull(max) %>%
     mean()
   
   return(
