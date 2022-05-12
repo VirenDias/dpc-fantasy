@@ -176,7 +176,8 @@ print_post <- function(
         "runes_grabbed" = "Runes Grabbed",
         "first_blood" = "First Blood",
         "stuns" = "Stuns"
-      )
+      ),
+      across(.cols = -Indicator, .fns = ~.*100/sum(.))
     )
   
   ## Create section heading
@@ -201,7 +202,7 @@ print_post <- function(
   
   ## Create table caption
   write_lines(
-    "***Table 1:** The average fantasy points earned per role for each indicator.*",
+    "***Table 1:** The percentage of fantasy points earned by each indicator for each role.*",
     file = file_path, 
     append = TRUE
   )
