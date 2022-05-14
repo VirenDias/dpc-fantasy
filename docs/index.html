@@ -8,7 +8,7 @@
   <title>DPC Fantasy Tracker · Hawkie</title>
 </head>
 
-<body>
+<body class="bg-light">
   <div class="container">
     <h1 class="display-1 text-center my-4">Dota Pro Circuit Fantasy Tracker</h1>
     <div id="league-cards"></div>
@@ -45,7 +45,7 @@
             titleTemplate.append(lineTemplate.cloneNode(true));
             titleTemplate.append(document.createElement("h1"));
             titleTemplate.append(lineTemplate.cloneNode(true));
-            titleTemplate.querySelector("h1").className = "col-auto display-6 text-muted text-center";
+            titleTemplate.querySelector("h1").className = "col-auto display-6 text-center";
 
             var gridTemplate = document.createElement("div");
             gridTemplate.className = "row justify-content-center row-cols-1 row-cols-lg-2 row-cols-xxl-3 g-4";
@@ -61,7 +61,7 @@
             var concludedTitle = titleTemplate.cloneNode(true);
             concludedTitle.querySelector("h1").innerHTML = "Concluded";
             var concludedGrid = gridTemplate.cloneNode(true);
-            
+
             allData.forEach(function(leagueData, index) {
               // Render each individual card
               var col = document.createElement("div");
