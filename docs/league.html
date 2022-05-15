@@ -15,33 +15,33 @@
     <h1 id="league-title" class="display-3 text-center my-4"></h1>
 
     <ul class="nav justify-content-center my-4 lead">
-      <li class="nav-item">
-        <a class="nav-link link-dark" data-bs-toggle="tab" data-bs-target="#tab-schedule" href="">Schedule</a>
+      <li class="nav-item px-3">
+        <a class="text-reset text-decoration-none border-dark" data-bs-toggle="tab" data-bs-target="#tab-schedule" href="">Schedule</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link link-dark" data-bs-toggle="tab" data-bs-target="#tab-aggregate" href="">Results Overview</a>
+      <li class="nav-item px-3">
+        <a class="text-reset text-decoration-none border-dark" data-bs-toggle="tab" data-bs-target="#tab-aggregate" href="">Results Overview</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link link-dark" data-bs-toggle="tab" data-bs-target="#tab-average" href="">Average Results</a>
+      <li class="nav-item px-3">
+        <a class="text-reset text-decoration-none border-dark" data-bs-toggle="tab" data-bs-target="#tab-average" href="">Average Results</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link link-dark" data-bs-toggle="tab" data-bs-target="#tab-single" href="">Single Results</a>
+      <li class="nav-item px-3">
+        <a class="text-reset text-decoration-none border-dark" data-bs-toggle="tab" data-bs-target="#tab-single" href="">Single Results</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link link-dark" data-bs-toggle="tab" data-bs-target="#tab-note" href="">Known Issues</a>
+      <li class="nav-item px-3">
+        <a class="text-reset text-decoration-none border-dark" data-bs-toggle="tab" data-bs-target="#tab-note" href="">Known Issues</a>
       </li>
     </ul>
 
     <div class="tab-content my-4">
       <div class="tab-pane fade show active" id="tab-schedule" role="tabpanel">
         <div id="roster-lock-grid" class="row justify-content-center row-cols-2 row-cols-md-3 row-cols-xl-4 row-cols-xxl-6 g-4 mb-4"></div>
-        <div class="bg-white p-3 my-4 border rounded">
+        <div class="bg-white p-3 my-4 border rounded shadow-sm">
           <h3 class="text-center">Schedule</h3>
           <table id="table-schedule" class="table nowrap table-hover" style="width: 100%"></table>
         </div>
       </div>
       <div class="tab-pane fade" id="tab-note" role="tabpanel">
-        <div class="bg-white p-3 my-4 border rounded">
+        <div class="bg-white p-3 my-4 border rounded shadow-sm">
           <h3 class="text-center">Known Issues</h3>
           <ul>
             <li>Valve does not count the final 5–10 seconds of the game for fantasy points. Please see this <a href="https://www.reddit.com/r/DotA2/comments/rcda9n/valve_your_fantasy_point_math_is_incorrect_with/" target="_blank">Reddit post</a> for
@@ -52,23 +52,22 @@
           </ul>
         </div>
       </div>
-      <div class="tab-pane fade" id="tab-single" role="tabpanel">
-        <div class="bg-white p-3 my-4 border rounded">
-          <h3 class="text-center">Single Results</h3>
-          <table id="table-single" class="table nowrap table-hover" style="width: 100%"></table>
+      <div class="tab-pane fade" id="tab-aggregate" role="tabpanel">
+        <div class="bg-white p-3 my-4 border rounded shadow-sm">
+          <h3 class="text-center">Results Overview</h3>
+          <table id="table-aggregate" class="table nowrap table-hover" style="width: 100%"></table>
         </div>
       </div>
       <div class="tab-pane fade" id="tab-average" role="tabpanel">
-        <div class="bg-white p-3 my-4 border rounded">
+        <div class="bg-white p-3 my-4 border rounded shadow-sm">
           <h3 class="text-center">Average Results</h3>
           <table id="table-average" class="table nowrap table-hover" style="width: 100%"></table>
         </div>
-
       </div>
-      <div class="tab-pane fade" id="tab-aggregate" role="tabpanel">
-        <div class="bg-white p-3 my-4 border rounded">
-          <h3 class="text-center">Results Overview</h3>
-          <table id="table-aggregate" class="table nowrap table-hover" style="width: 100%"></table>
+      <div class="tab-pane fade" id="tab-single" role="tabpanel">
+        <div class="bg-white p-3 my-4 border rounded shadow-sm">
+          <h3 class="text-center">Single Results</h3>
+          <table id="table-single" class="table nowrap table-hover" style="width: 100%"></table>
         </div>
       </div>
     </div>
@@ -82,6 +81,14 @@
   <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.11.3/fc-4.0.1/fh-3.2.0/datatables.min.js"></script>
 
   <script>
+    // Add hover styles for nav bar
+    $(".nav a").hover(function() {
+      $(this).addClass("border-bottom")
+    }, function() {
+      $(this).removeClass("border-bottom")
+    });
+
+    // Add the league data
     let params = new URLSearchParams(window.location.search);
     var leagueId = params.get("id");
 
@@ -97,7 +104,7 @@
           col.className = "col";
 
           var container = document.createElement("div");
-          container.className = "text-center p-2 bg-white border rounded";
+          container.className = "text-center p-2 bg-white border rounded shadow-sm";
 
           var title = document.createElement("div");
           title.className = "small";
@@ -472,13 +479,7 @@
         };
 
         // Ensure datatable is properly rendered
-        var countSchedule = 0;
-        $("a[data-bs-target='#tab-schedule']").on("shown.bs.tab", function() {
-          if (countSchedule == 0) {
-            $("#table-schedule").DataTable(tableSchedule);
-          }
-          countSchedule++;
-        });
+        $("#table-schedule").DataTable(tableSchedule);
         var countAggregate = 0;
         $("a[data-bs-target='#tab-aggregate']").on("shown.bs.tab", function() {
           if (countAggregate == 0) {
@@ -500,7 +501,6 @@
           }
           countSingle++;
         });
-        $("a[data-bs-target='#tab-schedule']").tab("show")
 
         // Fix header column widths
         $("a[data-bs-toggle='tab']").on("shown.bs.tab", function() {
