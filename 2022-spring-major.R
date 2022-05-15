@@ -81,6 +81,7 @@ lapply(league_ids, function(league_id) {
 print_post(
   league_ids = league_ids,
   update = FALSE,
+  innate_data_only = FALSE,
   start_time = period_dates$period_1$start_time,
   end_time = period_dates$period_1$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
@@ -91,6 +92,7 @@ print_post(
 print_post(
   league_ids = league_ids,
   update = FALSE,
+  innate_data_only = FALSE,
   start_time = period_dates$period_2$start_time,
   end_time = period_dates$period_2$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
@@ -101,6 +103,7 @@ print_post(
 print_post(
   league_ids = league_ids,
   update = FALSE,
+  innate_data_only = FALSE,
   start_time = period_dates$period_3$start_time,
   end_time = period_dates$period_3$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
@@ -111,6 +114,7 @@ print_post(
 print_post(
   league_ids = league_ids,
   update = FALSE,
+  innate_data_only = FALSE,
   start_time = period_dates$period_4$start_time,
   end_time = period_dates$period_4$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
@@ -121,6 +125,7 @@ print_post(
 print_post(
   league_ids = league_ids,
   update = FALSE,
+  innate_data_only = TRUE,
   start_time = period_dates$period_5$start_time,
   end_time = period_dates$period_5$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
@@ -131,6 +136,7 @@ print_post(
 print_post(
   league_ids = league_ids,
   update = FALSE,
+  innate_data_only = TRUE,
   start_time = period_dates$period_6$start_time,
   end_time = period_dates$period_6$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
@@ -141,6 +147,7 @@ print_post(
 print_post(
   league_ids = league_ids,
   update = FALSE,
+  innate_data_only = TRUE,
   start_time = period_dates$period_7$start_time,
   end_time = period_dates$period_7$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
@@ -151,6 +158,7 @@ print_post(
 print_post(
   league_ids = league_ids,
   update = FALSE,
+  innate_data_only = TRUE,
   start_time = period_dates$period_8$start_time,
   end_time = period_dates$period_8$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
@@ -161,6 +169,7 @@ print_post(
 print_post(
   league_ids = league_ids,
   update = FALSE,
+  innate_data_only = TRUE,
   start_time = period_dates$period_9$start_time,
   end_time = period_dates$period_9$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
@@ -171,6 +180,7 @@ print_post(
 print_post(
   league_ids = league_ids,
   update = FALSE,
+  innate_data_only = TRUE,
   start_time = period_dates$period_10$start_time,
   end_time = period_dates$period_10$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
@@ -181,6 +191,7 @@ print_post(
 print_post(
   league_ids = league_ids,
   update = FALSE,
+  innate_data_only = TRUE,
   start_time = period_dates$period_11$start_time,
   end_time = period_dates$period_11$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
@@ -192,6 +203,7 @@ print_post(
 print_post(
   league_ids = league_ids,
   update = FALSE,
+  innate_data_only = TRUE,
   start_time = period_dates$period_12$start_time,
   end_time = period_dates$period_12$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
