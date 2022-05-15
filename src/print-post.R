@@ -10,6 +10,7 @@ library(rlang)
 print_post <- function(
   league_ids, 
   update = FALSE,
+  innate_data_only = FALSE,
   start_time, 
   end_time,
   google_sheet,
@@ -44,6 +45,7 @@ print_post <- function(
     averages <- calculate_averages(
       league_id = league_id, 
       player_series = relevant_players,
+      innate_data_only = innate_data_only,
       start_time = start_time,
       update = update
     )

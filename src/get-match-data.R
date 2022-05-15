@@ -9,14 +9,7 @@ get_prediction_data <- function(
   num_matches = 25,
   update = FALSE
 ) {
-  message(
-    paste0(
-      "Retrieving prediction data for league ID ", 
-      league_id,
-      " and period ",
-      as.POSIXct(start_time, tz = "UTC", origin = "1970-01-01") %>% as.Date()
-    )
-  )
+  message(paste0("Retrieving prediction data for league ID ", league_id))
   
   dir_path <- paste0("data/", league_id)
   file_path <- paste0(dir_path, "/matches.csv")
@@ -186,6 +179,7 @@ get_prediction_data <- function(
 
 get_result_data <- function(
   league_id,
+  start_time = as.integer(Sys.time()),
   update = FALSE
 ) {
   message(paste0("Retrieving results data for league ID ", league_id))
@@ -195,6 +189,9 @@ get_result_data <- function(
   if (!dir.exists(dir_path) || !file.exists(file_path)) {
     update <- TRUE
   }
+  
+  # Get player IDs
+  player_ids <- get_player_data(league_id = league_id, update = FALSE)$player_id
   
   # Get league data
   response_league <- GET(
@@ -327,7 +324,9 @@ get_result_data <- function(
   
   # Retrieve relevant data
   matches <- matches %>% 
-    filter(match_id %in% match_ids)
+    filter(match_id %in% match_ids) %>%
+    filter(player_id %in% player_ids) %>%
+    filter(start_time < !!start_time)
   
   return(matches)
 }

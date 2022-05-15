@@ -113,15 +113,24 @@ average_series <- function(
 calculate_averages <- function(
   league_id,
   player_series = NULL,
+  innate_data_only = FALSE,
   start_time = as.integer(Sys.time()),
   update = FALSE
 ) {
   # Get required data
-  matches <- get_prediction_data(
-    league_id = league_id, 
-    start_time = start_time,
-    update = update
-  )
+  if (innate_data_only) {
+    matches <- get_result_data(
+      league_id = league_id, 
+      start_time = start_time,
+      update = update
+    )
+  } else {
+    matches <- get_prediction_data(
+      league_id = league_id, 
+      start_time = start_time,
+      update = update
+    )
+  }
   
   # Calculate the single match averages
   averages <- matches %>%
