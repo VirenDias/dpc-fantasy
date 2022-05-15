@@ -68,31 +68,35 @@ average_series <- function(
     avg_bo2 <- mean(perm_bo2)
     for (i in 1:num_bo2) series <- c(series, list(perm_bo2))
   } else {
-    avg_bo2 <- NA
+    avg_bo2 <- as.numeric(NA)
   }
   if (num_bo3 > 0) {
     perm_bo3 <- permute_series(outcomes, points, best_of = 3)
     avg_bo3 <- mean(perm_bo3)
     for (i in 1:num_bo3) series <- c(series, list(perm_bo3))
   } else {
-    avg_bo3 <- NA
+    avg_bo3 <- as.numeric(NA)
   }
   if (num_bo5 > 0) {
     perm_bo5 <- permute_series(outcomes, points, best_of = 5)
     avg_bo5 <- mean(perm_bo5)
     for (i in 1:num_bo5) series <- c(series, list(perm_bo5))
   } else {
-    avg_bo5 <- NA
+    avg_bo5 <- as.numeric(NA)
   }
   
   # Calculate expectation
-  expectation <- do.call(
-    what = expand_grid, 
-    args = setNames(object = series, nm = 1:length(series))
-  ) %>%
-    transmute(max = pmax(!!!.)) %>%
-    pull(max) %>%
-    mean()
+  if(length(series) != 0) {
+    expectation <- do.call(
+      what = expand_grid, 
+      args = setNames(object = series, nm = 1:length(series))
+    ) %>%
+      transmute(max = pmax(!!!.)) %>%
+      pull(max) %>%
+      mean()
+  } else {
+    expectation <- as.numeric(NA)
+  }
   
   return(
     tibble(
