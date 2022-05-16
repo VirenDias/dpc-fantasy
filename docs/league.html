@@ -5,7 +5,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <link rel="stylesheet" href="./css/datatables.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.12.0/fc-4.1.0/fh-3.2.3/datatables.min.css" />
+  <link rel="stylesheet" href="./css/custom.css">
 
   <title>DPC Fantasy Tracker · Hawkie</title>
 </head>
@@ -44,9 +45,9 @@
         <div class="bg-white p-3 my-4 border rounded shadow-sm">
           <h3 class="text-center">Known Issues</h3>
           <ul>
-            <li>Valve does not count the final 5–10 seconds of the game for fantasy points. Please see this <a href="https://www.reddit.com/r/DotA2/comments/rcda9n/valve_your_fantasy_point_math_is_incorrect_with/" target="_blank">Reddit post</a> for
+            <li><b>Valve does not count the final 5–10 seconds of the game for fantasy points.</b> Please see this <a href="https://www.reddit.com/r/DotA2/comments/rcda9n/valve_your_fantasy_point_math_is_incorrect_with/" target="_blank">Reddit post</a> for
               more information. This can result in slight differences between the numbers presented here and those in-game.</li>
-            <li>Some replays are unavailable, and therefore I am unable to calculate the fantasy points earned in those games. This can result in major differences in the <em>Results Overview</em> table, as well as missing records in the <em>Single
+            <li><b>Some replays are unavailable.</b> Consequently, I am unable to calculate the fantasy points earned in those games. This can result in major differences in the <em>Results Overview</em> table, as well as missing records in the <em>Single
                 Results</em>
               table. Unfortunately, there is nothing I can do about this. Fortunately, this is quite rare.</li>
           </ul>
@@ -78,7 +79,7 @@
   </div>
 
   <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.11.3/fc-4.0.1/fh-3.2.0/datatables.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.12.0/fc-4.1.0/fh-3.2.3/datatables.min.js"></script>
 
   <script>
     // Add hover styles for nav bar
@@ -152,7 +153,7 @@
         // Render the schedule table
         var tableSchedule = {
           ...tableOptions,
-          fixedColumns: 1,
+          fixedColumns: false,
           data: leagueData.schedule.filter(match => match.time != 0),
           createdRow: function(row, data) {
             if (new Date().getTime() > data.time * 1000) $(row).addClass('text-decoration-line-through');
@@ -206,7 +207,8 @@
         var periods = Object.keys(leagueData.result_aggregate[0]).filter(d => d.startsWith("period_"));
         columns = [{
             title: "Player Name",
-            data: "player_name"
+            data: "player_name",
+            className: "border-end"
           },
           {
             title: "Team Name",
@@ -229,7 +231,7 @@
           title: "Total",
           data: "total",
           type: "num",
-          className: "text-end"
+          className: "text-end border-start"
         });
 
         var tableAggregate = {
@@ -256,7 +258,8 @@
           data: leagueData.result_average,
           columns: [{
               title: "Player Name",
-              data: "player_name"
+              data: "player_name",
+              className: "border-end"
             },
             {
               title: "Team Name",
@@ -329,7 +332,7 @@
             {
               title: "Total",
               data: "total",
-              className: "text-end"
+              className: "text-end border-start"
             }
           ],
           columnDefs: [{
@@ -348,7 +351,8 @@
           data: leagueData.result_single,
           columns: [{
               title: "Player Name",
-              data: "player_name"
+              data: "player_name",
+              className: "border-end"
             },
             {
               title: "Team Name",
@@ -430,7 +434,7 @@
             {
               title: "Total",
               data: "total",
-              className: "text-end"
+              className: "text-end border-start"
             }
           ],
           columnDefs: [{
@@ -478,33 +482,15 @@
           ]
         };
 
-        // Ensure datatable is properly rendered
+        // Render the datatables
         $("#table-schedule").DataTable(tableSchedule);
-        var countAggregate = 0;
-        $("a[data-bs-target='#tab-aggregate']").on("shown.bs.tab", function() {
-          if (countAggregate == 0) {
-            $("#table-aggregate").DataTable(tableAggregate);
-          }
-          countAggregate++;
-        });
-        var countAverage = 0;
-        $("a[data-bs-target='#tab-average']").on("shown.bs.tab", function() {
-          if (countAverage == 0) {
-            $("#table-average").DataTable(tableAverage);
-          }
-          countAverage++;
-        });
-        var countSingle = 0;
-        $("a[data-bs-target='#tab-single']").on("shown.bs.tab", function() {
-          if (countSingle == 0) {
-            $("#table-single").DataTable(tableSingle);
-          }
-          countSingle++;
-        });
+        $("#table-aggregate").DataTable(tableAggregate);
+        $("#table-average").DataTable(tableAverage);
+        $("#table-single").DataTable(tableSingle);
 
         // Fix header column widths
         $("a[data-bs-toggle='tab']").on("shown.bs.tab", function() {
-          $($.fn.dataTable.tables()).DataTable().fixedHeader.adjust().draw();
+          $($.fn.dataTable.tables()).DataTable().draw();
         });
 
         // Show errors in console instead of as alerts
