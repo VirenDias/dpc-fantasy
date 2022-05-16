@@ -2,7 +2,7 @@ name: Update Website Data
 
 on:
   schedule:
-    - cron: "0 */2 * * *"
+    - cron: "*/15 * * * *"
   workflow_dispatch:
 
 jobs:
