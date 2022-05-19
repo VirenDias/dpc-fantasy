@@ -33,27 +33,19 @@ period_dates <- list(
   ),
   "period_7" = list(
     "start_time" = as.POSIXct("2022-05-18 07:00", tz = "UTC") %>% as.integer(),
-    "end_time" = as.POSIXct("2022-05-19 07:00", tz = "UTC") %>% as.integer()
-  ),
-  "period_8" = list(
-    "start_time" = as.POSIXct("2022-05-19 07:00", tz = "UTC") %>% as.integer(),
     "end_time" = as.POSIXct("2022-05-20 07:00", tz = "UTC") %>% as.integer()
   ),
-  "period_9" = list(
+  "period_8" = list(
     "start_time" = as.POSIXct("2022-05-20 07:00", tz = "UTC") %>% as.integer(),
     "end_time" = as.POSIXct("2022-05-21 07:00", tz = "UTC") %>% as.integer()
   ),
-  "period_10" = list(
+  "period_9" = list(
     "start_time" = as.POSIXct("2022-05-21 07:00", tz = "UTC") %>% as.integer(),
     "end_time" = as.POSIXct("2022-05-22 07:00", tz = "UTC") %>% as.integer()
   ),
-  "period_11" = list(
+  "period_10" = list(
     "start_time" = as.POSIXct("2022-05-22 07:00", tz = "UTC") %>% as.integer(),
     "end_time" = as.POSIXct("2022-05-23 07:00", tz = "UTC") %>% as.integer()
-  ),
-  "period_12" = list(
-    "start_time" = as.POSIXct("2022-05-23 07:00", tz = "UTC") %>% as.integer(),
-    "end_time" = as.POSIXct("2022-05-24 07:00", tz = "UTC") %>% as.integer()
   )
 )
 
@@ -185,27 +177,4 @@ print_post(
   end_time = period_dates$period_10$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
   file_path = "data/posts/2022_spring_major_p10.txt"
-)
-
-## Period 11
-print_post(
-  league_ids = league_ids,
-  update = FALSE,
-  innate_data_only = TRUE,
-  start_time = period_dates$period_11$start_time,
-  end_time = period_dates$period_11$end_time,
-  google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
-  file_path = "data/posts/2022_spring_major_p11.txt"
-)
-
-
-## Period 12
-print_post(
-  league_ids = league_ids,
-  update = FALSE,
-  innate_data_only = TRUE,
-  start_time = period_dates$period_12$start_time,
-  end_time = period_dates$period_12$end_time,
-  google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
-  file_path = "data/posts/2022_spring_major_p12.txt"
 )
