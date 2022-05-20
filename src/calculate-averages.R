@@ -47,47 +47,46 @@ permute_series <- function(outcomes, points, best_of) {
 average_series <- function(
   outcomes, 
   points, 
-  num_bo1 = 0, 
-  num_bo2 = 0, 
-  num_bo3 = 0, 
-  num_bo5 = 0
+  bas_bo1 = 0, 
+  bas_bo2 = 0, 
+  bas_bo3 = 0, 
+  bas_bo5 = 0,
+  pot_bo1 = 0, 
+  pot_bo2 = 0, 
+  pot_bo3 = 0, 
+  pot_bo5 = 0
 ) {
-  # Calculate permutations and averages
-  ## Always calculate Bo1 average and Bo1 standard deviation
+  # Calculate Bo1 permutation, average, and standard deviation
   perm_bo1 <- permute_series(outcomes, points, best_of = 1)
   avg_bo1 <- mean(perm_bo1)
   sd_bo1 <- sd(perm_bo1)
   
-  ## Only calculate the rest if necessary
-  series <- list()
-  if (num_bo1 > 0) {
-    for (i in 1:num_bo1) series <- c(series, list(perm_bo1))
-  }
-  if (num_bo2 > 0) {
-    perm_bo2 <- permute_series(outcomes, points, best_of = 2)
-    avg_bo2 <- mean(perm_bo2)
-    for (i in 1:num_bo2) series <- c(series, list(perm_bo2))
+  # Calculate Bo2, Bo3, and Bo5 permutations if necessary
+  perm_bo2 <- if (bas_bo2 > 0 | pot_bo2 > 0) {
+    permute_series(outcomes, points, best_of = 2)
   } else {
-    avg_bo2 <- as.numeric(NA)
+    NA
   }
-  if (num_bo3 > 0) {
-    perm_bo3 <- permute_series(outcomes, points, best_of = 3)
-    avg_bo3 <- mean(perm_bo3)
-    for (i in 1:num_bo3) series <- c(series, list(perm_bo3))
+  perm_bo3 <- if (bas_bo3 > 0 | pot_bo3 > 0) {
+    permute_series(outcomes, points, best_of = 3)
   } else {
-    avg_bo3 <- as.numeric(NA)
+    NA
   }
-  if (num_bo5 > 0) {
-    perm_bo5 <- permute_series(outcomes, points, best_of = 5)
-    avg_bo5 <- mean(perm_bo5)
-    for (i in 1:num_bo5) series <- c(series, list(perm_bo5))
+  perm_bo5 <- if (bas_bo5 > 0 | pot_bo5 > 0) {
+    permute_series(outcomes, points, best_of = 5)
   } else {
-    avg_bo5 <- as.numeric(NA)
+    NA
   }
   
-  # Calculate expectation
+  # Calculate the baseline expectation
+  series <- c(
+    rep(list(perm_bo1), bas_bo1),
+    rep(list(perm_bo2), bas_bo2),
+    rep(list(perm_bo3), bas_bo3),
+    rep(list(perm_bo5), bas_bo5)
+  )
   if(length(series) != 0) {
-    expectation <- do.call(
+    bas_exp <- do.call(
       what = expand_grid, 
       args = setNames(object = series, nm = 1:length(series))
     ) %>%
@@ -95,17 +94,34 @@ average_series <- function(
       pull(max) %>%
       mean()
   } else {
-    expectation <- as.numeric(NA)
+    bas_exp <- as.numeric(NA)
+  }
+  
+  # Calculate the potential expectation
+  if (pot_bo1 > 0 | pot_bo2 > 0 | pot_bo3 > 0 | pot_bo5 > 0) {
+    series <- c(
+      rep(list(perm_bo1), bas_bo1 + pot_bo1),
+      rep(list(perm_bo2), bas_bo2 + pot_bo2),
+      rep(list(perm_bo3), bas_bo3 + pot_bo3),
+      rep(list(perm_bo5), bas_bo5 + pot_bo5)
+    )
+    pot_exp <- do.call(
+      what = expand_grid, 
+      args = setNames(object = series, nm = 1:length(series))
+    ) %>%
+      transmute(max = pmax(!!!.)) %>%
+      pull(max) %>%
+      mean()
+  } else {
+    pot_exp <- bas_exp
   }
   
   return(
     tibble(
-      "avg_bo1" = avg_bo1,
-      "sd_bo1" = sd_bo1,
-      "avg_bo2" = avg_bo2, 
-      "avg_bo3" = avg_bo3, 
-      "avg_bo5" = avg_bo5, 
-      "exp" = expectation
+      "avg" = avg_bo1,
+      "sd" = sd_bo1,
+      "bas_exp" = bas_exp,
+      "pot_exp" = pot_exp
     )
   )
 }
@@ -146,15 +162,15 @@ calculate_averages <- function(
         average_series(
           outcomes = win,
           points = total,
-          num_bo1 = max(num_bo1, 0),
-          num_bo2 = max(num_bo2, 0),
-          num_bo3 = max(num_bo3, 0),
-          num_bo5 = max(num_bo5, 0)
+          bas_bo1 = max(bas_bo1, 0),
+          bas_bo2 = max(bas_bo2, 0),
+          bas_bo3 = max(bas_bo3, 0),
+          bas_bo5 = max(bas_bo5, 0),
+          pot_bo1 = max(pot_bo1, 0),
+          pot_bo2 = max(pot_bo2, 0),
+          pot_bo3 = max(pot_bo3, 0),
+          pot_bo5 = max(pot_bo5, 0)
         )
-      ) %>%
-      select_if(
-        names(.) %in% c("player_id", "avg_bo1", "sd_bo1", "exp") | 
-          colSums(!is.na(.)) > 0
       )
     averages <- averages %>% right_join(series_averages, by = "player_id")
   }

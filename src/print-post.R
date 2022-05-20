@@ -21,45 +21,52 @@ print_post <- function(
   all_region_averages <- data.frame()
   
   for (league_name in names(league_ids)) {
-    # Get required data
+    # Get required data --------------------------------------------------------
     league_id <- league_ids[[league_name]]
     
     players <- get_player_data(league_id = league_id, update = update)
     teams <- get_team_data(league_id = league_id, update = update)
-    schedule <- get_schedule(league_id = league_id, update = update) %>%
-      filter(time >= start_time, time < end_time)
+    all_schedule <- get_schedule(league_id = league_id, update = update) 
+    schedule <- all_schedule %>% filter(time >= start_time, time < end_time)
     
-    series <- schedule %>%
-      pivot_longer(cols = team_id_1:team_id_2, values_to = "team_id") %>%
-      group_by(team_id) %>%
-      summarise(
-        num_bo1 = sum(best_of == 1), 
-        num_bo2 = sum(best_of == 2), 
-        num_bo3 = sum(best_of == 3), 
-        num_bo5 = sum(best_of == 5),
-        series = paste0("Bo", best_of, collapse = " + ")
-      )
-    relevant_players <- players %>%
-      inner_join(series, by = "team_id") %>%
-      select(player_id, starts_with("num_bo"))
-    averages <- calculate_averages(
-      league_id = league_id, 
-      player_series = relevant_players,
-      innate_data_only = innate_data_only,
-      start_time = start_time,
-      update = update
-    )
-    
-    all_region_averages <- averages %>%
-      right_join(players, by = "player_id") %>%
-      bind_rows(all_region_averages, .)
-    
-    # Create section heading
+    # Create section heading ---------------------------------------------------
     paste0("# ", league_name) %>% write_lines(file = file_path, append = TRUE)
     write_lines("", file = file_path, append = TRUE)
     
-    # Create schedule table
-    schedule_table <- schedule  %>%
+    # Create schedule table ----------------------------------------------------
+    get_potential_teams <- function(team_id, inc_id) {
+      if (team_id == 0) {
+        potential_ids <- all_schedule %>% 
+          filter(node_id == inc_id) %>%
+          select(team_id_1, team_id_2) %>%
+          unlist()
+        if (!(0 %in% potential_ids)) return(potential_ids) else return(team_id)
+      } else {
+        return(team_id)
+      }
+    }
+    
+    if (0 %in% (schedule %>% select(team_id_1, team_id_2) %>% unlist())) {
+      schedule <- schedule %>% 
+        mutate(
+          team_id_1 = mapply(
+            FUN = get_potential_teams, 
+            team_id = team_id_1,
+            inc_id = inc_id_1,
+            SIMPLIFY = FALSE
+          ),
+          team_id_2 = mapply(
+            FUN = get_potential_teams,
+            team_id = team_id_2,
+            inc_id = inc_id_2,
+            SIMPLIFY = FALSE
+          )
+        ) %>%
+        unnest(cols = c(team_id_1, team_id_2))
+    }
+    
+    ## Format data
+    schedule_table <- schedule %>%
       arrange(time) %>%
       left_join(teams, by = c("team_id_1" = "team_id")) %>%
       rename(team_name_1 = team_name) %>%
@@ -71,6 +78,19 @@ print_post <- function(
           as.POSIXct(time, tz = "UTC", origin = "1970-01-01"),
           "%Y-%m-%d %H:%M",
           usetz = TRUE
+        )
+      ) %>%
+      group_by(node_id) %>%
+      summarise(
+        across(
+          .cols = everything(), 
+          .fns = function(x) {
+            if (length(unique(unlist(x))) > 1) {
+              return(paste0(unlist(x), collapse = " / "))
+            } else {
+              return(as.character(x[1]))
+            }
+          }
         )
       ) %>%
       select(team_name_1, team_name_2, best_of, time)
@@ -97,22 +117,66 @@ print_post <- function(
     
     write_lines("", file = file_path, append = TRUE)
     
-    # Create choices tables
+    # Create choices tables ----------------------------------------------------
+    ## Determine series and relevant players
+    series <- schedule %>%
+      filter(time >= start_time, time < end_time) %>%
+      pivot_longer(
+        cols = c(team_id_1, team_id_2), 
+        names_to = "slot",
+        values_to = "team_id"
+      ) %>%
+      distinct(team_id, node_id, .keep_all = TRUE) %>%
+      group_by(node_id, slot) %>%
+      mutate(pot = if_else(condition = n() > 1, true = TRUE, false = FALSE)) %>%
+      ungroup() %>%
+      group_by(team_id) %>%
+      summarise(
+        bas_bo1 = sum((best_of == 1)*!pot), 
+        bas_bo2 = sum((best_of == 2)*!pot), 
+        bas_bo3 = sum((best_of == 3)*!pot), 
+        bas_bo5 = sum((best_of == 5)*!pot),
+        pot_bo1 = sum((best_of == 1)*pot), 
+        pot_bo2 = sum((best_of == 2)*pot), 
+        pot_bo3 = sum((best_of == 3)*pot), 
+        pot_bo5 = sum((best_of == 5)*pot),
+        series = paste0(
+          if_else(
+            condition = pot, 
+            true = paste0("(Bo", best_of, ")"),
+            false = paste0("Bo", best_of)
+          ),
+          collapse = " + ")
+      )
+    relevant_players <- players %>%
+      inner_join(series, by = "team_id") %>%
+      select(player_id, contains("_bo"))
+    
+    ## Calculate averages
+    averages <- calculate_averages(
+      league_id = league_id, 
+      player_series = relevant_players,
+      innate_data_only = innate_data_only,
+      start_time = start_time,
+      update = update
+    )
+    
+    ## Format data
     choices_table <- averages %>%
       left_join(players, by = "player_id") %>%
       left_join(teams, by = "team_id") %>%
       left_join(series %>% select(team_id, series), by = "team_id") %>%
-      arrange(desc(exp)) %>%
       select(
         player_name, 
         player_role, 
         team_name, 
         series,
-        avg_bo1,
-        sd_bo1,
-        starts_with("avg_"),
-        exp
-      )
+        avg,
+        sd,
+        if (sum(.$bas_exp == .$pot_exp | is.na(.$bas_exp)) < nrow(.)) "bas_exp",
+        pot_exp
+      ) %>%
+      arrange(desc(pot_exp))
     
     roles <- list("Core", "Mid", "Support")
     for (role in roles) {
@@ -122,7 +186,7 @@ print_post <- function(
         table_no,
         ":** The potential choices for the ",
         role,
-        " role. (Avg.: average; Std.: standard deviation; Exp.: expectation).*"
+        " role.*"
       ) %>%
         write_lines(file = file_path, append = TRUE)
       
@@ -142,11 +206,11 @@ print_post <- function(
           "Series",
           "Avg.",
           "Std.",
-          paste0(
-            "Avg. Bo", 
-            Filter(function(x) x != 1, sort(unique(schedule$best_of)))
-          ),
-          "Exp."
+          if ("bas_exp" %in% names(choices_table)) {
+            c("Bas. Exp.", "Pot. Exp.")
+          } else {
+            "Exp."
+          }
         )
       ) %>%
         chr_unserialise_unicode() %>%
@@ -154,9 +218,14 @@ print_post <- function(
       
       write_lines("", file = file_path, append = TRUE)
     }
+    
+    # Add to all-region averages -----------------------------------------------
+    all_region_averages <- averages %>%
+      right_join(players, by = "player_id") %>%
+      bind_rows(all_region_averages, .)
   }
   
-  # Create card bonus table
+  # Create card bonus table ----------------------------------------------------
   file <- read_lines(file_path, lazy = FALSE)
   card_bonus_table <- all_region_averages %>%
     group_by(player_role) %>%
@@ -208,7 +277,6 @@ print_post <- function(
     file = file_path, 
     append = TRUE
   )
-  
   write_lines("", file = file_path, append = TRUE)
   
   ## Create table
