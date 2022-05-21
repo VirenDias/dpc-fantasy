@@ -26,7 +26,8 @@ print_post <- function(
     
     players <- get_player_data(league_id = league_id, update = update)
     teams <- get_team_data(league_id = league_id, update = update)
-    all_schedule <- get_schedule(league_id = league_id, update = update) 
+    all_schedule <- get_schedule(league_id = league_id, update = update) %>%
+      arrange(time)
     schedule <- all_schedule %>% filter(time >= start_time, time < end_time)
     
     # Create section heading ---------------------------------------------------
@@ -67,7 +68,6 @@ print_post <- function(
     
     ## Format data
     schedule_table <- schedule %>%
-      arrange(time) %>%
       left_join(teams, by = c("team_id_1" = "team_id")) %>%
       rename(team_name_1 = team_name) %>%
       left_join(teams, by = c("team_id_2" = "team_id")) %>%
@@ -93,6 +93,7 @@ print_post <- function(
           }
         )
       ) %>%
+      arrange(time) %>%
       select(team_name_1, team_name_2, best_of, time)
     
     ## Create table caption
@@ -292,38 +293,38 @@ print_post <- function(
   write_lines(
     "# Notes", 
     file = file_path, 
-    append = FALSE
+    append = TRUE
   )
   write_lines("", file = file_path, append = TRUE)
   write_lines(
     "* **Avg.:** Average.", 
     file = file_path, 
-    append = FALSE
+    append = TRUE
   )
   write_lines(
     "* **Std.:** Standard deviation.", 
     file = file_path, 
-    append = FALSE
+    append = TRUE
   )
   write_lines(
     "* **Exp.:** Expectation / expected value.", 
     file = file_path, 
-    append = FALSE
+    append = TRUE
   )
   write_lines(
     "* **Bas. Exp.:** Baseline expectation, i.e. the expectation if only the confirmed series are played.", 
     file = file_path, 
-    append = FALSE
+    append = TRUE
   )
   write_lines(
     "* **Pot. Exp.:** Potential expectation, i.e. the expectation if all potential series are played.", 
     file = file_path, 
-    append = FALSE
+    append = TRUE
   )
   write_lines(
     "* **(BoX):** Denotes series that could potentially be played depending on the outcome of earlier series.", 
     file = file_path, 
-    append = FALSE
+    append = TRUE
   )
   write_lines("", file = file_path, append = TRUE)
   
