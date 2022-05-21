@@ -286,7 +286,46 @@ print_post <- function(
     digits = 2
   ) %>%
     write_lines(file = file_path, append = TRUE)
-  
   write_lines("", file = file_path, append = TRUE)
+  
+  # Add notes section
+  write_lines(
+    "# Notes", 
+    file = file_path, 
+    append = FALSE
+  )
+  write_lines("", file = file_path, append = TRUE)
+  write_lines(
+    "* **Avg.:** Average.", 
+    file = file_path, 
+    append = FALSE
+  )
+  write_lines(
+    "* **Std.:** Standard deviation.", 
+    file = file_path, 
+    append = FALSE
+  )
+  write_lines(
+    "* **Exp.:** Expectation / expected value.", 
+    file = file_path, 
+    append = FALSE
+  )
+  write_lines(
+    "* **Bas. Exp.:** Baseline expectation, i.e. the expectation if only the confirmed series are played.", 
+    file = file_path, 
+    append = FALSE
+  )
+  write_lines(
+    "* **Pot. Exp.:** Potential expectation, i.e. the expectation if all potential series are played.", 
+    file = file_path, 
+    append = FALSE
+  )
+  write_lines(
+    "* **(BoX):** Denotes series that could potentially be played depending on the outcome of earlier series.", 
+    file = file_path, 
+    append = FALSE
+  )
+  write_lines("", file = file_path, append = TRUE)
+  
   write_lines(file, file = file_path, append = TRUE)
 }
