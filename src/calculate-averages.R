@@ -6,15 +6,6 @@ library(RcppAlgos)
 permute_series <- function(outcomes, points, best_of) {
   if (length(points) < best_of) return(NA)
   
-  # Sample only 10 data points for Bo5 and above to reduce computation time
-  if (best_of >= 5) {
-    sample_size <- min(10, length(points))
-    set.seed(2022)
-    sample_indices <- sample(x = 1:length(points), size = sample_size)
-    outcomes <- outcomes[sample_indices]
-    points <- points[sample_indices]
-  }
-  
   # Determine all possible permutations of the data
   if (best_of == 1) {
     permutations <- points
@@ -54,7 +45,8 @@ average_series <- function(
   pot_bo1 = 0, 
   pot_bo2 = 0, 
   pot_bo3 = 0, 
-  pot_bo5 = 0
+  pot_bo5 = 0,
+  exact = FALSE
 ) {
   # Calculate Bo1 permutation, average, and standard deviation
   perm_bo1 <- permute_series(outcomes, points, best_of = 1)
@@ -78,42 +70,89 @@ average_series <- function(
     NA
   }
   
-  # Calculate the baseline expectation
-  series <- c(
-    rep(list(perm_bo1), bas_bo1),
-    rep(list(perm_bo2), bas_bo2),
-    rep(list(perm_bo3), bas_bo3),
-    rep(list(perm_bo5), bas_bo5)
-  )
-  if(length(series) != 0) {
-    bas_exp <- do.call(
-      what = expand_grid, 
-      args = setNames(object = series, nm = 1:length(series))
-    ) %>%
-      transmute(max = pmax(!!!.)) %>%
-      pull(max) %>%
-      mean()
-  } else {
-    bas_exp <- as.numeric(NA)
-  }
-  
-  # Calculate the potential expectation
-  if (pot_bo1 > 0 | pot_bo2 > 0 | pot_bo3 > 0 | pot_bo5 > 0) {
+  if (exact) {
+    # Calculate the baseline expectation
     series <- c(
-      rep(list(perm_bo1), bas_bo1 + pot_bo1),
-      rep(list(perm_bo2), bas_bo2 + pot_bo2),
-      rep(list(perm_bo3), bas_bo3 + pot_bo3),
-      rep(list(perm_bo5), bas_bo5 + pot_bo5)
+      rep(list(perm_bo1), bas_bo1),
+      rep(list(perm_bo2), bas_bo2),
+      rep(list(perm_bo3), bas_bo3),
+      rep(list(perm_bo5), bas_bo5)
     )
-    pot_exp <- do.call(
-      what = expand_grid, 
-      args = setNames(object = series, nm = 1:length(series))
-    ) %>%
-      transmute(max = pmax(!!!.)) %>%
-      pull(max) %>%
-      mean()
+    if(length(series) != 0) {
+      bas_exp <- do.call(
+        what = expand_grid, 
+        args = setNames(object = series, nm = 1:length(series))
+      ) %>%
+        transmute(max = pmax(!!!.)) %>%
+        pull(max) %>%
+        mean()
+    } else {
+      bas_exp <- as.numeric(NA)
+    }
+    
+    # Calculate the potential expectation
+    if (pot_bo1 > 0 | pot_bo2 > 0 | pot_bo3 > 0 | pot_bo5 > 0) {
+      series <- c(
+        rep(list(perm_bo1), bas_bo1 + pot_bo1),
+        rep(list(perm_bo2), bas_bo2 + pot_bo2),
+        rep(list(perm_bo3), bas_bo3 + pot_bo3),
+        rep(list(perm_bo5), bas_bo5 + pot_bo5)
+      )
+      pot_exp <- do.call(
+        what = expand_grid, 
+        args = setNames(object = series, nm = 1:length(series))
+      ) %>%
+        transmute(max = pmax(!!!.)) %>%
+        pull(max) %>%
+        mean()
+    } else {
+      pot_exp <- bas_exp
+    }
   } else {
-    pot_exp <- bas_exp
+    set.seed(2022)
+    make_series <- function(series, perms, reps) {
+      if (reps > 0) {
+        for (i in 1:reps) {
+          sample <- rnorm(n = 100000, mean = mean(perms), sd = sd(perms))
+          series <- c(series, list(sample))
+        }
+      }
+      return(series)
+    }
+    
+    # Calculate the baseline expectation
+    series <- c()
+    series <- make_series(series, perms = perm_bo1, reps = bas_bo1)
+    series <- make_series(series, perms = perm_bo2, reps = bas_bo2)
+    series <- make_series(series, perms = perm_bo3, reps = bas_bo3)
+    series <- make_series(series, perms = perm_bo5, reps = bas_bo5)
+    
+    if(length(series) != 0) {
+      bas_exp <- do.call(
+        what = pmax, 
+        args = series
+      ) %>%
+        mean()
+    } else {
+      bas_exp <- as.numeric(NA)
+    }
+    
+    # Calculate the potential expectation
+    if (pot_bo1 > 0 | pot_bo2 > 0 | pot_bo3 > 0 | pot_bo5 > 0) {
+      series <- c()
+      series <- make_series(series, perms = perm_bo1, reps = bas_bo1 + pot_bo1)
+      series <- make_series(series, perms = perm_bo2, reps = bas_bo2 + pot_bo2)
+      series <- make_series(series, perms = perm_bo3, reps = bas_bo3 + pot_bo3)
+      series <- make_series(series, perms = perm_bo5, reps = bas_bo5 + pot_bo5)
+      
+      pot_exp <- do.call(
+        what = pmax, 
+        args = series
+      ) %>%
+        mean()
+    } else {
+      pot_exp <- bas_exp
+    }
   }
   
   return(
