@@ -1,7 +1,0 @@
-div.dataTables_scrollBody {
-  border-left: none !important;
-}
-
-table.dataTable thead tr>.dtfc-fixed-right {
-  right: 0 !important;
-}

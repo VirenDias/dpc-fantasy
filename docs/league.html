@@ -4,91 +4,92 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.12.0/fc-4.1.0/fh-3.2.3/datatables.min.css" />
-  <link rel="stylesheet" href="./css/custom.css">
+  <link rel="stylesheet" href="./css/common.css">
 
   <title>DPC Fantasy Tracker · Hawkie</title>
 </head>
 
-<body class="bg-light">
-  <div class="container">
-    <h1 id="league-title" class="display-3 text-center my-4"></h1>
+<body class="theme-bg-0">
+  <ul class="fs-3 nav position-absolute top-0 start-0 m-2">
+    <li class="nav-item">
+      <a class="text-reset text-decoration-none theme-bg-1 px-2 py-1 rounded-start" href="./"><i class="bi bi-house-door-fill"></i></a>
+    </li>
+    <li class="nav-item">
+      <a id="theme-button" class="text-reset text-decoration-none theme-bg-1 px-2 py-1 rounded-end" href="#"></a>
+    </li>
+  </ul>
 
-    <ul class="nav justify-content-center my-4 lead">
-      <li class="nav-item px-3">
-        <a class="text-reset text-decoration-none border-dark" data-bs-toggle="tab" data-bs-target="#tab-schedule" href="">Schedule</a>
+  <div class="container">
+    <h1 id="league-title" class="display-3 text-center mt-5"></h1>
+
+    <ul class="nav lead fw-normal justify-content-center mt-4">
+      <li class="nav-item m-2">
+        <a class="active text-reset text-decoration-none px-2 py-1 rounded" data-bs-toggle="tab" data-bs-target="#tab-schedule" href="">Schedule</a>
       </li>
-      <li class="nav-item px-3">
-        <a class="text-reset text-decoration-none border-dark" data-bs-toggle="tab" data-bs-target="#tab-aggregate" href="">Results Overview</a>
+      <li class="nav-item m-2">
+        <a class="text-reset text-decoration-none px-2 py-1 rounded" data-bs-toggle="tab" data-bs-target="#tab-aggregate" href="">Results Overview</a>
       </li>
-      <li class="nav-item px-3">
-        <a class="text-reset text-decoration-none border-dark" data-bs-toggle="tab" data-bs-target="#tab-average" href="">Average Results</a>
+      <li class="nav-item m-2">
+        <a class="text-reset text-decoration-none px-2 py-1 rounded" data-bs-toggle="tab" data-bs-target="#tab-average" href="">Average Results</a>
       </li>
-      <li class="nav-item px-3">
-        <a class="text-reset text-decoration-none border-dark" data-bs-toggle="tab" data-bs-target="#tab-single" href="">Single Results</a>
+      <li class="nav-item m-2">
+        <a class="text-reset text-decoration-none px-2 py-1 rounded" data-bs-toggle="tab" data-bs-target="#tab-single" href="">Single Results</a>
       </li>
-      <li class="nav-item px-3">
-        <a class="text-reset text-decoration-none border-dark" data-bs-toggle="tab" data-bs-target="#tab-note" href="">Known Issues</a>
+      <li class="nav-item m-2">
+        <a class="text-reset text-decoration-none px-2 py-1 rounded" data-bs-toggle="tab" data-bs-target="#tab-note" href="">Known Issues</a>
       </li>
     </ul>
 
-    <div class="tab-content my-4">
+    <div class="tab-content mt-4">
       <div class="tab-pane fade show active" id="tab-schedule" role="tabpanel">
         <div id="roster-lock-grid" class="row justify-content-center row-cols-2 row-cols-md-3 row-cols-xl-4 row-cols-xxl-6 g-4 mb-4"></div>
-        <div class="bg-white p-3 my-4 border rounded shadow-sm">
-          <h3 class="text-center">Schedule</h3>
-          <table id="table-schedule" class="table nowrap table-hover" style="width: 100%"></table>
+        <div class="theme-bg-1 rounded mt-4">
+          <table id="table-schedule" class="table nowrap" style="width: 100%"></table>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="tab-aggregate" role="tabpanel">
+        <div class="theme-bg-1 rounded">
+          <table id="table-aggregate" class="table nowrap" style="width: 100%"></table>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="tab-average" role="tabpanel">
+        <div class="theme-bg-1 rounded">
+          <table id="table-average" class="table nowrap" style="width: 100%"></table>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="tab-single" role="tabpanel">
+        <div class="theme-bg-1 rounded">
+          <table id="table-single" class="table nowrap" style="width: 100%"></table>
         </div>
       </div>
       <div class="tab-pane fade" id="tab-note" role="tabpanel">
-        <div class="bg-white p-3 my-4 border rounded shadow-sm">
-          <h3 class="text-center">Known Issues</h3>
-          <ul>
-            <li><b>Valve does not count the final 5–10 seconds of the game for fantasy points.</b> Please see this <a href="https://www.reddit.com/r/DotA2/comments/rcda9n/valve_your_fantasy_point_math_is_incorrect_with/" target="_blank">Reddit post</a> for
+        <div class="theme-bg-2 p-3 mt-4 rounded">
+          <ul class="m-0">
+            <li><b>Valve does not count the final 5–10 seconds of the game for fantasy points.</b> Please see this <a href="https://www.reddit.com/r/DotA2/comments/rcda9n/valve_your_fantasy_point_math_is_incorrect_with/" target="_blank">Reddit
+                post</a> for
               more information. This can result in slight differences between the numbers presented here and those in-game.</li>
-            <li><b>Some replays are unavailable.</b> Consequently, I am unable to calculate the fantasy points earned in those games. This can result in major differences in the <em>Results Overview</em> table, as well as missing records in the <em>Single
+            <li><b>Some replays are unavailable.</b> Consequently, I am unable to calculate the fantasy points earned in those games. This can result in major differences in the <em>Results Overview</em> table, as well as missing records in the
+              <em>Single
                 Results</em>
               table. Unfortunately, there is nothing I can do about this. Fortunately, this is quite rare.</li>
           </ul>
         </div>
       </div>
-      <div class="tab-pane fade" id="tab-aggregate" role="tabpanel">
-        <div class="bg-white p-3 my-4 border rounded shadow-sm">
-          <h3 class="text-center">Results Overview</h3>
-          <table id="table-aggregate" class="table nowrap table-hover" style="width: 100%"></table>
-        </div>
-      </div>
-      <div class="tab-pane fade" id="tab-average" role="tabpanel">
-        <div class="bg-white p-3 my-4 border rounded shadow-sm">
-          <h3 class="text-center">Average Results</h3>
-          <table id="table-average" class="table nowrap table-hover" style="width: 100%"></table>
-        </div>
-      </div>
-      <div class="tab-pane fade" id="tab-single" role="tabpanel">
-        <div class="bg-white p-3 my-4 border rounded shadow-sm">
-          <h3 class="text-center">Single Results</h3>
-          <table id="table-single" class="table nowrap table-hover" style="width: 100%"></table>
-        </div>
-      </div>
     </div>
 
-    <footer class="d-flex justify-content-center align-items-center pt-2 mt-4 border-top">
+    <footer class="theme-bg-0 d-flex justify-content-center mt-4">
       <p class="text-center">Created by Hawkie. Powered by OpenDota and datdota.</p>
     </footer>
   </div>
 
-  <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.12.0/fc-4.1.0/fh-3.2.3/datatables.min.js"></script>
+  <script src="./js/common.js"></script>
 
   <script>
-    // Add hover styles for nav bar
-    $(".nav a").hover(function() {
-      $(this).addClass("border-bottom")
-    }, function() {
-      $(this).removeClass("border-bottom")
-    });
-
     // Add the league data
     let params = new URLSearchParams(window.location.search);
     var leagueId = params.get("id");
@@ -105,10 +106,10 @@
           col.className = "col";
 
           var container = document.createElement("div");
-          container.className = "text-center p-2 bg-white border rounded shadow-sm";
+          container.className = "text-center theme-bg-1 rounded";
 
           var title = document.createElement("div");
-          title.className = "small";
+          title.className = "small p-2";
           title.innerHTML = "Period " + (i + 1) + " · " + new Date(period.start_time * 1000)
             .toLocaleDateString(
               'en-gb', {
@@ -119,7 +120,7 @@
               });
 
           var content = document.createElement("div");
-          content.className = "fs-4 fw-bold";
+          content.className = "fs-4 fw-bold theme-bg-2 rounded p-2";
           setInterval(function() {
             difference = period.start_time * 1000 - new Date();
             if (difference <= 0) {
@@ -141,7 +142,18 @@
 
         // Set common table options
         var tableOptions = {
-          paging: false,
+          paging: true,
+          lengthMenu: [
+            [25, 50, 100, -1],
+            [25, 50, 100, "All"]
+          ],
+          language: {
+            paginate: {
+              previous: "⯇",
+              next: "⯈"
+            }
+          },
+          deferRender: true,
           fixedHeader: true,
           fixedColumns: {
             left: 1,
@@ -154,10 +166,7 @@
         var tableSchedule = {
           ...tableOptions,
           fixedColumns: false,
-          data: leagueData.schedule.filter(match => match.time != 0),
-          createdRow: function(row, data) {
-            if (new Date().getTime() > data.time * 1000) $(row).addClass('text-decoration-line-through');
-          },
+          data: leagueData.schedule.filter(match => match.time != 0 && match.time * 1000 > new Date().getTime()),
           columns: [{
               title: "Match",
               data: "node_name"

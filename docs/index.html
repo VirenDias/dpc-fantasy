@@ -4,20 +4,32 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="./css/common.css">
   <title>DPC Fantasy Tracker · Hawkie</title>
 </head>
 
-<body class="bg-light">
+<body class="theme-bg-0">
+  <ul class="fs-3 nav position-absolute top-0 start-0 m-2">
+    <li class="nav-item">
+      <a class="text-reset text-decoration-none theme-bg-1 px-2 py-1 rounded-start" href="./"><i class="bi bi-house-door-fill"></i></a>
+    </li>
+    <li class="nav-item">
+      <a id="theme-button" class="text-reset text-decoration-none theme-bg-1 px-2 py-1 rounded-end" href="#"></a>
+    </li>
+  </ul>
+
   <div class="container">
-    <h1 class="display-1 text-center my-4">Dota Pro Circuit Fantasy Tracker</h1>
+    <h1 class="display-1 text-center mt-5">Dota Pro Circuit Fantasy Tracker</h1>
     <div id="league-cards"></div>
-    <footer class="d-flex justify-content-center align-items-center pt-2 mt-4 border-top">
-      <p class="text-center text-muted">Created by Hawkie. Powered by OpenDota and datdota.</p>
+    <footer class="d-flex justify-content-center align-items-center mt-4">
+      <p class="text-center">Created by Hawkie. Powered by OpenDota and datdota.</p>
     </footer>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  <script src="./js/common.js"></script>
 
   <script>
     // Populate the card grids
@@ -35,32 +47,21 @@
         Promise
           .all(leagueDataPromises)
           .then(function(allData) {
-            // Create empty card grids
-            var lineTemplate = document.createElement("div");
-            lineTemplate.className = "col";
-            lineTemplate.append(document.createElement("hr"));
-
-            var titleTemplate = document.createElement("div");
-            titleTemplate.className = "row align-items-center my-4";
-            titleTemplate.append(lineTemplate.cloneNode(true));
-            titleTemplate.append(document.createElement("h1"));
-            titleTemplate.append(lineTemplate.cloneNode(true));
-            titleTemplate.querySelector("h1").className = "col-auto display-6 text-center";
-
             var gridTemplate = document.createElement("div");
-            gridTemplate.className = "row justify-content-center row-cols-1 row-cols-lg-2 row-cols-xxl-3 g-4";
+            gridTemplate.className = "mt-5";
+            gridTemplate.append(document.createElement("h1"));
+            gridTemplate.querySelector("h1").className = "display-6 text-center";
+            gridTemplate.append(document.createElement("div"));
+            gridTemplate.querySelector("div").className = "row justify-content-center row-cols-1 row-cols-lg-2 row-cols-xxl-3 g-3 m-0";
 
-            var upcomingTitle = titleTemplate.cloneNode(true);
-            upcomingTitle.querySelector("h1").innerHTML = "Upcoming";
             var upcomingGrid = gridTemplate.cloneNode(true);
+            upcomingGrid.querySelector("h1").innerHTML = "Upcoming";
 
-            var ongoingTitle = titleTemplate.cloneNode(true);
-            ongoingTitle.querySelector("h1").innerHTML = "Ongoing";
             var ongoingGrid = gridTemplate.cloneNode(true);
+            ongoingGrid.querySelector("h1").innerHTML = "Ongoing";
 
-            var concludedTitle = titleTemplate.cloneNode(true);
-            concludedTitle.querySelector("h1").innerHTML = "Concluded";
             var concludedGrid = gridTemplate.cloneNode(true);
+            concludedGrid.querySelector("h1").innerHTML = "Concluded";
 
             allData.forEach(function(leagueData, index) {
               // Render each individual card
@@ -68,21 +69,21 @@
               col.className = "col";
 
               var cardContainer = document.createElement("div");
-              cardContainer.className = "card h-100 shadow-sm";
+              cardContainer.className = "card text-center theme-bg-1 h-100 border-0";
 
               var cardImage = document.createElement("img");
               cardImage.src = "./img/" + leagueList[index].league_id + ".png";
               cardImage.className = "card-img-top";
 
               var cardBody = document.createElement("div");
-              cardBody.className = "card-body";
+              cardBody.className = "d-flex flex-column h-100";
 
-              var cardTitle = document.createElement("h5");
-              cardTitle.className = "card-title text-center";
+              var cardTitle = document.createElement("div");
+              cardTitle.className = "league-title theme-bg-2 fs-4 fw-bold w-100 h-100 p-3 rounded-bottom";
               cardTitle.innerHTML = leagueData.name;
 
-              var cardSubTitle = document.createElement("h6");
-              cardSubTitle.className = "card-subtitle mb-2 text-muted text-center";
+              var cardSubTitle = document.createElement("div");
+              cardSubTitle.className = "league-date small w-100 p-2";
               const startDate = new Date(leagueData.start_date * 1000)
                 .toLocaleDateString(
                   'en-gb', {
@@ -107,31 +108,28 @@
 
               cardBody.append(cardTitle);
               cardBody.append(cardSubTitle);
-              cardBody.append(link);
               cardContainer.append(cardImage);
               cardContainer.append(cardBody);
+              cardContainer.append(link);
               col.append(cardContainer);
 
               if (Date.now() < leagueData.start_date * 1000) {
-                upcomingGrid.append(col);
+                upcomingGrid.querySelector("div").append(col);
               } else if (Date.now() >= leagueData.start_date * 1000 && Date.now() <= leagueData.end_date * 1000) {
-                ongoingGrid.append(col);
+                ongoingGrid.querySelector("div").append(col);
               } else if (Date.now() > leagueData.end_date) {
-                concludedGrid.append(col);
+                concludedGrid.querySelector("div").append(col);
               }
             });
 
             // Render the non-empty card grids
-            if (upcomingGrid.childElementCount > 0) {
-              document.querySelector("#league-cards").append(upcomingTitle);
+            if (upcomingGrid.querySelector("div").childElementCount > 0) {
               document.querySelector("#league-cards").append(upcomingGrid);
             }
-            if (ongoingGrid.childElementCount > 0) {
-              document.querySelector("#league-cards").append(ongoingTitle);
+            if (ongoingGrid.querySelector("div").childElementCount > 0) {
               document.querySelector("#league-cards").append(ongoingGrid);
             }
-            if (concludedGrid.childElementCount > 0) {
-              document.querySelector("#league-cards").append(concludedTitle);
+            if (concludedGrid.querySelector("div").childElementCount > 0) {
               document.querySelector("#league-cards").append(concludedGrid);
             }
           });

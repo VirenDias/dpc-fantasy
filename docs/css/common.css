@@ -1,0 +1,199 @@
+/* Theme Variables */
+html[theme=light] {
+  --theme-bg-0: #ced2d6;
+  --theme-bg-1: #e5e7ea;
+  --theme-bg-2: #f6f7f9;
+  --theme-txt-0: #e5e7ea;
+  --theme-txt-1: #ced2d6;
+  --theme-txt-2: #24292e;
+  --theme-acc-0: #168fff;
+  --theme-acc-1: #0076e6;
+  --theme-txt-acc: #f6f7f9;
+}
+
+html[theme=dark] {
+  --theme-bg-0: #24292e;
+  --theme-bg-1: #393f45;
+  --theme-bg-2: #454c52;
+  --theme-txt-0: #676e76;
+  --theme-txt-1: #9ea5ad;
+  --theme-txt-2: #f6f7f9;
+  --theme-acc-0: #30a9ff;
+  --theme-acc-1: #168fff;
+  --theme-txt-acc: #f6f7f9;
+}
+
+/* Theme Classes */
+.theme-bg-0 {
+  background: var(--theme-bg-0);
+  color: var(--theme-txt-2);
+}
+
+.theme-bg-1 {
+  background: var(--theme-bg-1);
+  color: var(--theme-txt-2);
+}
+
+.theme-bg-2 {
+  background: var(--theme-bg-2);
+  color: var(--theme-txt-2);
+}
+
+#tab-note a {
+  color: var(--theme-acc-0);
+}
+
+/* Navigation */
+#league-cards .card:hover .league-title {
+  background: var(--theme-acc-0);
+  color: var(--theme-txt-acc) !important;
+  transition: background-color .15s ease-in-out;
+}
+
+#league-cards .card:hover {
+  background: var(--theme-acc-1);
+  color: var(--theme-txt-acc) !important;
+  transition: background-color .15s ease-in-out;
+}
+
+#nav-main button {
+  background: var(--theme-bg-1);
+  border: 0;
+  color: var(--theme-txt-2);
+}
+
+#nav-main button:hover {
+  background: var(--theme-acc-0);
+  color: var(--theme-txt-acc) !important;
+  transition: background-color .15s ease-in-out;
+}
+
+.nav a:hover {
+  background: var(--theme-acc-0);
+  color: var(--theme-txt-acc) !important;
+  transition: background-color .15s ease-in-out;
+}
+
+.nav a.active {
+  background: var(--theme-acc-1);
+  color: var(--theme-txt-acc) !important;
+  transition: background-color .15s ease-in-out;
+}
+
+/* Table Features */
+.dataTables_length, .dataTables_filter, .dataTables_info, .dataTables_paginate {
+  margin: 1rem !important;
+  padding: 0;
+}
+
+@media (max-width: 767.98px) {
+  .dataTables_filter, .dataTables_paginate {
+    margin-top: 0 !important;
+  }
+  .dataTables_info {
+    padding-top: 0 !important;
+  }
+}
+
+.dataTables_length .form-select, .dataTables_filter .form-control, .dataTables_paginate .page-item .page-link {
+  background: var(--theme-bg-2);
+  border: 0;
+  box-shadow: none;
+  color: var(--theme-txt);
+}
+
+.dataTables_length .form-select, .dataTables_filter .form-control {
+  border-radius: var(--bs-border-radius);
+}
+
+.dataTables_length .form-select:hover, .dataTables_filter .form-control:hover {
+  background: var(--theme-acc-0);
+  color: var(--theme-txt-acc) !important;
+  transition: background-color .15s ease-in-out;
+}
+
+.dataTables_length .form-select:focus, .dataTables_filter .form-control:focus {
+  background: var(--theme-acc-1);
+  color: var(--theme-txt-acc) !important;
+  transition: background-color .15s ease-in-out;
+}
+
+.dataTables_length .form-select option {
+  background: var(--theme-bg-2);
+  color: var(--theme-txt-2);
+}
+
+.dataTables_filter input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+.dataTables_paginate .page-item:first-child .page-link {
+  border-radius: var(--bs-border-radius) 0 0 var(--bs-border-radius);
+}
+
+.dataTables_paginate .page-item:last-child .page-link {
+  border-radius: 0 var(--bs-border-radius) var(--bs-border-radius) 0;
+}
+
+.dataTables_paginate .page-item.disabled .page-link {
+  color: var(--theme-txt-1);
+}
+
+.dataTables_paginate .page-item .page-link:hover {
+  background: var(--theme-acc-0);
+  color: var(--theme-txt-acc) !important;
+  transition: background-color .15s ease-in-out;
+}
+
+.dataTables_paginate .page-item.active .page-link {
+  background: var(--theme-acc-1) !important;
+  color: var(--theme-txt-acc) !important;
+  transition: background-color .15s ease-in-out;
+}
+
+/* Tables */
+.dtfc-fixed-right {
+  right: 0 !important;
+}
+
+.dtfc-right-top-blocker {
+  opacity: 0;
+}
+
+.dataTables_wrapper th, .dtfh-floatingparent th {
+  background: var(--theme-bg-2) !important;
+  border-color: var(--theme-txt-1);
+  color: var(--theme-txt-2);
+}
+
+.dataTables_wrapper td {
+  background: var(--theme-bg-2) !important;
+  border-color: var(--theme-txt-0);
+  color: var(--theme-txt-2);
+}
+
+th.dtfc-fixed-left, td.dtfc-fixed-left {
+  border-right-color: var(--theme-txt-1) !important;
+}
+
+th.dtfc-fixed-right, td.dtfc-fixed-right {
+  border-left-color: var(--theme-txt-1) !important;
+}
+
+.dataTables_scroll {
+  background: var(--theme-bg-2);
+  border-radius: var(--bs-border-radius);
+  padding: 0.125rem 1rem 0.5rem 1rem;
+}
+
+div.dataTables_scrollBody {
+  border: 0 !important;
+}
+
+.dataTables_scroll tbody tr:last-child td {
+  border: 0;
+}
+
+.dataTables_wrapper a {
+  color: var(--theme-acc-0);
+}
