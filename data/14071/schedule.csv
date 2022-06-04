@@ -1,29 +1,29 @@
-node_name,team_id_1,team_id_2,time
-Balrogs vs Infamous U.Esports,2289950,2672298,1649012400
-Balrogs vs Lava BestPC,2289950,7119077,1649444400
-Balrogs vs Thunder Awaken,2289950,7391077,1648764000
-Balrogs vs Infinity,2289950,8118197,1650654000
-Balrogs vs Hokori,2289950,8131728,1650049200
-Balrogs vs Beastcoast,2289950,8254400,1647554400
-Balrogs vs APU King of Kings,2289950,8375259,1648245600
-Infamous U.Esports vs Lava BestPC,2672298,7119077,1648418400
-Infamous U.Esports vs Thunder Awaken,2672298,7391077,1649628000
-Infamous U.Esports vs Infinity,2672298,8118197,1647630000
-Infamous U.Esports vs Hokori,2672298,8131728,1648159200
-Beastcoast vs Infamous U.Esports,2672298,8254400,1650060000
-Infamous U.Esports vs Apu King of Kings,2672298,8375259,1650578400
-Lava BestPC vs Thunder Awaken,7119077,7391077,1648234800
-Lava BestPC vs Infinity,7119077,8118197,1649973600
-Lava BestPC vs Hokori,7119077,8131728,1650222000
-Lava BestPC vs Beastcoast,7119077,8254400,1648850400
-Lava BestPC vs APU King of Kings,7119077,8375259,1647802800
-Thunder Awaken vs Infinity,7391077,8118197,1649368800
-Thunder Awaken vs Hokori,7391077,8131728,1647640800
-Thunder Awaken vs Beastcoast,7391077,8254400,1650664800
-Thunder Awaken vs Apu King of Kings,7391077,8375259,1650232800
-Infinity vs Hokori,8118197,8131728,1649455200
-Infinity vs Beastcoast,8118197,8254400,1647813600
-Infinity vs Apu King of Kings,8118197,8375259,1648839600
-Hokori vs Beastcoast,8131728,8254400,1648407600
-Hokori vs APU King of Kings,8131728,8375259,1649023200
-Beastcoast vs APU King of Kings,8254400,8375259,1649617200
+node_id,node_name,best_of,inc_id_1,inc_id_2,team_id_1,team_id_2,time
+1,Balrogs vs Infamous U.Esports,3,0,0,2289950,2672298,1649012400
+2,Balrogs vs Lava BestPC,3,0,0,2289950,7119077,1649444400
+3,Balrogs vs Thunder Awaken,3,0,0,2289950,7391077,1648764000
+4,Balrogs vs Infinity,3,0,0,2289950,8118197,1650654000
+5,Balrogs vs Hokori,3,0,0,2289950,8131728,1650049200
+6,Balrogs vs Beastcoast,3,0,0,2289950,8254400,1647554400
+7,Balrogs vs APU King of Kings,3,0,0,2289950,8375259,1648245600
+8,Infamous U.Esports vs Lava BestPC,3,0,0,2672298,7119077,1648418400
+9,Infamous U.Esports vs Thunder Awaken,3,0,0,2672298,7391077,1649628000
+10,Infamous U.Esports vs Infinity,3,0,0,2672298,8118197,1647630000
+11,Infamous U.Esports vs Hokori,3,0,0,2672298,8131728,1648159200
+12,Beastcoast vs Infamous U.Esports,3,0,0,2672298,8254400,1650060000
+13,Infamous U.Esports vs Apu King of Kings,3,0,0,2672298,8375259,1650578400
+14,Lava BestPC vs Thunder Awaken,3,0,0,7119077,7391077,1648234800
+15,Lava BestPC vs Infinity,3,0,0,7119077,8118197,1649973600
+16,Lava BestPC vs Hokori,3,0,0,7119077,8131728,1650222000
+17,Lava BestPC vs Beastcoast,3,0,0,7119077,8254400,1648850400
+18,Lava BestPC vs APU King of Kings,3,0,0,7119077,8375259,1647802800
+19,Thunder Awaken vs Infinity,3,0,0,7391077,8118197,1649368800
+20,Thunder Awaken vs Hokori,3,0,0,7391077,8131728,1647640800
+21,Thunder Awaken vs Beastcoast,3,0,0,7391077,8254400,1650664800
+22,Thunder Awaken vs Apu King of Kings,3,0,0,7391077,8375259,1650232800
+23,Infinity vs Hokori,3,0,0,8118197,8131728,1649455200
+24,Infinity vs Beastcoast,3,0,0,8118197,8254400,1647813600
+25,Infinity vs Apu King of Kings,3,0,0,8118197,8375259,1648839600
+26,Hokori vs Beastcoast,3,0,0,8131728,8254400,1648407600
+27,Hokori vs APU King of Kings,3,0,0,8131728,8375259,1649023200
+28,Beastcoast vs APU King of Kings,3,0,0,8254400,8375259,1649617200

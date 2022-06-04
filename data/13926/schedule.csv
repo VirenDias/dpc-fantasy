@@ -1,7 +1,7 @@
-node_name,team_id_1,team_id_2,time
-Team Spirit VS HellRaisers,7119388,7422789,1645189200
-Virtus.pro VS PuckChamp,1883502,8261648,1645200000
-HellRaisers vs Virtus.pro,7422789,1883502,1645286400
-Team Spirit vs Virtus.pro,1883502,7119388,1645372800
-Team Spirit vs PuckChamp,7119388,8261648,1645279200
-HellRaisers vs Team Spirit,7422789,7119388,1645362000
+node_id,node_name,best_of,inc_id_1,inc_id_2,team_id_1,team_id_2,time
+1,Team Spirit VS HellRaisers,3,0,0,7119388,7422789,1645189200
+2,Virtus.pro VS PuckChamp,3,0,0,1883502,8261648,1645200000
+3,HellRaisers vs Virtus.pro,3,1,2,7422789,1883502,1645286400
+4,Team Spirit vs Virtus.pro,5,3,6,1883502,7119388,1645372800
+5,Team Spirit vs PuckChamp,3,1,2,7119388,8261648,1645279200
+6,HellRaisers vs Team Spirit,3,3,5,7422789,7119388,1645362000

@@ -42,11 +42,19 @@ update_website_data <- function(
     summarise(series = n())
   
   schedule <- schedule %>%
+    mutate(
+      period = cut(
+        x = time,
+        breaks = unique(unlist(period_dates)),
+        labels = 1:length(period_dates),
+        include.lowest = TRUE
+      )
+    ) %>%
     left_join(teams, by = c("team_id_1" = "team_id")) %>%
     rename(team_name_1 = team_name) %>%
     left_join(teams, by = c("team_id_2" = "team_id")) %>%
     rename(team_name_2 = team_name) %>%
-    select(node_name, team_name_1, team_name_2, time)
+    select(period, team_name_1, team_name_2, best_of, time)
   
   # Calculate single results
   result_single <- matches_result %>%
@@ -92,7 +100,7 @@ update_website_data <- function(
       period = cut(
         x = start_time,
         breaks = unique(unlist(period_dates)),
-        labels = paste0("period_", 1:length(period_dates)),
+        labels = 1:length(period_dates),
         include.lowest = TRUE
       )
     ) %>%

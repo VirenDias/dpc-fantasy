@@ -168,8 +168,8 @@
           fixedColumns: false,
           data: leagueData.schedule.filter(match => match.time != 0 && match.time * 1000 > new Date().getTime()),
           columns: [{
-              title: "Match",
-              data: "node_name"
+              title: "Period",
+              data: "period"
             },
             {
               title: "Team 1",
@@ -180,19 +180,27 @@
               data: "team_name_2"
             },
             {
-              title: "Scheduled Time (UTC)",
+              title: "Type",
+              data: "best_of"
+            },
+            {
+              title: "Time (UTC)",
               data: "time",
               type: "date",
               className: "text-end"
             }
           ],
           columnDefs: [{
-              render: data => data == "NA" ? "" : data,
+              render: data => "Period " + data,
               targets: 0
             },
             {
               render: data => data == "NA" ? "TBD" : data,
               targets: [1, 2]
+            },
+            {
+              render: data => "Bo" + data,
+              targets: 3
             },
             {
               render: data => new Date(data * 1000).toLocaleTimeString(
@@ -204,16 +212,16 @@
                   minute: '2-digit',
                   timeZone: 'utc'
                 }),
-              targets: 3
+              targets: 4
             }
           ],
           order: [
-            [3, 'asc']
+            [4, 'asc']
           ],
         };
 
         // Render the aggregate table
-        var periods = Object.keys(leagueData.result_aggregate[0]).filter(d => d.startsWith("period_"));
+        var periods = Object.keys(leagueData.result_aggregate[0]).filter(d => /^\d+$/.test(d));
         columns = [{
             title: "Player Name",
             data: "player_name",
@@ -230,7 +238,7 @@
         ];
         for (period of periods) {
           columns.push({
-            title: period.replace(/^_*(.)|_+(.)/g, (match, p1, p2) => p1 ? p1.toUpperCase() : ' ' + p2.toUpperCase()),
+            title: "Period " + period,
             data: period,
             type: "num",
             className: "text-end"
