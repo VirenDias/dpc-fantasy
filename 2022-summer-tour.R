@@ -68,7 +68,7 @@ print_post(
   start_time = period_dates$period_1$start_time,
   end_time = period_dates$period_1$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
-  file_path = "data/posts/2022_summer_p1.txt"
+  file_path = "data/posts/2022_summer_tour_p1.txt"
 )
 
 ## Period 2
@@ -79,7 +79,7 @@ print_post(
   start_time = period_dates$period_2$start_time,
   end_time = period_dates$period_2$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
-  file_path = "data/posts/2022_summer_p2.txt"
+  file_path = "data/posts/2022_summer_tour_p2.txt"
 )
 
 ## Period 3
@@ -90,7 +90,7 @@ print_post(
   start_time = period_dates$period_3$start_time,
   end_time = period_dates$period_3$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
-  file_path = "data/posts/2022_summer_p3.txt"
+  file_path = "data/posts/2022_summer_tour_p3.txt"
 )
 
 ## Period 4
@@ -101,7 +101,7 @@ print_post(
   start_time = period_dates$period_4$start_time,
   end_time = period_dates$period_4$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
-  file_path = "data/posts/2022_summer_p4.txt"
+  file_path = "data/posts/2022_summer_tour_p4.txt"
 )
 
 ## Period 5
@@ -112,7 +112,7 @@ print_post(
   start_time = period_dates$period_5$start_time,
   end_time = period_dates$period_5$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
-  file_path = "data/posts/2022_summer_p5.txt"
+  file_path = "data/posts/2022_summer_tour_p5.txt"
 )
 
 ## Period 6
@@ -123,5 +123,5 @@ print_post(
   start_time = period_dates$period_6$start_time,
   end_time = period_dates$period_6$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
-  file_path = "data/posts/2022_summer_p6.txt"
+  file_path = "data/posts/2022_summer_tour_p6.txt"
 )
