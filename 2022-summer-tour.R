@@ -23,20 +23,20 @@ period_dates <- list(
     "end_time" = as.POSIXct("2022-06-20 00:00", tz = "UTC") %>% as.integer()
   ),
   "period_3" = list(
-    "start_time" = as.POSIXct("2022-06-19 22:00", tz = "UTC") %>% as.integer(),
-    "end_time" = as.POSIXct("2022-06-26 22:00", tz = "UTC") %>% as.integer()
+    "start_time" = as.POSIXct("2022-06-20 09:00", tz = "UTC") %>% as.integer(),
+    "end_time" = as.POSIXct("2022-06-27 09:00", tz = "UTC") %>% as.integer()
   ),
   "period_4" = list(
-    "start_time" = as.POSIXct("2022-06-26 22:00", tz = "UTC") %>% as.integer(),
-    "end_time" = as.POSIXct("2022-07-04 00:00", tz = "UTC") %>% as.integer()
+    "start_time" = as.POSIXct("2022-06-27 09:00", tz = "UTC") %>% as.integer(),
+    "end_time" = as.POSIXct("2022-07-04 09:00", tz = "UTC") %>% as.integer()
   ),
   "period_5" = list(
-    "start_time" = as.POSIXct("2022-07-03 22:00", tz = "UTC") %>% as.integer(),
-    "end_time" = as.POSIXct("2022-07-10 22:00", tz = "UTC") %>% as.integer()
+    "start_time" = as.POSIXct("2022-07-04 09:00", tz = "UTC") %>% as.integer(),
+    "end_time" = as.POSIXct("2022-07-11 09:00", tz = "UTC") %>% as.integer()
   ),
   "period_6" = list(
-    "start_time" = as.POSIXct("2022-07-10 22:00", tz = "UTC") %>% as.integer(),
-    "end_time" = as.POSIXct("2022-07-17 22:00", tz = "UTC") %>% as.integer()
+    "start_time" = as.POSIXct("2022-07-11 09:00", tz = "UTC") %>% as.integer(),
+    "end_time" = as.POSIXct("2022-07-18 09:00", tz = "UTC") %>% as.integer()
   )
 )
 
