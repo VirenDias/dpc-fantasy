@@ -16,11 +16,11 @@ league_ids <- list(
 period_dates <- list(
   "period_1" = list(
     "start_time" = as.POSIXct("2022-06-06 00:00", tz = "UTC") %>% as.integer(),
-    "end_time" = as.POSIXct("2022-06-13 00:00", tz = "UTC") %>% as.integer()
+    "end_time" = as.POSIXct("2022-06-13 09:00", tz = "UTC") %>% as.integer()
   ),
   "period_2" = list(
-    "start_time" = as.POSIXct("2022-06-13 00:00", tz = "UTC") %>% as.integer(),
-    "end_time" = as.POSIXct("2022-06-20 00:00", tz = "UTC") %>% as.integer()
+    "start_time" = as.POSIXct("2022-06-13 09:00", tz = "UTC") %>% as.integer(),
+    "end_time" = as.POSIXct("2022-06-20 09:00", tz = "UTC") %>% as.integer()
   ),
   "period_3" = list(
     "start_time" = as.POSIXct("2022-06-20 09:00", tz = "UTC") %>% as.integer(),
