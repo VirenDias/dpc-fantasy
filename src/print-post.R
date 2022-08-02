@@ -228,72 +228,34 @@ print_post <- function(
       bind_rows(all_region_averages, .)
   }
   
-  # Create card bonus table ----------------------------------------------------
+  # Add notes section ----------------------------------------------------------
   file <- read_lines(file_path, lazy = FALSE)
-  card_bonus_table <- all_region_averages %>%
-    group_by(player_role) %>%
-    summarise(across(.cols = kills:stuns, .fns = ~mean(., na.rm = TRUE))) %>%
-    gather(key = "Indicator", value = "value", kills:stuns) %>%
-    spread(key = player_role, value = value) %>%
-    mutate(
-      Indicator = recode_factor(
-        Indicator,
-        "kills" = "Kills",
-        "deaths" = "Deaths",
-        "creep_score" = "Creep Score",
-        "gold_per_min" = "GPM",
-        "tower_kills" = "Tower Kills",
-        "roshan_kills" = "Roshan Kills",
-        "team_fight" = "Teamfight",
-        "obs_wards_planted" = "Obs Wards",
-        "camps_stacked" = "Camps Stacked",
-        "runes_grabbed" = "Runes Grabbed",
-        "first_blood" = "First Blood",
-        "stuns" = "Stuns"
-      ),
-      across(.cols = -Indicator, .fns = ~.*100/sum(.))
-    )
-  
-  ## Create section heading
   write_lines(
-    "# Gold/Silver Card Bonuses", 
+    "# Notes", 
     file = file_path, 
     append = FALSE
   )
   write_lines("", file = file_path, append = TRUE)
-  
-  ## Create section text
   write_lines(
-    paste0(
-      "Please refer to this [Google Sheet](https://docs.google.com/spreadsheets/d/",
-      google_sheet,
-      ") for what to look for for each individual player, or the table below for what to look for for each role in general."
-    ),
+    "* The data has been acquired from OpenDota and datdota.", 
+    file = file_path, 
+    append = TRUE
+  )
+  write_lines(
+    "* The numbers here are based on each player's 25 most recent tier 1 and 2 pro matches.", 
+    file = file_path, 
+    append = TRUE
+  )
+  write_lines(
+    "* Each match has been exponentially weighted such that the most recent matches have the biggest impact.", 
     file = file_path, 
     append = TRUE
   )
   write_lines("", file = file_path, append = TRUE)
   
-  ## Create table caption
+  # Add glossary section -------------------------------------------------------
   write_lines(
-    "***Table 1:** The percentage of fantasy points earned by each indicator for each role.*",
-    file = file_path, 
-    append = TRUE
-  )
-  write_lines("", file = file_path, append = TRUE)
-  
-  ## Create table
-  kable(
-    x = card_bonus_table,
-    format = "pipe",
-    digits = 2
-  ) %>%
-    write_lines(file = file_path, append = TRUE)
-  write_lines("", file = file_path, append = TRUE)
-  
-  # Add notes section
-  write_lines(
-    "# Notes", 
+    "# Glossary", 
     file = file_path, 
     append = TRUE
   )
@@ -328,6 +290,68 @@ print_post <- function(
     file = file_path, 
     append = TRUE
   )
+  write_lines("", file = file_path, append = TRUE)
+  
+  # Create card bonus table ----------------------------------------------------
+  card_bonus_table <- all_region_averages %>%
+    group_by(player_role) %>%
+    summarise(across(.cols = kills:stuns, .fns = ~mean(., na.rm = TRUE))) %>%
+    gather(key = "Indicator", value = "value", kills:stuns) %>%
+    spread(key = player_role, value = value) %>%
+    mutate(
+      Indicator = recode_factor(
+        Indicator,
+        "kills" = "Kills",
+        "deaths" = "Deaths",
+        "creep_score" = "Creep Score",
+        "gold_per_min" = "GPM",
+        "tower_kills" = "Tower Kills",
+        "roshan_kills" = "Roshan Kills",
+        "team_fight" = "Teamfight",
+        "obs_wards_planted" = "Obs Wards",
+        "camps_stacked" = "Camps Stacked",
+        "runes_grabbed" = "Runes Grabbed",
+        "first_blood" = "First Blood",
+        "stuns" = "Stuns"
+      ),
+      across(.cols = -Indicator, .fns = ~.*100/sum(.))
+    )
+  
+  ## Create section heading
+  write_lines(
+    "# Gold/Silver Card Bonuses", 
+    file = file_path, 
+    append = TRUE
+  )
+  write_lines("", file = file_path, append = TRUE)
+  
+  ## Create section text
+  write_lines(
+    paste0(
+      "Please refer to this [Google Sheet](https://docs.google.com/spreadsheets/d/",
+      google_sheet,
+      ") for what to look for for each individual player, or the table below for what to look for for each role in general."
+    ),
+    file = file_path, 
+    append = TRUE
+  )
+  write_lines("", file = file_path, append = TRUE)
+  
+  ## Create table caption
+  write_lines(
+    "***Table 1:** The percentage of fantasy points earned by each indicator for each role.*",
+    file = file_path, 
+    append = TRUE
+  )
+  write_lines("", file = file_path, append = TRUE)
+  
+  ## Create table
+  kable(
+    x = card_bonus_table,
+    format = "pipe",
+    digits = 2
+  ) %>%
+    write_lines(file = file_path, append = TRUE)
   write_lines("", file = file_path, append = TRUE)
   
   write_lines(file, file = file_path, append = TRUE)
