@@ -8,13 +8,14 @@ library(knitr)
 library(rlang)
 
 print_post <- function(
-  league_ids, 
-  update = FALSE,
-  innate_data_only = FALSE,
-  start_time, 
-  end_time,
-  google_sheet,
-  file_path
+    league_ids, 
+    start_time, 
+    end_time,
+    google_sheet,
+    file_path,
+    innate_data_only = FALSE,
+    exponential = FALSE,
+    update = FALSE
 ) {
   file.create(file_path)
   table_no <- 2
@@ -157,8 +158,9 @@ print_post <- function(
     averages <- calculate_averages(
       league_id = league_id, 
       player_series = relevant_players,
-      innate_data_only = innate_data_only,
       start_time = start_time,
+      innate_data_only = innate_data_only,
+      exponential = exponential,
       update = update
     )
     
@@ -173,7 +175,7 @@ print_post <- function(
         team_name, 
         series,
         avg,
-        sd,
+        std,
         if (sum(.$bas_exp == .$pot_exp | is.na(.$bas_exp)) < nrow(.)) "bas_exp",
         pot_exp
       ) %>%

@@ -4,10 +4,10 @@ library(tidyverse)
 library(httr)
 
 get_prediction_data <- function(
-  league_id,
-  start_time = as.integer(Sys.time()),
-  num_matches = 25,
-  update = FALSE
+    league_id,
+    start_time = as.integer(Sys.time()),
+    num_matches = 25,
+    update = FALSE
 ) {
   message(paste0("Retrieving prediction data for league ID ", league_id))
   
@@ -170,7 +170,8 @@ get_prediction_data <- function(
     filter(start_time < !!start_time) %>%
     group_by(player_id) %>%
     slice_max(order_by = start_time, n = num_matches) %>%
-    ungroup()
+    ungroup() %>%
+    arrange(start_time)
   
   return(matches)
 }
@@ -178,9 +179,9 @@ get_prediction_data <- function(
 ################################################################################
 
 get_result_data <- function(
-  league_id,
-  start_time = as.integer(Sys.time()),
-  update = FALSE
+    league_id,
+    start_time = as.integer(Sys.time()),
+    update = FALSE
 ) {
   message(paste0("Retrieving results data for league ID ", league_id))
   
@@ -326,7 +327,8 @@ get_result_data <- function(
   matches <- matches %>% 
     filter(match_id %in% match_ids) %>%
     filter(player_id %in% player_ids) %>%
-    filter(start_time < !!start_time)
+    filter(start_time < !!start_time) %>%
+    arrange(start_time)
   
   return(matches)
 }
