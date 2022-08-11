@@ -3,6 +3,7 @@ source("src/get-player-data.R")
 library(tidyverse)
 library(httr)
 
+# Prediction data --------------------------------------------------------------
 get_prediction_data <- function(
     league_id,
     start_time = as.integer(Sys.time()),
@@ -18,7 +19,9 @@ get_prediction_data <- function(
   }
   
   # Get player IDs
-  player_ids <- get_player_data(league_id = league_id, update = FALSE)$player_id
+  player_ids <- get_player_data(league_id = league_id, update = update) %>%
+    suppressMessages() %>%
+    pull(player_id)
   
   if (update) {
     # Get recent pro match data before start date
@@ -176,8 +179,7 @@ get_prediction_data <- function(
   return(matches)
 }
 
-################################################################################
-
+# Result data ------------------------------------------------------------------
 get_result_data <- function(
     league_id,
     start_time = as.integer(Sys.time()),
@@ -192,7 +194,9 @@ get_result_data <- function(
   }
   
   # Get player IDs
-  player_ids <- get_player_data(league_id = league_id, update = FALSE)$player_id
+  player_ids <- get_player_data(league_id = league_id, update = update) %>%
+    suppressMessages() %>%
+    pull(player_id)
   
   # Get league data
   response_league <- GET(

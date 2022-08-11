@@ -1,6 +1,7 @@
 source("src/get-player-data.R")
 source("src/get-team-data.R")
 source("src/get-schedule.R")
+source("src/calculate-tiebreakers.R")
 source("src/calculate-averages.R")
 
 library(tidyverse)
@@ -15,8 +16,13 @@ print_post <- function(
     file_path,
     innate_data_only = FALSE,
     exponential = FALSE,
+    tiebreaker = FALSE,
+    tiebreaker_ranks = NULL,
+    tie_best_of = 1,
+    tie_2_best_of = 3,
     update = FALSE
 ) {
+  options(knitr.kable.NA = "—")
   file.create(file_path)
   table_no <- 2
   all_region_averages <- data.frame()
@@ -112,12 +118,116 @@ print_post <- function(
     kable(
       x = schedule_table,
       format = "pipe",
-      col.names = c("Team 1", "Team 2", "Series Type", "Scheduled Time"),
+      col.names = c("Team 1", "Team 2", "Series", "Time"),
       align = "lll"
     ) %>%
       write_lines(file = file_path, append = TRUE)
     
     write_lines("", file = file_path, append = TRUE)
+    
+    # Create tiebreaker tables -------------------------------------------------
+    if (tiebreaker) {
+      tiebreakers <- calculate_tiebreakers(
+        league_id = league_id,
+        start_time = start_time,
+        end_time = end_time,
+        tiebreaker_ranks = tiebreaker_ranks,
+        tie_best_of = tie_best_of,
+        tie_2_best_of = tie_2_best_of,
+      )
+      
+      ## General
+      ### Format data
+      tiebreaker_table <- tiebreakers %>%
+        arrange(desc(scenarios_num)) %>%
+        group_by(tied_teams) %>%
+        transmute(
+          teams = paste0(
+            teams %>% 
+              filter(team_id %in% unlist(tied_teams)) %>% 
+              arrange(team_name) %>%
+              pull(team_name),
+            collapse = " / "
+          ),
+          ranks = paste0(min(tied_ranks[[1]]), "–", max(tied_ranks[[1]])),
+          series = paste0("Bo", best_of),
+          scenarios = paste0(scenarios_num, " of ", scenarios_total),
+          scenarios_perc = (scenarios_num / scenarios_total) * 100
+        ) %>%
+        ungroup() %>%
+        select(-tied_teams)
+      
+      ### Create table caption
+      paste0(
+        "***Table ",
+        table_no,
+        ":** The potential tiebreakers.*"
+      ) %>%
+        write_lines(file = file_path, append = TRUE)
+      
+      write_lines("", file = file_path, append = TRUE)
+      table_no <- table_no + 1
+      
+      ### Create table
+      kable(
+        x = tiebreaker_table,
+        format = "pipe",
+        digits = 2,
+        col.names = c("Teams", "Ranks", "Series", "Num. Scn.", "Pct. Scn."),
+        align = "lllrr"
+      ) %>%
+        write_lines(file = file_path, append = TRUE)
+      
+      write_lines("", file = file_path, append = TRUE) 
+      
+      ## Teamwise
+      ### Format data
+      teamwise_tiebreaker_table <- tiebreakers %>%
+        mutate(
+          series = mapply(
+            function(x, y) paste0(rep(x, y), collapse = " + "), 
+            x = paste0("Bo", best_of), 
+            y = lengths(tied_teams) - 1
+          )
+        ) %>%
+        unnest_longer(tied_teams) %>%
+        left_join(teams, by = c("tied_teams" = "team_id")) %>%
+        group_by(team_name, series) %>%
+        summarise(
+          scenarios = paste0(
+            sum(scenarios_num),
+            " of ",
+            unique(scenarios_total)
+          ),
+          scenarios_perc = (sum(scenarios_num) / unique(scenarios_total)) * 100,
+          .groups = "drop"
+        ) %>%
+        rename(team = team_name) %>%
+        arrange(team, desc(scenarios_perc), desc(series))
+      
+      ### Create table caption
+      paste0(
+        "***Table ",
+        table_no,
+        ":** The teamwise potential tiebreakers.*"
+      ) %>%
+        write_lines(file = file_path, append = TRUE)
+      
+      write_lines("", file = file_path, append = TRUE)
+      table_no <- table_no + 1
+      
+      ### Create table
+      kable(
+        x = teamwise_tiebreaker_table,
+        format = "pipe",
+        digits = 2,
+        col.names = c("Team", "Series", "Num. Scn.", "Pct. Scn."),
+        align = "llrr"
+      ) %>%
+        write_lines(file = file_path, append = TRUE)
+      
+      write_lines("", file = file_path, append = TRUE) 
+    }
     
     # Create choices tables ----------------------------------------------------
     ## Determine series and relevant players
@@ -134,9 +244,9 @@ print_post <- function(
       ungroup() %>%
       group_by(team_id) %>%
       summarise(
-        bas_bo1 = sum((best_of == 1)*!pot), 
-        bas_bo2 = sum((best_of == 2)*!pot), 
-        bas_bo3 = sum((best_of == 3)*!pot), 
+        bas_bo1 = sum((best_of == 1)*!pot),
+        bas_bo2 = sum((best_of == 2)*!pot),
+        bas_bo3 = sum((best_of == 3)*!pot),
         bas_bo5 = sum((best_of == 5)*!pot),
         pot_bo1 = sum((best_of == 1)*pot), 
         pot_bo2 = sum((best_of == 2)*pot), 
@@ -150,6 +260,41 @@ print_post <- function(
           ),
           collapse = " + ")
       )
+    
+    ## Include the most likely tiebreaker as a potential series
+    if (tiebreaker) {
+      tiebreaker_series <- tiebreakers %>% 
+        mutate(num_matches = lengths(tied_teams) - 1) %>%
+        unnest_longer(tied_teams, values_to = "team_id") %>%
+        group_by(team_id, best_of, num_matches) %>%
+        summarise(scenarios_num = sum(scenarios_num), .groups = "drop") %>%
+        group_by(team_id) %>%
+        filter(scenarios_num == max(scenarios_num)) %>%
+        filter(best_of == max(best_of)) %>%
+        filter(num_matches == max(num_matches)) %>%
+        select(-scenarios_num) %>%
+        mutate(
+          series = mapply(
+            function(x, y) paste0(rep(x, y), collapse = " + "),
+            x = paste0("(Bo", best_of, ")"),
+            y = num_matches
+          )
+        ) %>%
+        pivot_wider(
+          names_from = best_of,
+          names_glue = "pot_bo{.name}",
+          values_from = num_matches
+        )
+      
+      series <- series %>%
+        bind_rows(tiebreaker_series) %>%
+        group_by(team_id) %>%
+        summarise(
+          across(.cols = contains("_bo"), ~sum(., na.rm = TRUE)),
+          series = paste0(series, collapse = " + ")
+        )
+    }
+    
     relevant_players <- players %>%
       inner_join(series, by = "team_id") %>%
       select(player_id, contains("_bo"))
@@ -229,11 +374,10 @@ print_post <- function(
   }
   
   # Add notes section ----------------------------------------------------------
-  file <- read_lines(file_path, lazy = FALSE)
   write_lines(
     "# Notes", 
     file = file_path, 
-    append = FALSE
+    append = TRUE
   )
   write_lines("", file = file_path, append = TRUE)
   write_lines(
@@ -260,6 +404,18 @@ print_post <- function(
     append = TRUE
   )
   write_lines("", file = file_path, append = TRUE)
+  if (tiebreaker) {
+    write_lines(
+      "* **Num. Scn.:** Number of scenarios, i.e. the number of scenarios in which a particular tiebreaker will take place.", 
+      file = file_path, 
+      append = TRUE
+    )
+    write_lines(
+      "* **Pct. Scn.:** Percentage of scenarios, i.e. the percentage of all possible scenarios in which a particular tiebreaker will take place.", 
+      file = file_path, 
+      append = TRUE
+    )
+  }
   write_lines(
     "* **Avg.:** Average.", 
     file = file_path, 
@@ -318,10 +474,11 @@ print_post <- function(
     )
   
   ## Create section heading
+  file <- read_lines(file_path, lazy = FALSE)
   write_lines(
     "# Gold/Silver Card Bonuses", 
     file = file_path, 
-    append = TRUE
+    append = FALSE
   )
   write_lines("", file = file_path, append = TRUE)
   

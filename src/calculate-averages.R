@@ -336,6 +336,8 @@ calculate_averages <- function(
     exponential = FALSE,
     update = FALSE
 ) {
+  message(paste0("Calculating averages for league ID ", league_id))
+  
   # Get required data
   if (innate_data_only) {
     matches <- get_result_data(

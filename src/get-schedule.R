@@ -22,6 +22,8 @@ get_schedule <- function(league_id, update = FALSE) {
     
     # Store schedule
     schedule <- data.frame(
+      node_group_id = as.numeric(),
+      node_group_name = as.character(),
       node_id = as.numeric(),
       node_name = as.character(),
       best_of = as.numeric(),
@@ -29,6 +31,8 @@ get_schedule <- function(league_id, update = FALSE) {
       inc_id_2 = as.numeric(),
       team_id_1 = as.numeric(), 
       team_id_2 = as.numeric(), 
+      team_wins_1 = as.numeric(), 
+      team_wins_2 = as.numeric(), 
       time = as.numeric()
     )
     for (stage in content(response)$node_groups) {
@@ -36,6 +40,8 @@ get_schedule <- function(league_id, update = FALSE) {
         for (match in group$nodes) {
           schedule <- schedule %>%
             add_row(
+              node_group_id = as.numeric(group$node_group_id),
+              node_group_name = as.character(group$name),
               node_id = as.numeric(match$node_id),
               node_name = as.character(match$name),
               best_of = as.numeric(
@@ -45,6 +51,8 @@ get_schedule <- function(league_id, update = FALSE) {
               inc_id_2 = as.numeric(match$incoming_node_id_2),
               team_id_1 = as.numeric(match$team_id_1), 
               team_id_2 = as.numeric(match$team_id_2), 
+              team_wins_1 = as.numeric(match$team_1_wins), 
+              team_wins_2 = as.numeric(match$team_2_wins), 
               time = as.numeric(match$scheduled_time)
             )
         }
