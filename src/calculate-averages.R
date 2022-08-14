@@ -235,12 +235,12 @@ average_series <- function(
         for (i in 1:reps) {
           sample <- if (exponential) {
             rnorm(
-              n = 100, 
+              n = 100000, 
               mean = summarise_exponentially(points, ranks, func = "average"), 
               sd = summarise_exponentially(points, ranks, func = "stddev")
             )
           } else {
-            rnorm(n = 100, mean = mean(points), sd = sd(points))
+            rnorm(n = 100000, mean = mean(points), sd = sd(points))
           }
           series <- c(series, list(sample))
         }
