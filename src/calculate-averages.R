@@ -108,8 +108,13 @@ average_series <- function(
     pot_bo3 = 0, 
     pot_bo5 = 0,
     exponential = FALSE,
-    exact = FALSE
+    exact = FALSE,
+    progress = NULL
 ) {
+  if (!is.null(progress)) {
+    message(paste0("Calculating summaries (", progress, ")"))
+  }
+  
   # Calculate Bo1 permutation, average, and standard deviation
   perm_bo1 <- permute_series(outcomes, points, best_of = 1)
   if (exponential) {
@@ -127,7 +132,7 @@ average_series <- function(
     avg <- mean(perm_bo1$points)
     std <- sd(perm_bo1$points)
   }
-  
+
   # Calculate Bo2, Bo3, and Bo5 permutations if necessary
   perm_bo2 <- if (bas_bo2 > 0 | pot_bo2 > 0) {
     permute_series(outcomes, points, best_of = 2)
@@ -230,12 +235,12 @@ average_series <- function(
         for (i in 1:reps) {
           sample <- if (exponential) {
             rnorm(
-              n = 100000, 
+              n = 100, 
               mean = summarise_exponentially(points, ranks, func = "average"), 
               sd = summarise_exponentially(points, ranks, func = "stddev")
             )
           } else {
-            rnorm(n = 100000, mean = mean(points), sd = sd(points))
+            rnorm(n = 100, mean = mean(points), sd = sd(points))
           }
           series <- c(series, list(sample))
         }
@@ -328,7 +333,7 @@ average_series <- function(
   )
 }
 
-calculate_averages <- function(
+calculate_summaries <- function(
     league_id,
     player_series = NULL,
     start_time = as.integer(Sys.time()),
@@ -336,7 +341,7 @@ calculate_averages <- function(
     exponential = FALSE,
     update = FALSE
 ) {
-  message(paste0("Calculating averages for league ID ", league_id))
+  message(paste0("Calculating summaries for league ID ", league_id))
   
   # Get required data
   if (innate_data_only) {
@@ -381,7 +386,8 @@ calculate_averages <- function(
           pot_bo2 = max(pot_bo2, 0),
           pot_bo3 = max(pot_bo3, 0),
           pot_bo5 = max(pot_bo5, 0),
-          exponential = exponential
+          exponential = exponential,
+          progress = paste0(cur_group_id(), "/", length(unique(.$player_id)))
         )
       )
     averages <- averages %>% right_join(series_averages, by = "player_id")

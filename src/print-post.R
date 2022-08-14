@@ -300,7 +300,7 @@ print_post <- function(
       select(player_id, contains("_bo"))
     
     ## Calculate averages
-    averages <- calculate_averages(
+    averages <- calculate_summaries(
       league_id = league_id, 
       player_series = relevant_players,
       start_time = start_time,

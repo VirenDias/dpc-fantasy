@@ -59,7 +59,7 @@ lapply(names(league_ids), function(league_name) {
     google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
     work_sheet = league_name,
     league_id = league_ids[[league_name]],
-    update = TRUE
+    update = FALSE
   )
 })
 
@@ -130,6 +130,10 @@ print_post(
   file_path = "data/posts/2022_summer_major_p5.txt",
   innate_data_only = FALSE,
   exponential = TRUE,
+  tiebreaker = TRUE,
+  tiebreaker_ranks = c(4, 6),
+  tie_best_of = 1,
+  tie_2_best_of = 3,
   update = FALSE
 )
 
