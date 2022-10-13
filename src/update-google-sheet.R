@@ -6,15 +6,20 @@ library(tidyverse)
 library(googlesheets4)
 
 update_google_sheet <- function(
-  google_sheet,
-  work_sheet,
-  league_id,
-  update = FALSE
+    google_sheet,
+    work_sheet,
+    league_id,
+    exponential = FALSE,
+    update = FALSE
 ) {
   # Get required data
   players <- get_player_data(league_id = league_id, update = update)
   teams <- get_team_data(league_id = league_id, update = update)
-  averages <- calculate_summaries(league_id = league_id, update = update)
+  averages <- calculate_summaries(
+    league_id = league_id, 
+    exponential = exponential,
+    update = update
+  )
   
   # Format values
   averages <- averages %>%

@@ -386,7 +386,7 @@ print_post <- function(
     append = TRUE
   )
   write_lines(
-    "* The numbers here are based on each player's 25 most recent tier 1 and 2 pro matches.", 
+    "* The numbers here are based on each player's 50 most recent tier 1 and 2 pro matches.", 
     file = file_path, 
     append = TRUE
   )

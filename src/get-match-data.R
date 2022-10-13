@@ -7,7 +7,7 @@ library(httr)
 get_prediction_data <- function(
     league_id,
     start_time = as.integer(Sys.time()),
-    num_matches = 25,
+    num_matches = 50,
     update = FALSE
 ) {
   message(paste0("Retrieving prediction data for league ID ", league_id))

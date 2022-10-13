@@ -55,6 +55,7 @@ lapply(names(league_ids), function(league_name) {
     google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
     work_sheet = league_name,
     league_id = league_ids[[league_name]],
+    exponential = TRUE,
     update = FALSE
   )
 })
