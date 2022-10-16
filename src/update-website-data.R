@@ -47,7 +47,8 @@ update_website_data <- function(
         x = time,
         breaks = unique(unlist(period_dates)),
         labels = 1:length(period_dates),
-        include.lowest = TRUE
+        include.lowest = TRUE,
+        right = FALSE
       )
     ) %>%
     left_join(teams, by = c("team_id_1" = "team_id")) %>%
