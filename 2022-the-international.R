@@ -129,7 +129,7 @@ print_post(
   end_time = period_dates$period_5$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
   file_path = "data/posts/2022_the_international_p5.txt",
-  innate_data_only = TRUE,
+  innate_data_only = FALSE,
   exponential = TRUE,
   update = FALSE
 )
@@ -141,7 +141,7 @@ print_post(
   end_time = period_dates$period_6$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
   file_path = "data/posts/2022_the_international_p6.txt",
-  innate_data_only = TRUE,
+  innate_data_only = FALSE,
   exponential = TRUE,
   update = FALSE
 )
@@ -153,7 +153,7 @@ print_post(
   end_time = period_dates$period_7$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
   file_path = "data/posts/2022_the_international_p7.txt",
-  innate_data_only = TRUE,
+  innate_data_only = FALSE,
   exponential = TRUE,
   update = FALSE
 )
@@ -165,7 +165,7 @@ print_post(
   end_time = period_dates$period_8$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
   file_path = "data/posts/2022_the_international_p8.txt",
-  innate_data_only = TRUE,
+  innate_data_only = FALSE,
   exponential = TRUE,
   update = FALSE
 )
@@ -177,7 +177,7 @@ print_post(
   end_time = period_dates$period_9$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
   file_path = "data/posts/2022_the_international_p9.txt",
-  innate_data_only = TRUE,
+  innate_data_only = FALSE,
   exponential = TRUE,
   update = FALSE
 )
@@ -189,7 +189,7 @@ print_post(
   end_time = period_dates$period_10$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
   file_path = "data/posts/2022_the_international_p10.txt",
-  innate_data_only = TRUE,
+  innate_data_only = FALSE,
   exponential = TRUE,
   update = FALSE
 )
