@@ -36,12 +36,12 @@ period_dates <- list(
     "end_time" = as.POSIXct("2022-10-29 02:00", tz = "UTC") %>% as.integer()
   ),
   "period_9" = list(
-    "start_time" = as.POSIXct("2022-10-29 02:00", tz = "UTC") %>% as.integer(),
-    "end_time" = as.POSIXct("2022-10-30 02:00", tz = "UTC") %>% as.integer()
+    "start_time" = as.POSIXct("2022-10-29 04:00", tz = "UTC") %>% as.integer(),
+    "end_time" = as.POSIXct("2022-10-30 04:00", tz = "UTC") %>% as.integer()
   ),
   "period_10" = list(
-    "start_time" = as.POSIXct("2022-10-30 02:00", tz = "UTC") %>% as.integer(),
-    "end_time" = as.POSIXct("2022-10-31 02:00", tz = "UTC") %>% as.integer()
+    "start_time" = as.POSIXct("2022-10-30 04:00", tz = "UTC") %>% as.integer(),
+    "end_time" = as.POSIXct("2022-10-31 04:00", tz = "UTC") %>% as.integer()
   )
 )
 
