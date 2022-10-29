@@ -74,7 +74,8 @@ calculate_period_summary <- function(
         ((1 - pnorm(x, avg, std, lower.tail = FALSE))^(r - 1)) * 
         (pnorm(x, avg, std, lower.tail = FALSE)^(n - r)) * dnorm(x, avg, std)
     }
-    result_avg <- integrate(integ_avg, -Inf, Inf, r, n, avg, std)$value
+    result_avg <- integrate(integ_avg, -Inf, Inf, r, n, avg, std, abs.tol = 0)
+    result_avg <- result_avg$value
     
     integ_var <- function(x, r, n, avg = 0, std = 1) {
       (x - result_avg)^2 * 
@@ -82,7 +83,8 @@ calculate_period_summary <- function(
         ((1 - pnorm(x, avg, std, lower.tail = FALSE))^(r - 1)) *
         (pnorm(x, avg, std, lower.tail = FALSE)^(n - r)) * dnorm(x, avg, std)
     }
-    result_var <- integrate(integ_var, -Inf, Inf, r, n, avg, std)$value
+    result_var <- integrate(integ_var, -Inf, Inf, r, n, avg, std, abs.tol = 0)
+    result_var <- result_var$value
     
     return(tibble("avg" = result_avg, "var" = result_var))
   }
