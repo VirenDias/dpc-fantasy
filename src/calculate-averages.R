@@ -51,6 +51,17 @@ calculate_period_summary <- function(
     message(paste0("Calculating summaries (", progress, ")"))
   }
   
+  if (unique(is.na(outcomes) | is.na(points))) {
+    return(
+      tibble(
+        "avg" = NA,
+        "std" = NA,
+        "bas_exp" = NA,
+        "pot_exp" = NA
+      )
+    )
+  }
+  
   # Calculate average, standard deviation, and win rate
   if (exponential) {
     avg <- calculate_exponential_summary(values = points, func = "average")
