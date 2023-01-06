@@ -68,7 +68,10 @@ get_player_data <- function(league_id, update = FALSE) {
             labels = c("Undefined", "Core", "Support", "Mid"))
         )
       )
-    players <- players %>% left_join(roles, by = "player_id") %>% tibble()
+    players <- players %>% 
+      left_join(roles, by = "player_id") %>%
+      tibble() %>%
+      distinct()
     
     # Write the data to disk
     if (!dir.exists(dir_path)) {
