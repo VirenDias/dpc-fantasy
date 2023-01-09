@@ -1,6 +1,6 @@
 node_group_id,node_group_name,node_id,node_name,best_of,inc_id_1,inc_id_2,team_id_1,team_id_2,team_wins_1,team_wins_2,time
 2,Round Robin,1,match 18,3,0,0,7732977,350190,0,0,1674212400
-2,Round Robin,2,Match 2,3,0,0,350190,8169775,0,1,1673251200
+2,Round Robin,2,Match 2,3,0,0,350190,8169775,0,2,1673251200
 2,Round Robin,3,Match 5,3,0,0,8214850,350190,0,0,1673424000
 2,Round Robin,4,Match 12,3,0,0,350190,8244493,0,0,1673866800
 2,Round Robin,5,Match 24,3,0,0,8254145,350190,0,0,1674644400
