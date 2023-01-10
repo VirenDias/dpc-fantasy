@@ -1,6 +1,6 @@
 node_group_id,node_group_name,node_id,node_name,best_of,inc_id_1,inc_id_2,team_id_1,team_id_2,team_wins_1,team_wins_2,time
 2,Round Robin,1,Natus Vincere vs Nemiga Gaming,3,0,0,36,5014799,0,0,1675000800
-2,Round Robin,2,Natus Vincere vs Team Spirit,3,0,0,36,7119388,1,0,1673348400
+2,Round Robin,2,Natus Vincere vs Team Spirit,3,0,0,36,7119388,1,1,1673348400
 2,Round Robin,3,Natus Vincere vs HellRaisers,3,0,0,36,7422789,0,0,1674298800
 2,Round Robin,4,Natus Vincere vs BetBoom Team,3,0,0,36,8255888,0,0,1674385200
 2,Round Robin,5,Natus Vincere vs One Move,3,0,0,36,8376696,0,0,1673791200
