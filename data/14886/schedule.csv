@@ -15,7 +15,7 @@ node_group_id,node_group_name,node_id,node_name,best_of,inc_id_1,inc_id_2,team_i
 2,DPC 2023 SA Winter Tour Division I,14,Thunder Awaken VS Alliance.LATAM,3,0,0,7391077,7119077,0,0,1675033200
 2,DPC 2023 SA Winter Tour Division I,15,Alliance.LATAM VS Beastcoast,3,0,0,7119077,8254400,0,0,1674579600
 2,DPC 2023 SA Winter Tour Division I,16,Evil Geniuses VS Alliance.LATAM,3,0,0,7119077,8255756,0,0,1674763200
-2,DPC 2023 SA Winter Tour Division I,17,Alliance.LATAM VS Infinity,3,0,0,7119077,8375259,0,0,1673391600
+2,DPC 2023 SA Winter Tour Division I,17,Alliance.LATAM VS Infinity,3,0,0,7119077,8375259,0,1,1673391600
 2,DPC 2023 SA Winter Tour Division I,18,Alliance.LATAM VS Ravens,3,0,0,7119077,8686786,0,0,1674406800
 2,DPC 2023 SA Winter Tour Division I,19,Beastcoast VS Thunder Awaken,3,0,0,8254400,7391077,0,0,1674774000
 2,DPC 2023 SA Winter Tour Division I,20,Thunder Awaken VS Evil Geniuses,3,0,0,7391077,8255756,0,0,1674601200
