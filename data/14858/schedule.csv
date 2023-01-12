@@ -22,7 +22,7 @@ node_group_id,node_group_name,node_id,node_name,best_of,inc_id_1,inc_id_2,team_i
 2,Round Robin,21,Virtus.pro vs HellRaisers,3,0,0,7422789,8724984,0,0,1674126000
 2,Round Robin,22,Darkside vs HellRaisers,3,0,0,7422789,8944440,0,0,1674925200
 2,Round Robin,23,BetBoom Team vs One Move,3,0,0,8255888,8376696,0,0,1674309600
-2,Round Robin,24,BetBoom Team vs Virtus.pro,3,0,0,8255888,8724984,0,0,1673521200
+2,Round Robin,24,BetBoom Team vs Virtus.pro,3,0,0,8255888,8724984,1,0,1673521200
 2,Round Robin,25,BetBoom Team vs Darkside,3,0,0,8255888,8944440,0,0,1673964000
 2,Round Robin,26,Virtus.pro vs One Move,3,0,0,8376696,8724984,0,0,1674396000
 2,Round Robin,27,One Move vs Darkside,3,0,0,8376696,8944440,0,0,1674558000
