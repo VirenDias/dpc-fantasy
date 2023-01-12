@@ -26,4 +26,4 @@ node_group_id,node_group_name,node_id,node_name,best_of,inc_id_1,inc_id_2,team_i
 2,Round Robin,25,,3,0,0,8606828,8740972,0,0,1674871200
 2,Round Robin,26,,3,0,0,8607159,8728920,0,0,1674860400
 2,Round Robin,27,,3,0,0,8607159,8740972,0,0,1673650800
-2,Round Robin,28,,3,0,0,8728920,8740972,1,0,1673478000
+2,Round Robin,28,,3,0,0,8728920,8740972,2,0,1673478000
