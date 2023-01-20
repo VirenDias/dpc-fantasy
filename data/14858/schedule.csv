@@ -1,1 +1,29 @@
 node_group_id,node_group_name,node_id,node_name,best_of,inc_id_1,inc_id_2,team_id_1,team_id_2,team_wins_1,team_wins_2,time
+2,Round Robin,1,Natus Vincere vs Nemiga Gaming,3,0,0,36,5014799,0,0,1675000800
+2,Round Robin,2,Natus Vincere vs Team Spirit,3,0,0,36,7119388,1,2,1673348400
+2,Round Robin,3,Natus Vincere vs HellRaisers,3,0,0,36,7422789,0,0,1674298800
+2,Round Robin,4,Natus Vincere vs BetBoom Team,3,0,0,36,8255888,0,0,1674385200
+2,Round Robin,5,Natus Vincere vs One Move,3,0,0,36,8376696,2,1,1673791200
+2,Round Robin,6,Virtus.pro vs Natus Vincere,3,0,0,36,8724984,0,0,1674914400
+2,Round Robin,7,Natus Vincere vs Darkside,3,0,0,36,8944440,1,2,1673186400
+2,Round Robin,8,Team Spirit vs Nemiga Gaming,3,0,0,5014799,7119388,1,2,1674136800
+2,Round Robin,9,HellRaisers vs Nemiga Gaming,3,0,0,5014799,7422789,1,2,1673175600
+2,Round Robin,10,BetBoom Team vs Nemiga Gaming,3,0,0,5014799,8255888,0,0,1674730800
+2,Round Robin,11,One Move vs Nemiga Gaming,3,0,0,5014799,8376696,0,0,1674903600
+2,Round Robin,12,Virtus.pro vs Nemiga Gaming,3,0,0,5014799,8724984,1,2,1673953200
+2,Round Robin,13,Darkside vs Nemiga Gaming,3,0,0,5014799,8944440,0,2,1673359200
+2,Round Robin,14,Team Spirit vs HellRaisers,3,0,0,7119388,7422789,0,0,1674568800
+2,Round Robin,15,Team Spirit vs BetBoom Team,3,0,0,7119388,8255888,0,0,1675011600
+2,Round Robin,16,Team Spirit vs One Move,3,0,0,7119388,8376696,2,1,1673694000
+2,Round Robin,17,Team Spirit vs Virtus.pro,3,0,0,7119388,8724984,0,0,1674741600
+2,Round Robin,18,Team Spirit vs Darkside,3,0,0,7119388,8944440,0,0,1674320400
+2,Round Robin,19,BetBoom Team vs HellRaisers,3,0,0,7422789,8255888,0,2,1673704800
+2,Round Robin,20,One Move vs HellRaisers,3,0,0,7422789,8376696,2,0,1673532000
+2,Round Robin,21,Virtus.pro vs HellRaisers,3,0,0,7422789,8724984,2,0,1674126000
+2,Round Robin,22,Darkside vs HellRaisers,3,0,0,7422789,8944440,0,0,1674925200
+2,Round Robin,23,BetBoom Team vs One Move,3,0,0,8255888,8376696,0,0,1674309600
+2,Round Robin,24,BetBoom Team vs Virtus.pro,3,0,0,8255888,8724984,2,0,1673521200
+2,Round Robin,25,BetBoom Team vs Darkside,3,0,0,8255888,8944440,2,1,1673964000
+2,Round Robin,26,Virtus.pro vs One Move,3,0,0,8376696,8724984,0,0,1674396000
+2,Round Robin,27,One Move vs Darkside,3,0,0,8376696,8944440,0,0,1674558000
+2,Round Robin,28,Virtus.pro vs Darkside,3,0,0,8724984,8944440,2,0,1673715600
