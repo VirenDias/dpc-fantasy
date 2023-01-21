@@ -16,7 +16,7 @@ node_group_id,node_group_name,node_id,node_name,best_of,inc_id_1,inc_id_2,team_i
 2,Round Robin,15,Team Spirit vs BetBoom Team,3,0,0,7119388,8255888,0,0,1675011600
 2,Round Robin,16,Team Spirit vs One Move,3,0,0,7119388,8376696,2,1,1673694000
 2,Round Robin,17,Team Spirit vs Virtus.pro,3,0,0,7119388,8724984,0,0,1674741600
-2,Round Robin,18,Team Spirit vs Darkside,3,0,0,7119388,8944440,0,1,1674320400
+2,Round Robin,18,Team Spirit vs Darkside,3,0,0,7119388,8944440,1,1,1674320400
 2,Round Robin,19,BetBoom Team vs HellRaisers,3,0,0,7422789,8255888,0,2,1673704800
 2,Round Robin,20,One Move vs HellRaisers,3,0,0,7422789,8376696,2,0,1673532000
 2,Round Robin,21,Virtus.pro vs HellRaisers,3,0,0,7422789,8724984,2,0,1674126000
