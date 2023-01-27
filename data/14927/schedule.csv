@@ -4,7 +4,7 @@ node_group_id,node_group_name,node_id,node_name,best_of,inc_id_1,inc_id_2,team_i
 2,Round Robin,3,Match 5,3,0,0,8214850,350190,2,0,1673424000
 2,Round Robin,4,Match 12,3,0,0,350190,8244493,1,2,1673866800
 2,Round Robin,5,Match 24,3,0,0,8254145,350190,2,1,1674644400
-2,Round Robin,6,match 27,3,0,0,350190,8597976,0,0,1674817200
+2,Round Robin,6,match 27,3,0,0,350190,8597976,1,0,1674817200
 2,Round Robin,7,Match 9,3,0,0,8668460,350190,2,1,1673607600
 2,Round Robin,8,Match 7,3,0,0,8169775,7732977,2,1,1673586000
 2,Round Robin,9,match 15,3,0,0,8214850,7732977,2,1,1674039600
