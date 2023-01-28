@@ -9,7 +9,7 @@ node_group_id,node_group_name,node_id,node_name,best_of,inc_id_1,inc_id_2,team_i
 2,Round Robin,8,Team Spirit vs Nemiga Gaming,3,0,0,5014799,7119388,1,2,1674136800
 2,Round Robin,9,HellRaisers vs Nemiga Gaming,3,0,0,5014799,7422789,1,2,1673175600
 2,Round Robin,10,BetBoom Team vs Nemiga Gaming,3,0,0,5014799,8255888,0,2,1674730800
-2,Round Robin,11,One Move vs Nemiga Gaming,3,0,0,5014799,8376696,0,0,1674903600
+2,Round Robin,11,One Move vs Nemiga Gaming,3,0,0,5014799,8376696,0,1,1674903600
 2,Round Robin,12,Virtus.pro vs Nemiga Gaming,3,0,0,5014799,8724984,1,2,1673953200
 2,Round Robin,13,Darkside vs Nemiga Gaming,3,0,0,5014799,8944440,0,2,1673359200
 2,Round Robin,14,Team Spirit vs HellRaisers,3,0,0,7119388,7422789,2,0,1674568800
