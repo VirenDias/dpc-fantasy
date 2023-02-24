@@ -111,8 +111,8 @@ print_post(
   league_ids = league_ids,
   update = FALSE,
   innate_data_only = FALSE,
-  start_time = period_dates$period_3$start_time,
-  end_time = period_dates$period_3$end_time,
+  start_time = period_dates$period_4$start_time,
+  end_time = period_dates$period_4$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
   file_path = "data/posts/2023_winter_major_p4.txt"
 )
@@ -122,8 +122,8 @@ print_post(
   league_ids = league_ids,
   update = FALSE,
   innate_data_only = FALSE,
-  start_time = period_dates$period_3$start_time,
-  end_time = period_dates$period_3$end_time,
+  start_time = period_dates$period_5$start_time,
+  end_time = period_dates$period_5$end_time,
   tiebreaker = TRUE,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
   file_path = "data/posts/2023_winter_major_p5.txt"
@@ -134,8 +134,8 @@ print_post(
   league_ids = league_ids,
   update = FALSE,
   innate_data_only = FALSE,
-  start_time = period_dates$period_3$start_time,
-  end_time = period_dates$period_3$end_time,
+  start_time = period_dates$period_6$start_time,
+  end_time = period_dates$period_6$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
   file_path = "data/posts/2023_winter_major_p6.txt"
 )
@@ -145,8 +145,8 @@ print_post(
   league_ids = league_ids,
   update = FALSE,
   innate_data_only = FALSE,
-  start_time = period_dates$period_3$start_time,
-  end_time = period_dates$period_3$end_time,
+  start_time = period_dates$period_7$start_time,
+  end_time = period_dates$period_7$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
   file_path = "data/posts/2023_winter_major_p7.txt"
 )
@@ -156,8 +156,8 @@ print_post(
   league_ids = league_ids,
   update = FALSE,
   innate_data_only = FALSE,
-  start_time = period_dates$period_3$start_time,
-  end_time = period_dates$period_3$end_time,
+  start_time = period_dates$period_8$start_time,
+  end_time = period_dates$period_8$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
   file_path = "data/posts/2023_winter_major_p8.txt"
 )
@@ -167,8 +167,8 @@ print_post(
   league_ids = league_ids,
   update = FALSE,
   innate_data_only = FALSE,
-  start_time = period_dates$period_3$start_time,
-  end_time = period_dates$period_3$end_time,
+  start_time = period_dates$period_9$start_time,
+  end_time = period_dates$period_9$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
   file_path = "data/posts/2023_winter_major_p9.txt"
 )
@@ -178,8 +178,8 @@ print_post(
   league_ids = league_ids,
   update = FALSE,
   innate_data_only = FALSE,
-  start_time = period_dates$period_3$start_time,
-  end_time = period_dates$period_3$end_time,
+  start_time = period_dates$period_10$start_time,
+  end_time = period_dates$period_10$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
   file_path = "data/posts/2023_winter_major_p10.txt"
 )
@@ -189,8 +189,8 @@ print_post(
   league_ids = league_ids,
   update = FALSE,
   innate_data_only = FALSE,
-  start_time = period_dates$period_3$start_time,
-  end_time = period_dates$period_3$end_time,
+  start_time = period_dates$period_11$start_time,
+  end_time = period_dates$period_11$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
   file_path = "data/posts/2023_winter_major_p11.txt"
 )
