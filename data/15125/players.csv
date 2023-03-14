@@ -3,7 +3,7 @@ player_id,player_name,team_id,player_role
 84772440,iceiceice,8214850,Core
 94281932,Karl,8668460,Mid
 100471531,Jabz,8597976,Core
-100594231,skem,8169775,Support
+100594231,skem,8169775,Core
 100616105,cml,8525778,Support
 101259972,Oli~,8597976,Support
 102099826,DJ,8214850,Support
@@ -30,7 +30,7 @@ player_id,player_name,team_id,player_role
 193815691,Q,8597976,Support
 206379758,CDR,8244493,Core
 212560917,Kokz,8169775,Mid
-262838756,Kordan,8214850,Core
+262838756,Kordan,8214850,Mid
 301750126,Mikoto,8597976,Mid
 330534326,Akashi,8525778,Core
 337575662,Tino,8254145,Core
