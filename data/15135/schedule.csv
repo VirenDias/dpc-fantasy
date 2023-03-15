@@ -1,6 +1,6 @@
 node_group_id,node_group_name,node_id,node_name,best_of,inc_id_1,inc_id_2,team_id_1,team_id_2,team_wins_1,team_wins_2,time
 2,Round Robin,1,Beastcoast VS Vivo Keyd Stars,3,0,0,8254400,1061269,2,0,1678640400
-2,Round Robin,2,Vivo Keyd Stars VS Thunder Awaken,3,0,0,1061269,7391077,0,0,1678834800
+2,Round Robin,2,Vivo Keyd Stars VS Thunder Awaken,3,0,0,1061269,7391077,0,1,1678834800
 2,Round Robin,3,Vivo Keyd Stars VS No Runes,3,0,0,1061269,8118197,0,0,1679245200
 2,Round Robin,4,Alliance.LATAM VS Vivo Keyd Stars,3,0,0,7119077,1061269,0,0,1680379200
 2,Round Robin,5,Evil Geniuses VS Vivo Keyd Stars,3,0,0,8255756,1061269,0,0,1679850000
