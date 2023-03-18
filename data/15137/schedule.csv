@@ -13,7 +13,7 @@ node_group_id,node_group_name,node_id,node_name,best_of,inc_id_1,inc_id_2,team_i
 2,Round Robin,12,VP vs TSpirit,3,0,0,7119388,8724984,0,0,1680184800
 2,Round Robin,13,TSpirit vs Darkside,3,0,0,7119388,8944440,0,0,1679839200
 2,Round Robin,14,BetBoom vs HR,3,0,0,7422789,8255888,0,0,1679580000
-2,Round Robin,15,Move vs HR,3,0,0,7422789,8376696,0,1,1679137200
+2,Round Robin,15,Move vs HR,3,0,0,7422789,8376696,1,1,1679137200
 2,Round Robin,16,HR vs HYDRA,3,0,0,7422789,8588969,0,0,1679752800
 2,Round Robin,17,HR vs VP,3,0,0,7422789,8724984,2,0,1678802400
 2,Round Robin,18,Darkside vs HR,3,0,0,7422789,8944440,0,0,1679234400
