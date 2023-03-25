@@ -22,7 +22,7 @@ node_group_id,node_group_name,node_id,node_name,best_of,inc_id_1,inc_id_2,team_i
 2,Round Robin,21,VP vs BetBoom,3,0,0,8255888,8724984,0,0,1680001200
 2,Round Robin,22,BetBoom vs Darkside,3,0,0,8255888,8944440,0,0,1680454800
 2,Round Robin,23,HYDRA vs Move,3,0,0,8376696,8588969,2,1,1678629600
-2,Round Robin,24,VP vs Move,3,0,0,8376696,8724984,1,1,1679763600
+2,Round Robin,24,VP vs Move,3,0,0,8376696,8724984,1,2,1679763600
 2,Round Robin,25,Darkside vs Move,3,0,0,8376696,8944440,0,0,1680357600
 2,Round Robin,26,VP vs HYDRA,3,0,0,8588969,8724984,0,0,1680346800
 2,Round Robin,27,Darkside vs HYDRA,3,0,0,8588969,8944440,2,0,1678964400
