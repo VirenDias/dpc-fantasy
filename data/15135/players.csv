@@ -2,11 +2,11 @@ player_id,player_name,team_id,player_role
 59463394,Leostyle^^!,8375259,Mid
 81306398,KJ,1061269,NA
 84853828,Kingrd,1061269,NA
-85312703,hyko,8118197,NA
+85312703,hyko,8118197,Core
 85937380,4dr <3 Déia,1061269,NA
-86818655,nuages,8118197,NA
+86818655,nuages,8118197,Support
 86822085,Costabile,1061269,NA
-88611330,mini,8118197,NA
+88611330,mini,8118197,Core
 100758751,Prada,8375259,Support
 117089283,Panda,8255756,Support
 117956848,tavo,1061269,NA
@@ -14,7 +14,7 @@ player_id,player_name,team_id,player_role
 123953528,Robo-Z,8702318,Mid
 125995177,Gardιck 鬼,7119077,Support
 131303632,4nalog <01,7119077,Mid
-133167741,Mr.Jeanssss,8118197,NA
+133167741,Mr.Jeanssss,8118197,Mid
 138177198,Vitaly 誇り,7119077,Core
 143786911,Adrian <,8375259,Core
 145372258,Hermit,8702318,Core
@@ -37,5 +37,5 @@ player_id,player_name,team_id,player_role
 407321629,Devil,8375259,Core
 408729743,Sacred,8254400,NA
 859615206,Luis,8702318,Support
-916319073,grpx1 <01,8118197,NA
+916319073,grpx1 <01,8118197,Support
 1031547092,Elmisho,7119077,Support
