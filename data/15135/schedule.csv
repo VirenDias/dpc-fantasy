@@ -20,7 +20,7 @@ node_group_id,node_group_name,node_id,node_name,best_of,inc_id_1,inc_id_2,team_i
 2,Round Robin,19,Beastcoast VS No Runes,3,0,0,8254400,8118197,0,0,1680195600
 2,Round Robin,20,Evil Geniuses VS No Runes,3,0,0,8255756,8118197,2,1,1679418000
 2,Round Robin,21,Infinity VS No Runes,3,0,0,8375259,8118197,1,2,1678986000
-2,Round Robin,22,No Runes VS Qhali,3,0,0,8118197,8702318,0,1,1680033600
+2,Round Robin,22,No Runes VS Qhali,3,0,0,8118197,8702318,1,1,1680033600
 2,Round Robin,23,Beastcoast VS Evil Geniuses,3,0,0,8254400,8255756,0,0,1680390000
 2,Round Robin,24,Beastcoast VS Infinity,3,0,0,8254400,8375259,2,1,1679266800
 2,Round Robin,25,Beastcoast VS Qhali,3,0,0,8254400,8702318,2,1,1678813200
