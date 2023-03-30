@@ -1,6 +1,6 @@
 node_group_id,node_group_name,node_id,node_name,best_of,inc_id_1,inc_id_2,team_id_1,team_id_2,team_wins_1,team_wins_2,time
 2,Round Robin,1,TSpirit vs NAVI,3,0,0,36,7119388,0,2,1679742000
-2,Round Robin,2,"NAVI vs HR",3,0,0,36,7422789,1,0,1680174000
+2,Round Robin,2,"NAVI vs HR",3,0,0,36,7422789,1,1,1680174000
 2,Round Robin,3,"NAVI vs BetBoom",3,0,0,36,8255888,0,2,1678975200
 2,Round Robin,4, NAVI vs Move,3,0,0,36,8376696,0,2,1680012000
 2,Round Robin,5,"NAVI vs HYDRA",3,0,0,36,8588969,0,2,1679158800
