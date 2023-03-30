@@ -25,5 +25,5 @@ node_group_id,node_group_name,node_id,node_name,best_of,inc_id_1,inc_id_2,team_i
 2,Round Robin,24,Beastcoast VS Infinity,3,0,0,8254400,8375259,2,1,1679266800
 2,Round Robin,25,Beastcoast VS Qhali,3,0,0,8254400,8702318,2,1,1678813200
 2,Round Robin,26,Evil Geniuses VS Infinity,3,0,0,8255756,8375259,2,1,1678824000
-2,Round Robin,27,Evil Geniuses VS Qhali,3,0,0,8255756,8702318,0,1,1680206400
+2,Round Robin,27,Evil Geniuses VS Qhali,3,0,0,8255756,8702318,1,1,1680206400
 2,Round Robin,28,Infinity VS Qhali,3,0,0,8375259,8702318,2,1,1679590800
