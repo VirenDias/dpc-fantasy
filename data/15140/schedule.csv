@@ -1,5 +1,5 @@
 node_group_id,node_group_name,node_id,node_name,best_of,inc_id_1,inc_id_2,team_id_1,team_id_2,team_wins_1,team_wins_2,time
-2,Round Robin,1,,3,0,0,5,15,0,1,1680332400
+2,Round Robin,1,,3,0,0,5,15,1,1,1680332400
 2,Round Robin,2,,3,0,0,5,726228,2,0,1679814000
 2,Round Robin,3,,3,0,0,5,6209166,0,2,1679122800
 2,Round Robin,4,,3,0,0,5,7453020,2,0,1679544000
