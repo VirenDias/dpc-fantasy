@@ -6,7 +6,7 @@ node_group_id,node_group_name,node_id,node_name,best_of,inc_id_1,inc_id_2,team_i
 2,Round Robin,5,"NAVI vs HYDRA",3,0,0,36,8588969,0,2,1679158800
 2,Round Robin,6,"NAVI vs VP",3,0,0,36,8724984,0,0,1680444000
 2,Round Robin,7,"NAVI vs Darkside",3,0,0,36,8944440,2,1,1678618800
-2,Round Robin,8,TSpirit vs HR,3,0,0,7119388,7422789,1,1,1680368400
+2,Round Robin,8,TSpirit vs HR,3,0,0,7119388,7422789,1,2,1680368400
 2,Round Robin,9,TSpirit vs BetBoom,3,0,0,7119388,8255888,2,1,1679148000
 2,Round Robin,10,TSpirit vs Move,3,0,0,7119388,8376696,2,1,1678791600
 2,Round Robin,11,HYDRA vs TSpirit,3,0,0,7119388,8588969,2,1,1679407200
