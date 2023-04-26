@@ -21,7 +21,7 @@ period_dates <- list(
   ),
   "period_5" = list(
     "start_time" = as.POSIXct("2023-04-30 07:00", tz = "UTC") %>% as.integer(),
-    "end_time" = as.POSIXct("2023-05-01 07:00", tz = "UTC") %>% as.integer()
+    "end_time" = as.POSIXct("2023-05-05 07:00", tz = "UTC") %>% as.integer()
   ),
   "period_6" = list(
     "start_time" = as.POSIXct("2023-05-05 07:00", tz = "UTC") %>% as.integer(),
