@@ -21,20 +21,33 @@ period_dates <- list(
   ),
   "period_5" = list(
     "start_time" = as.POSIXct("2023-04-30 07:00", tz = "UTC") %>% as.integer(),
-    "end_time" = as.POSIXct("2023-05-05 07:00", tz = "UTC") %>% as.integer()
+    "end_time" = as.POSIXct("2023-05-01 07:00", tz = "UTC") %>% as.integer()
   ),
   "period_6" = list(
+    "start_time" = as.POSIXct("2023-05-01 07:00", tz = "UTC") %>% as.integer(),
+    "end_time" = as.POSIXct("2023-05-02 07:00", tz = "UTC") %>% as.integer()
+  ),
+  "period_7" = list(
+    "start_time" = as.POSIXct("2023-05-02 07:00", tz = "UTC") %>% as.integer(),
+    "end_time" = as.POSIXct("2023-05-03 07:00", tz = "UTC") %>% as.integer()
+  ),
+  "period_8" = list(
+    "start_time" = as.POSIXct("2023-05-03 07:00", tz = "UTC") %>% as.integer(),
+    "end_time" = as.POSIXct("2023-05-05 07:00", tz = "UTC") %>% as.integer()
+  ),
+  "period_9" = list(
     "start_time" = as.POSIXct("2023-05-05 07:00", tz = "UTC") %>% as.integer(),
     "end_time" = as.POSIXct("2023-05-06 07:00", tz = "UTC") %>% as.integer()
   ),
-  "period_7" = list(
+  "period_10" = list(
     "start_time" = as.POSIXct("2023-05-06 07:00", tz = "UTC") %>% as.integer(),
     "end_time" = as.POSIXct("2023-05-07 07:00", tz = "UTC") %>% as.integer()
   ),
-  "period_8" = list(
+  "period_11" = list(
     "start_time" = as.POSIXct("2023-05-07 07:00", tz = "UTC") %>% as.integer(),
     "end_time" = as.POSIXct("2023-05-08 07:00", tz = "UTC") %>% as.integer()
   )
+)
 )
 
 for (league_id in league_ids) {

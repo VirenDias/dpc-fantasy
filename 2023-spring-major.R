@@ -25,17 +25,29 @@ period_dates <- list(
   ),
   "period_5" = list(
     "start_time" = as.POSIXct("2023-04-30 07:00", tz = "UTC") %>% as.integer(),
-    "end_time" = as.POSIXct("2023-05-05 07:00", tz = "UTC") %>% as.integer()
+    "end_time" = as.POSIXct("2023-05-01 07:00", tz = "UTC") %>% as.integer()
   ),
   "period_6" = list(
+    "start_time" = as.POSIXct("2023-05-01 07:00", tz = "UTC") %>% as.integer(),
+    "end_time" = as.POSIXct("2023-05-02 07:00", tz = "UTC") %>% as.integer()
+  ),
+  "period_7" = list(
+    "start_time" = as.POSIXct("2023-05-02 07:00", tz = "UTC") %>% as.integer(),
+    "end_time" = as.POSIXct("2023-05-03 07:00", tz = "UTC") %>% as.integer()
+  ),
+  "period_8" = list(
+    "start_time" = as.POSIXct("2023-05-03 07:00", tz = "UTC") %>% as.integer(),
+    "end_time" = as.POSIXct("2023-05-05 07:00", tz = "UTC") %>% as.integer()
+  ),
+  "period_9" = list(
     "start_time" = as.POSIXct("2023-05-05 07:00", tz = "UTC") %>% as.integer(),
     "end_time" = as.POSIXct("2023-05-06 07:00", tz = "UTC") %>% as.integer()
   ),
-  "period_7" = list(
+  "period_10" = list(
     "start_time" = as.POSIXct("2023-05-06 07:00", tz = "UTC") %>% as.integer(),
     "end_time" = as.POSIXct("2023-05-07 07:00", tz = "UTC") %>% as.integer()
   ),
-  "period_8" = list(
+  "period_11" = list(
     "start_time" = as.POSIXct("2023-05-07 07:00", tz = "UTC") %>% as.integer(),
     "end_time" = as.POSIXct("2023-05-08 07:00", tz = "UTC") %>% as.integer()
   )
@@ -157,6 +169,42 @@ print_post(
   end_time = period_dates$period_8$end_time,
   google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
   file_path = "data/posts/2023_spring_major_p8.txt",
+  innate_data_only = FALSE,
+  exponential = TRUE,
+  update = FALSE
+)
+
+## Period 9
+print_post(
+  league_ids = league_ids,
+  start_time = period_dates$period_9$start_time,
+  end_time = period_dates$period_9$end_time,
+  google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
+  file_path = "data/posts/2023_spring_major_p9.txt",
+  innate_data_only = FALSE,
+  exponential = TRUE,
+  update = FALSE
+)
+
+## Period 10
+print_post(
+  league_ids = league_ids,
+  start_time = period_dates$period_10$start_time,
+  end_time = period_dates$period_10$end_time,
+  google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
+  file_path = "data/posts/2023_spring_major_p10.txt",
+  innate_data_only = FALSE,
+  exponential = TRUE,
+  update = FALSE
+)
+
+## Period 11
+print_post(
+  league_ids = league_ids,
+  start_time = period_dates$period_11$start_time,
+  end_time = period_dates$period_11$end_time,
+  google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
+  file_path = "data/posts/2023_spring_major_p11.txt",
   innate_data_only = FALSE,
   exponential = TRUE,
   update = FALSE
