@@ -48,7 +48,6 @@ period_dates <- list(
     "end_time" = as.POSIXct("2023-05-08 07:00", tz = "UTC") %>% as.integer()
   )
 )
-)
 
 for (league_id in league_ids) {
   update_website_data(
