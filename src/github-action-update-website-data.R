@@ -1,6 +1,13 @@
 source("src/update-website-data.R")
 
-league_ids <- list("Spring Major 2023" = 15251)
+league_ids <- list(
+  "NA" = 15350,
+  "SA" = 15365,
+  "WEU" = 15351,
+  "EEU" = 15335,
+  "CN" = 15383,
+  "SEA" = 15374
+)
 
 period_dates <- list(
   "period_1" = list(
