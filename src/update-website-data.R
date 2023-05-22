@@ -7,9 +7,9 @@ library(tidyverse)
 library(jsonlite)
 
 update_website_data <- function(
-  league_id,
-  period_dates,
-  update = FALSE
+    league_id,
+    period_dates,
+    update = FALSE
 ) {
   website_data <- list()
   
@@ -97,12 +97,17 @@ update_website_data <- function(
       slice_max(order_by = total, n = 3) %>%
       ungroup()
   ) %>%
+    filter(
+      start_time >= min(unique(unlist(period_dates))),
+      start_time < max(unique(unlist(period_dates)))
+    ) %>%
     mutate(
       period = cut(
         x = start_time,
         breaks = unique(unlist(period_dates)),
         labels = 1:length(period_dates),
-        include.lowest = TRUE
+        include.lowest = TRUE,
+        right = FALSE
       )
     ) %>%
     group_by(player_id, period, series_id) %>%

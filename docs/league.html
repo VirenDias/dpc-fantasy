@@ -191,7 +191,7 @@
             }
           ],
           columnDefs: [{
-              render: data => "Period " + data,
+              render: data => data == "NA" ? "" : "Period " + data,
               targets: 0
             },
             {
