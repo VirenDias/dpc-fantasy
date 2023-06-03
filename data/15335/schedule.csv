@@ -6,7 +6,7 @@ node_group_id,node_group_name,node_id,node_name,best_of,inc_id_1,inc_id_2,team_i
 2,Round Robin,5,HYDRA vs Nemiga,3,0,0,5014799,8588969,0,2,1684062000
 2,Round Robin,6,VP vs Nemiga,3,0,0,5014799,8724984,1,2,1685790000
 2,Round Robin,7,Nemiga vs UALEIKUM,3,0,0,5014799,9019673,2,0,1684407600
-2,Round Robin,8,9Pandas vs Spirit,3,0,0,7119388,7422789,0,1,1685811600
+2,Round Robin,8,9Pandas vs Spirit,3,0,0,7119388,7422789,1,1,1685811600
 2,Round Robin,9,Spirit vs BB,3,0,0,7119388,8255888,2,1,1685455200
 2,Round Robin,10,Spirit vs OM,3,0,0,7119388,8376696,2,1,1685628000
 2,Round Robin,11,Spirit vs HYDRA,3,0,0,7119388,8588969,2,1,1685282400
