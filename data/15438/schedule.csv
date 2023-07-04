@@ -71,3 +71,25 @@ node_group_id,node_group_name,node_id,node_name,best_of,inc_id_1,inc_id_2,team_i
 8,GROUP STAGE GROUP B,192,STREAM 3,2,0,0,8599101,8728920,2,0,1688272200
 8,GROUP STAGE GROUP B,193,STREAM 3,2,0,0,8599101,8894818,1,1,1688031000
 8,GROUP STAGE GROUP B,194,STREAM 4,2,0,0,8728920,8894818,0,2,1688185800
+13,Bali Major Playoffs,253,,3,0,0,0,0,0,0,0
+13,Bali Major Playoffs,254,,3,0,0,0,0,0,0,0
+13,Bali Major Playoffs,255,,3,0,0,0,0,0,0,0
+13,Bali Major Playoffs,256,,3,0,0,0,0,0,0,0
+13,Bali Major Playoffs,257,,3,253,254,0,0,0,0,0
+13,Bali Major Playoffs,258,,3,255,256,0,0,0,0,0
+13,Bali Major Playoffs,259,,3,257,258,0,0,0,0,0
+13,Bali Major Playoffs,260,,3,259,274,0,0,0,0,0
+13,Bali Major Playoffs,261,,3,0,0,0,0,0,0,0
+13,Bali Major Playoffs,262,,3,0,0,0,0,0,0,0
+13,Bali Major Playoffs,263,,3,0,0,0,0,0,0,0
+13,Bali Major Playoffs,264,,3,0,0,0,0,0,0,0
+13,Bali Major Playoffs,265,,3,253,261,0,0,0,0,0
+13,Bali Major Playoffs,266,,3,254,262,0,0,0,0,0
+13,Bali Major Playoffs,267,,3,255,263,0,0,0,0,0
+13,Bali Major Playoffs,268,,3,256,264,0,0,0,0,0
+13,Bali Major Playoffs,269,,3,265,266,0,0,0,0,0
+13,Bali Major Playoffs,270,,3,267,268,0,0,0,0,0
+13,Bali Major Playoffs,271,,3,258,269,0,0,0,0,0
+13,Bali Major Playoffs,272,,3,257,270,0,0,0,0,0
+13,Bali Major Playoffs,273,,3,271,272,0,0,0,0,0
+13,Bali Major Playoffs,274,,3,259,273,0,0,0,0,0
