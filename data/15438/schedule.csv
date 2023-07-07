@@ -76,7 +76,7 @@ node_group_id,node_group_name,node_id,node_name,best_of,inc_id_1,inc_id_2,team_i
 13,Bali Major Playoffs,307,Match 3 - BC vs GG,3,0,0,8254400,8599101,1,2,1688544000
 13,Bali Major Playoffs,308,Match 4,3,0,0,8894818,6209166,2,1,1688558400
 13,Bali Major Playoffs,309,,3,305,306,2163,8291895,0,2,1688722200
-13,Bali Major Playoffs,310,,3,307,308,8599101,8894818,0,0,1688736000
+13,Bali Major Playoffs,310,,3,307,308,8599101,8894818,1,0,1688736000
 13,Bali Major Playoffs,311,,3,309,310,8291895,0,0,0,1688808600
 13,Bali Major Playoffs,312,,5,311,326,0,0,0,0,1688884800
 13,Bali Major Playoffs,313,,3,0,0,0,0,0,0,0
