@@ -88,7 +88,7 @@ node_group_id,node_group_name,node_id,node_name,best_of,inc_id_1,inc_id_2,team_i
 13,Bali Major Playoffs,319,Match 7,3,307,315,8254400,39,2,1,1688622000
 13,Bali Major Playoffs,320,Match 8,3,308,316,6209166,7422789,1,2,1688649600
 13,Bali Major Playoffs,321,,3,317,318,15,8574561,2,1,1688695200
-13,Bali Major Playoffs,322,,3,319,320,8254400,7422789,0,0,1688708400
+13,Bali Major Playoffs,322,,3,319,320,8254400,7422789,1,0,1688708400
 13,Bali Major Playoffs,323,,3,310,321,0,15,0,0,1688794800
 13,Bali Major Playoffs,324,,3,309,322,0,0,0,0,1688781600
 13,Bali Major Playoffs,325,,3,323,324,0,0,0,0,1688822400
