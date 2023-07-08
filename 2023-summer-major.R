@@ -193,15 +193,3 @@ print_post(
   exponential = TRUE,
   update = FALSE
 )
-
-## Period 11
-print_post(
-  league_ids = league_ids,
-  start_time = period_dates$period_11$start_time,
-  end_time = period_dates$period_11$end_time,
-  google_sheet = "11ExiDnIYbupgsjuSbr9zeaBTXb_xn2N9uyvyD0Gz1bc",
-  file_path = "data/posts/2023_summer_major_p11.txt",
-  innate_data_only = FALSE,
-  exponential = TRUE,
-  update = FALSE
-)
