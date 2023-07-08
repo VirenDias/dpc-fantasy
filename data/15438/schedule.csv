@@ -77,8 +77,8 @@ node_group_id,node_group_name,node_id,node_name,best_of,inc_id_1,inc_id_2,team_i
 13,Bali Major Playoffs,308,Match 4,3,0,0,8894818,6209166,2,1,1688558400
 13,Bali Major Playoffs,309,,3,305,306,2163,8291895,0,2,1688722200
 13,Bali Major Playoffs,310,,3,307,308,8599101,8894818,2,1,1688736000
-13,Bali Major Playoffs,311,,3,309,310,8291895,8599101,0,1,1688808600
-13,Bali Major Playoffs,312,,5,311,326,0,0,0,0,1688884800
+13,Bali Major Playoffs,311,,3,309,310,8291895,8599101,0,2,1688808600
+13,Bali Major Playoffs,312,,5,311,326,8599101,0,0,0,1688884800
 13,Bali Major Playoffs,313,,3,0,0,0,0,0,0,0
 13,Bali Major Playoffs,314,,3,0,0,0,0,0,0,0
 13,Bali Major Playoffs,315,,3,0,0,0,0,0,0,0
@@ -92,4 +92,4 @@ node_group_id,node_group_name,node_id,node_name,best_of,inc_id_1,inc_id_2,team_i
 13,Bali Major Playoffs,323,,3,310,321,8894818,15,2,0,1688794800
 13,Bali Major Playoffs,324,,3,309,322,2163,7422789,2,1,1688781600
 13,Bali Major Playoffs,325,,3,323,324,8894818,2163,0,0,1688822400
-13,Bali Major Playoffs,326,,3,311,325,0,0,0,0,1688871600
+13,Bali Major Playoffs,326,,3,311,325,8291895,0,0,0,1688871600
